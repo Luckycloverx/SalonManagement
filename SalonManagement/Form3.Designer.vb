@@ -51,7 +51,8 @@ Partial Class adding_employee
         Me.Panel9 = New System.Windows.Forms.Panel()
         Me.txtPassword = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.lblclear = New System.Windows.Forms.Label()
+        Me.lblupdate = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -61,7 +62,6 @@ Partial Class adding_employee
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel9.SuspendLayout()
-        Me.Panel10.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label5
@@ -80,7 +80,7 @@ Partial Class adding_employee
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.ForeColor = System.Drawing.Color.Navy
-        Me.Label1.Location = New System.Drawing.Point(9, 12)
+        Me.Label1.Location = New System.Drawing.Point(576, 181)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(78, 20)
         Me.Label1.TabIndex = 10
@@ -387,14 +387,27 @@ Partial Class adding_employee
         Me.Label11.TabIndex = 0
         Me.Label11.Text = "Password"
         '
-        'Panel10
+        'lblclear
         '
-        Me.Panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel10.Controls.Add(Me.Label1)
-        Me.Panel10.Location = New System.Drawing.Point(561, 168)
-        Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(93, 49)
-        Me.Panel10.TabIndex = 16
+        Me.lblclear.AutoSize = True
+        Me.lblclear.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblclear.ForeColor = System.Drawing.Color.Navy
+        Me.lblclear.Location = New System.Drawing.Point(503, 181)
+        Me.lblclear.Name = "lblclear"
+        Me.lblclear.Size = New System.Drawing.Size(44, 20)
+        Me.lblclear.TabIndex = 17
+        Me.lblclear.Text = "Clear"
+        '
+        'lblupdate
+        '
+        Me.lblupdate.AutoSize = True
+        Me.lblupdate.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblupdate.ForeColor = System.Drawing.Color.Navy
+        Me.lblupdate.Location = New System.Drawing.Point(590, 181)
+        Me.lblupdate.Name = "lblupdate"
+        Me.lblupdate.Size = New System.Drawing.Size(60, 20)
+        Me.lblupdate.TabIndex = 18
+        Me.lblupdate.Text = "Update"
         '
         'adding_employee
         '
@@ -402,6 +415,9 @@ Partial Class adding_employee
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(715, 278)
+        Me.Controls.Add(Me.lblupdate)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblclear)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel8)
         Me.Controls.Add(Me.Panel7)
@@ -412,7 +428,6 @@ Partial Class adding_employee
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.Panel10)
         Me.ForeColor = System.Drawing.SystemColors.ControlLightLight
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adding_employee"
@@ -436,8 +451,6 @@ Partial Class adding_employee
         Me.Panel8.PerformLayout()
         Me.Panel9.ResumeLayout(False)
         Me.Panel9.PerformLayout()
-        Me.Panel10.ResumeLayout(False)
-        Me.Panel10.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -472,5 +485,6 @@ Partial Class adding_employee
     Friend WithEvents Panel9 As Panel
     Friend WithEvents txtPassword As TextBox
     Friend WithEvents Label11 As Label
-    Friend WithEvents Panel10 As Panel
+    Friend WithEvents lblclear As Label
+    Friend WithEvents lblupdate As Label
 End Class

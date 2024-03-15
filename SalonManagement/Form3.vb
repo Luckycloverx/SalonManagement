@@ -1,13 +1,27 @@
 ﻿Imports System.Data.OleDb
-Imports System.Security.Cryptography
-Imports System.Text
 Public Class adding_employee
     Dim ds As New DataSet
     Dim dt As New DataTable
     Dim da As New OleDbDataAdapter
     Dim comm As New OleDbCommand
 
-    Private Sub Panel10_Paint(sender As Object, e As PaintEventArgs) Handles Panel10.Paint
+    Public Sub ShowRegisterLabel()
+        Label1.Visible = True 'register
+    End Sub
+
+    Public Sub HideRegisterLabel()
+        Label1.Visible = False 'register
+    End Sub
+
+    Public Sub ShowUpdateLabel()
+        lblupdate.Visible = True
+    End Sub
+
+    Public Sub HideUpdateLabel()
+        lblupdate.Visible = False
+    End Sub
+
+    Private Sub Panel10_Paint(sender As Object, e As PaintEventArgs)
         Dim borderColor As Color = Color.Blue
 
         ' Define the border width

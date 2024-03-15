@@ -108,6 +108,18 @@ Public Class adminwindows
     End Sub
 
     Private Sub Label7_Click(sender As Object, e As EventArgs) Handles add_employee.Click
-        adding_employee.ShowDialog()
+        Dim form3 As New adding_employee()
+        form3.HideUpdateLabel()
+        form3.ShowRegisterLabel()
+        form3.ShowDialog()
     End Sub
+
+    Private Sub employeeView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles employeeView.CellClick
+        Dim form3 As New adding_employee()
+        form3.HideRegisterLabel()
+        form3.ShowUpdateLabel()
+        form3.ShowDialog()
+    End Sub
+
+
 End Class

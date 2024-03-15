@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class adminwindows
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class adminwindows
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
@@ -33,7 +33,6 @@ Partial Class adminwindows
         Me.Employee_management = New System.Windows.Forms.Panel()
         Me.editemployee = New System.Windows.Forms.Panel()
         Me.add_employee = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.employeeView = New System.Windows.Forms.DataGridView()
         Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.edit_employee = New System.Windows.Forms.Label()
@@ -150,7 +149,6 @@ Partial Class adminwindows
         'editemployee
         '
         Me.editemployee.Controls.Add(Me.add_employee)
-        Me.editemployee.Controls.Add(Me.Label6)
         Me.editemployee.Controls.Add(Me.employeeView)
         Me.editemployee.Location = New System.Drawing.Point(3, 110)
         Me.editemployee.Name = "editemployee"
@@ -162,22 +160,11 @@ Partial Class adminwindows
         Me.add_employee.AutoSize = True
         Me.add_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.add_employee.ForeColor = System.Drawing.Color.Navy
-        Me.add_employee.Location = New System.Drawing.Point(227, 298)
+        Me.add_employee.Location = New System.Drawing.Point(379, 296)
         Me.add_employee.Name = "add_employee"
         Me.add_employee.Size = New System.Drawing.Size(179, 21)
         Me.add_employee.TabIndex = 11
         Me.add_employee.Text = "add front desk employee"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.Navy
-        Me.Label6.Location = New System.Drawing.Point(35, 298)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(134, 21)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Remove employee"
         '
         'employeeView
         '
@@ -272,5 +259,4 @@ Partial Class adminwindows
     Friend WithEvents editemployee As Panel
     Friend WithEvents employeeView As DataGridView
     Friend WithEvents add_employee As Label
-    Friend WithEvents Label6 As Label
 End Class
