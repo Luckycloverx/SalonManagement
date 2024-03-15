@@ -28,20 +28,23 @@ Partial Class adminwindows
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Employee_management = New System.Windows.Forms.Panel()
-        Me.edit_employee = New System.Windows.Forms.Label()
-        Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.editemployee = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
+        Me.employeeView = New System.Windows.Forms.DataGridView()
+        Me.employee_dashboard = New System.Windows.Forms.Label()
+        Me.edit_employee = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        Me.Panel3.SuspendLayout()
-        Me.Employee_management.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Employee_management.SuspendLayout()
+        Me.editemployee.SuspendLayout()
+        CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -111,6 +114,16 @@ Partial Class adminwindows
         Me.Panel2.Size = New System.Drawing.Size(176, 43)
         Me.Panel2.TabIndex = 6
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -120,6 +133,16 @@ Partial Class adminwindows
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(112, 35)
         Me.Panel3.TabIndex = 6
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 0
+        Me.PictureBox2.TabStop = False
         '
         'Label4
         '
@@ -142,16 +165,21 @@ Partial Class adminwindows
         Me.Employee_management.Size = New System.Drawing.Size(573, 569)
         Me.Employee_management.TabIndex = 6
         '
-        'edit_employee
+        'editemployee
         '
-        Me.edit_employee.AutoSize = True
-        Me.edit_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.edit_employee.ForeColor = System.Drawing.Color.Navy
-        Me.edit_employee.Location = New System.Drawing.Point(418, 51)
-        Me.edit_employee.Name = "edit_employee"
-        Me.edit_employee.Size = New System.Drawing.Size(106, 21)
-        Me.edit_employee.TabIndex = 9
-        Me.edit_employee.Text = "Edit Employee"
+        Me.editemployee.Controls.Add(Me.employeeView)
+        Me.editemployee.Location = New System.Drawing.Point(3, 110)
+        Me.editemployee.Name = "editemployee"
+        Me.editemployee.Size = New System.Drawing.Size(567, 449)
+        Me.editemployee.TabIndex = 11
+        '
+        'employeeView
+        '
+        Me.employeeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.employeeView.Location = New System.Drawing.Point(14, 28)
+        Me.employeeView.Name = "employeeView"
+        Me.employeeView.Size = New System.Drawing.Size(544, 247)
+        Me.employeeView.TabIndex = 0
         '
         'employee_dashboard
         '
@@ -164,32 +192,16 @@ Partial Class adminwindows
         Me.employee_dashboard.TabIndex = 10
         Me.employee_dashboard.Text = "Employee dashboard"
         '
-        'editemployee
+        'edit_employee
         '
-        Me.editemployee.Location = New System.Drawing.Point(3, 110)
-        Me.editemployee.Name = "editemployee"
-        Me.editemployee.Size = New System.Drawing.Size(567, 449)
-        Me.editemployee.TabIndex = 11
-        '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
-        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
+        Me.edit_employee.AutoSize = True
+        Me.edit_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.edit_employee.ForeColor = System.Drawing.Color.Navy
+        Me.edit_employee.Location = New System.Drawing.Point(418, 51)
+        Me.edit_employee.Name = "edit_employee"
+        Me.edit_employee.Size = New System.Drawing.Size(106, 21)
+        Me.edit_employee.TabIndex = 9
+        Me.edit_employee.Text = "Edit Employee"
         '
         'adminwindows
         '
@@ -205,12 +217,14 @@ Partial Class adminwindows
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.editemployee.ResumeLayout(False)
+        CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -229,4 +243,5 @@ Partial Class adminwindows
     Friend WithEvents employee_dashboard As Label
     Friend WithEvents edit_employee As Label
     Friend WithEvents editemployee As Panel
+    Friend WithEvents employeeView As DataGridView
 End Class

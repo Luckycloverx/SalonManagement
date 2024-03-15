@@ -1,4 +1,8 @@
-﻿Public Class adminwindows
+﻿Imports System.Data.OleDb
+
+
+Public Class adminwindows
+    Dim mycon As New OleDbConnection
 
     Private Sub adminwindows_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then
@@ -33,7 +37,7 @@
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Form1.Show()
-            Me.Hide()
+            Me.Close()
         End If
     End Sub
 
@@ -41,7 +45,7 @@
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Form1.Show()
-            Me.Hide()
+            Me.Close()
         End If
     End Sub
 
@@ -49,7 +53,7 @@
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Form1.Show()
-            Me.Hide()
+            Me.Close()
         End If
     End Sub
 
@@ -64,6 +68,19 @@
         Employee_management.Visible = False
     End Sub
 
+    Private Sub DatagridShow()
+        Dim ds As New DataSet
+        Dim dt As New DataTable
+        ds.Tables.Add(dt)
+        Dim da As New OleDbDataAdapter
+        da = New OleDbDataAdapter("Select * from Employee_database", mycon)
+        da.Fill(dt)
+        employeeView.DataSource = dt.DefaultView
+
+        mycon.Close()
+
+    End Sub
+
     Private Sub Employee_management_Paint(sender As Object, e As PaintEventArgs) Handles Employee_management.Paint
         Dim panel = DirectCast(sender, Panel)
         Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
@@ -74,5 +91,20 @@
     Private Sub edit_employee_Click(sender As Object, e As EventArgs) Handles edit_employee.Click
         edit_employee.Font = New Font(edit_employee.Font, FontStyle.Bold Or FontStyle.Underline)
         editemployee.Visible = True
+        mycon.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Cristopher\source\repos\SalonManagement\SalonManagement\Resources\employeedatabase.accdb"
+        mycon.Open()
+        DatagridShow()
+    End Sub
+
+    Private Sub editemployee_Paint(sender As Object, e As PaintEventArgs) Handles editemployee.Paint
+        Dim borderColor As Color = Color.DeepPink
+
+        ' Define the border width
+        Dim borderWidth As Integer = 2
+
+        ' Draw the border
+        Dim rect As New Rectangle(0, 0, Me.ClientSize.Width - 1, Me.ClientSize.Height - 1)
+        Dim pen As New Pen(borderColor, borderWidth)
+        e.Graphics.DrawRectangle(pen, rect)
     End Sub
 End Class
