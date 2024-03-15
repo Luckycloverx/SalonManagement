@@ -2,7 +2,9 @@
 
 
 Public Class adminwindows
-    Dim mycon As New OleDbConnection
+    Dim ds As New DataSet
+    Dim dt As New DataTable
+    Dim da As New OleDbDataAdapter
 
     Private Sub adminwindows_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then
@@ -70,15 +72,13 @@ Public Class adminwindows
     End Sub
 
     Private Sub DatagridShow()
-        Dim ds As New DataSet
-        Dim dt As New DataTable
-        ds.Tables.Add(dt)
-        Dim da As New OleDbDataAdapter
-        da = New OleDbDataAdapter("Select * from Employee_database", mycon)
-        da.Fill(dt)
-        employeeView.DataSource = dt.DefaultView
 
-        mycon.Close()
+        da = New OleDbDataAdapter("Select * from Employee_database", conn)
+        ds = New DataSet
+        da.Fill(ds, "Employee_database")
+        employeeView.DataSource = ds.Tables("Employee_database").DefaultView
+
+
 
     End Sub
 
@@ -92,8 +92,6 @@ Public Class adminwindows
     Private Sub edit_employee_Click(sender As Object, e As EventArgs) Handles edit_employee.Click
         edit_employee.Font = New Font(edit_employee.Font, FontStyle.Bold Or FontStyle.Underline)
         editemployee.Visible = True
-        mycon.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\Cristopher\source\repos\SalonManagement\SalonManagement\Resources\employeedatabase.accdb"
-        mycon.Open()
         DatagridShow()
     End Sub
 
