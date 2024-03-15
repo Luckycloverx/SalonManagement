@@ -37,6 +37,8 @@ Partial Class adminwindows
         Me.employeeView = New System.Windows.Forms.DataGridView()
         Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.edit_employee = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -167,6 +169,8 @@ Partial Class adminwindows
         '
         'editemployee
         '
+        Me.editemployee.Controls.Add(Me.Label7)
+        Me.editemployee.Controls.Add(Me.Label6)
         Me.editemployee.Controls.Add(Me.employeeView)
         Me.editemployee.Location = New System.Drawing.Point(3, 110)
         Me.editemployee.Name = "editemployee"
@@ -203,6 +207,28 @@ Partial Class adminwindows
         Me.edit_employee.TabIndex = 9
         Me.edit_employee.Text = "Edit Employee"
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Navy
+        Me.Label6.Location = New System.Drawing.Point(35, 298)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(134, 21)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Remove employee"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label7.ForeColor = System.Drawing.Color.Navy
+        Me.Label7.Location = New System.Drawing.Point(227, 298)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(106, 21)
+        Me.Label7.TabIndex = 11
+        Me.Label7.Text = "add employee"
+        '
         'adminwindows
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -224,6 +250,7 @@ Partial Class adminwindows
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
         Me.editemployee.ResumeLayout(False)
+        Me.editemployee.PerformLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -244,4 +271,6 @@ Partial Class adminwindows
     Friend WithEvents edit_employee As Label
     Friend WithEvents editemployee As Panel
     Friend WithEvents employeeView As DataGridView
+    Friend WithEvents Label7 As Label
+    Friend WithEvents Label6 As Label
 End Class

@@ -60,12 +60,13 @@ Public Class adminwindows
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
         Employee_management.Visible = True
-        editemployee.Visible = False
+
 
     End Sub
 
     Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Employee_management.Visible = False
+        editemployee.Visible = False
     End Sub
 
     Private Sub DatagridShow()
@@ -97,7 +98,7 @@ Public Class adminwindows
     End Sub
 
     Private Sub editemployee_Paint(sender As Object, e As PaintEventArgs) Handles editemployee.Paint
-        Dim borderColor As Color = Color.DeepPink
+        Dim borderColor As Color = Color.Blue
 
         ' Define the border width
         Dim borderWidth As Integer = 2
