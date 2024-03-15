@@ -28,25 +28,25 @@ Partial Class adminwindows
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Employee_management = New System.Windows.Forms.Panel()
         Me.editemployee = New System.Windows.Forms.Panel()
+        Me.add_employee = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
         Me.employeeView = New System.Windows.Forms.DataGridView()
         Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.edit_employee = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Employee_management.SuspendLayout()
         Me.editemployee.SuspendLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -116,16 +116,6 @@ Partial Class adminwindows
         Me.Panel2.Size = New System.Drawing.Size(176, 43)
         Me.Panel2.TabIndex = 6
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
-        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -135,16 +125,6 @@ Partial Class adminwindows
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(112, 35)
         Me.Panel3.TabIndex = 6
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
         '
         'Label4
         '
@@ -169,13 +149,35 @@ Partial Class adminwindows
         '
         'editemployee
         '
-        Me.editemployee.Controls.Add(Me.Label7)
+        Me.editemployee.Controls.Add(Me.add_employee)
         Me.editemployee.Controls.Add(Me.Label6)
         Me.editemployee.Controls.Add(Me.employeeView)
         Me.editemployee.Location = New System.Drawing.Point(3, 110)
         Me.editemployee.Name = "editemployee"
         Me.editemployee.Size = New System.Drawing.Size(567, 449)
         Me.editemployee.TabIndex = 11
+        '
+        'add_employee
+        '
+        Me.add_employee.AutoSize = True
+        Me.add_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.add_employee.ForeColor = System.Drawing.Color.Navy
+        Me.add_employee.Location = New System.Drawing.Point(227, 298)
+        Me.add_employee.Name = "add_employee"
+        Me.add_employee.Size = New System.Drawing.Size(179, 21)
+        Me.add_employee.TabIndex = 11
+        Me.add_employee.Text = "add front desk employee"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.ForeColor = System.Drawing.Color.Navy
+        Me.Label6.Location = New System.Drawing.Point(35, 298)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(134, 21)
+        Me.Label6.TabIndex = 10
+        Me.Label6.Text = "Remove employee"
         '
         'employeeView
         '
@@ -207,27 +209,25 @@ Partial Class adminwindows
         Me.edit_employee.TabIndex = 9
         Me.edit_employee.Text = "Edit Employee"
         '
-        'Label6
+        'PictureBox1
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.ForeColor = System.Drawing.Color.Navy
-        Me.Label6.Location = New System.Drawing.Point(35, 298)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(134, 21)
-        Me.Label6.TabIndex = 10
-        Me.Label6.Text = "Remove employee"
+        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
         '
-        'Label7
+        'PictureBox2
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label7.ForeColor = System.Drawing.Color.Navy
-        Me.Label7.Location = New System.Drawing.Point(227, 298)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(106, 21)
-        Me.Label7.TabIndex = 11
-        Me.Label7.Text = "add employee"
+        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 0
+        Me.PictureBox2.TabStop = False
         '
         'adminwindows
         '
@@ -243,15 +243,15 @@ Partial Class adminwindows
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
         Me.editemployee.ResumeLayout(False)
         Me.editemployee.PerformLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -271,6 +271,6 @@ Partial Class adminwindows
     Friend WithEvents edit_employee As Label
     Friend WithEvents editemployee As Panel
     Friend WithEvents employeeView As DataGridView
-    Friend WithEvents Label7 As Label
+    Friend WithEvents add_employee As Label
     Friend WithEvents Label6 As Label
 End Class

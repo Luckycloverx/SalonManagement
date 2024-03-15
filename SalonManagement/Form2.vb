@@ -106,4 +106,8 @@ Public Class adminwindows
         Dim pen As New Pen(borderColor, borderWidth)
         e.Graphics.DrawRectangle(pen, rect)
     End Sub
+
+    Private Sub Label7_Click(sender As Object, e As EventArgs) Handles add_employee.Click
+        adding_employee.ShowDialog()
+    End Sub
 End Class
