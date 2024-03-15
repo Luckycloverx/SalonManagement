@@ -103,6 +103,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.vb</DependentUpon>
     </EmbeddedResource>
@@ -124,6 +127,24 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gunting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passeyeopen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passeyeopen1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passwordeyeclosed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\passwordeyeclosed1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sign out.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

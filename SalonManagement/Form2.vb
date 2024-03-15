@@ -1,4 +1,5 @@
 ﻿Public Class adminwindows
+
     Private Sub adminwindows_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then
             ' Define your maximum size
@@ -44,12 +45,34 @@
         End If
     End Sub
 
-    Private Sub PictureBox2_Click(sender As Object, e As EventArgs)
+    Private Sub PictureBox2_Click_1(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Form1.Show()
             Me.Hide()
         End If
+    End Sub
 
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
+        Employee_management.Visible = True
+        editemployee.Visible = False
+
+    End Sub
+
+    Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Employee_management.Visible = False
+    End Sub
+
+    Private Sub Employee_management_Paint(sender As Object, e As PaintEventArgs) Handles Employee_management.Paint
+        Dim panel = DirectCast(sender, Panel)
+        Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
+        Dim rect As New Rectangle(0, 0, panel.Width - 1, panel.Height - 1)
+        e.Graphics.DrawRectangle(pen, rect)
+    End Sub
+
+    Private Sub edit_employee_Click(sender As Object, e As EventArgs) Handles edit_employee.Click
+        edit_employee.Font = New Font(edit_employee.Font, FontStyle.Bold Or FontStyle.Underline)
+        editemployee.Visible = True
     End Sub
 End Class

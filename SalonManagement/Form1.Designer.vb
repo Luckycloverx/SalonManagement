@@ -22,185 +22,182 @@ Partial Class Form1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Label1 = New Label()
-        Panel1 = New Panel()
-        Label5 = New Label()
-        CheckBox1 = New CheckBox()
-        Panel3 = New Panel()
-        password = New TextBox()
-        Label4 = New Label()
-        login = New Button()
-        Label2 = New Label()
-        Panel2 = New Panel()
-        username = New TextBox()
-        Label3 = New Label()
-        Panel1.SuspendLayout()
-        Panel3.SuspendLayout()
-        Panel2.SuspendLayout()
-        SuspendLayout()
-        ' 
-        ' Label1
-        ' 
-        Label1.AutoSize = True
-        Label1.BackColor = SystemColors.GradientInactiveCaption
-        Label1.Location = New Point(2, 1)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(175, 15)
-        Label1.TabIndex = 0
-        Label1.Text = "SALON MANAGEMENT SYSTEM"
-        ' 
-        ' Panel1
-        ' 
-        Panel1.BackColor = SystemColors.ButtonFace
-        Panel1.Controls.Add(Label5)
-        Panel1.Controls.Add(CheckBox1)
-        Panel1.Controls.Add(Panel3)
-        Panel1.Controls.Add(login)
-        Panel1.Controls.Add(Label2)
-        Panel1.Controls.Add(Panel2)
-        Panel1.Dock = DockStyle.Right
-        Panel1.Location = New Point(400, 0)
-        Panel1.Name = "Panel1"
-        Panel1.Size = New Size(422, 559)
-        Panel1.TabIndex = 1
-        ' 
-        ' Label5
-        ' 
-        Label5.AutoSize = True
-        Label5.Font = New Font("Segoe UI", 11.25F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label5.ForeColor = Color.Navy
-        Label5.Location = New Point(13, 530)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(41, 20)
-        Label5.TabIndex = 8
-        Label5.Text = "EXIT"
-        ' 
-        ' CheckBox1
-        ' 
-        CheckBox1.AutoSize = True
-        CheckBox1.Location = New Point(50, 300)
-        CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(107, 19)
-        CheckBox1.TabIndex = 7
-        CheckBox1.Text = "show password"
-        CheckBox1.UseVisualStyleBackColor = True
-        ' 
-        ' Panel3
-        ' 
-        Panel3.BackColor = Color.White
-        Panel3.BorderStyle = BorderStyle.FixedSingle
-        Panel3.Controls.Add(password)
-        Panel3.Controls.Add(Label4)
-        Panel3.Cursor = Cursors.IBeam
-        Panel3.Location = New Point(34, 233)
-        Panel3.Name = "Panel3"
-        Panel3.Size = New Size(319, 61)
-        Panel3.TabIndex = 6
-        ' 
-        ' password
-        ' 
-        password.BorderStyle = BorderStyle.None
-        password.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        password.Location = New Point(20, 27)
-        password.Name = "password"
-        password.PasswordChar = "*"c
-        password.Size = New Size(279, 18)
-        password.TabIndex = 4
-        ' 
-        ' Label4
-        ' 
-        Label4.AutoSize = True
-        Label4.BackColor = Color.White
-        Label4.Font = New Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label4.ForeColor = SystemColors.GrayText
-        Label4.Location = New Point(15, 11)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(51, 12)
-        Label4.TabIndex = 0
-        Label4.Text = "PASSWORD"
-        ' 
-        ' login
-        ' 
-        login.BackColor = Color.Navy
-        login.FlatAppearance.BorderColor = Color.DarkGray
-        login.FlatStyle = FlatStyle.Flat
-        login.Font = New Font("Segoe UI", 12.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        login.ForeColor = SystemColors.Control
-        login.Location = New Point(34, 352)
-        login.Name = "login"
-        login.Padding = New Padding(10)
-        login.Size = New Size(319, 49)
-        login.TabIndex = 2
-        login.Text = "LOG IN"
-        login.UseVisualStyleBackColor = False
-        ' 
-        ' Label2
-        ' 
-        Label2.AutoSize = True
-        Label2.Font = New Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.Navy
-        Label2.Location = New Point(34, 89)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(248, 30)
-        Label2.TabIndex = 3
-        Label2.Text = "LOGIN TO DASHBOARD"
-        ' 
-        ' Panel2
-        ' 
-        Panel2.BackColor = Color.White
-        Panel2.BorderStyle = BorderStyle.FixedSingle
-        Panel2.Controls.Add(username)
-        Panel2.Controls.Add(Label3)
-        Panel2.Cursor = Cursors.IBeam
-        Panel2.Location = New Point(34, 146)
-        Panel2.Name = "Panel2"
-        Panel2.Size = New Size(319, 61)
-        Panel2.TabIndex = 5
-        ' 
-        ' username
-        ' 
-        username.BorderStyle = BorderStyle.None
-        username.Font = New Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        username.Location = New Point(20, 27)
-        username.Name = "username"
-        username.Size = New Size(279, 18)
-        username.TabIndex = 4
-        ' 
-        ' Label3
-        ' 
-        Label3.AutoSize = True
-        Label3.BackColor = Color.White
-        Label3.Font = New Font("Segoe UI", 6.75F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
-        Label3.ForeColor = SystemColors.GrayText
-        Label3.Location = New Point(15, 11)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(52, 12)
-        Label3.TabIndex = 0
-        Label3.Text = "USERNAME"
-        ' 
-        ' Form1
-        ' 
-        AutoScaleMode = AutoScaleMode.None
-        BackColor = SystemColors.GradientInactiveCaption
-        ClientSize = New Size(822, 559)
-        Controls.Add(Label1)
-        Controls.Add(Panel1)
-        FormBorderStyle = FormBorderStyle.None
-        MinimizeBox = False
-        Name = "Form1"
-        StartPosition = FormStartPosition.CenterScreen
-        Text = "Salon Management System"
-        Panel1.ResumeLayout(False)
-        Panel1.PerformLayout()
-        Panel3.ResumeLayout(False)
-        Panel3.PerformLayout()
-        Panel2.ResumeLayout(False)
-        Panel2.PerformLayout()
-        ResumeLayout(False)
-        PerformLayout()
-
-
-
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.password = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.login = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.username = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Panel1.SuspendLayout()
+        Me.Panel3.SuspendLayout()
+        Me.Panel2.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.Label1.Location = New System.Drawing.Point(2, 1)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(170, 13)
+        Me.Label1.TabIndex = 0
+        Me.Label1.Text = "SALON MANAGEMENT SYSTEM"
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.Panel1.Controls.Add(Me.Label5)
+        Me.Panel1.Controls.Add(Me.CheckBox1)
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Controls.Add(Me.login)
+        Me.Panel1.Controls.Add(Me.Label2)
+        Me.Panel1.Controls.Add(Me.Panel2)
+        Me.Panel1.Dock = System.Windows.Forms.DockStyle.Right
+        Me.Panel1.Location = New System.Drawing.Point(400, 0)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(422, 559)
+        Me.Panel1.TabIndex = 1
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.Navy
+        Me.Label5.Location = New System.Drawing.Point(13, 530)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(41, 20)
+        Me.Label5.TabIndex = 8
+        Me.Label5.Text = "EXIT"
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(50, 300)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(99, 17)
+        Me.CheckBox1.TabIndex = 7
+        Me.CheckBox1.Text = "show password"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.White
+        Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel3.Controls.Add(Me.password)
+        Me.Panel3.Controls.Add(Me.Label4)
+        Me.Panel3.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Panel3.Location = New System.Drawing.Point(34, 233)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(319, 61)
+        Me.Panel3.TabIndex = 6
+        '
+        'password
+        '
+        Me.password.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.password.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.password.Location = New System.Drawing.Point(20, 27)
+        Me.password.Name = "password"
+        Me.password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.password.Size = New System.Drawing.Size(279, 18)
+        Me.password.TabIndex = 4
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.BackColor = System.Drawing.Color.White
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Label4.Location = New System.Drawing.Point(15, 11)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(51, 12)
+        Me.Label4.TabIndex = 0
+        Me.Label4.Text = "PASSWORD"
+        '
+        'login
+        '
+        Me.login.BackColor = System.Drawing.Color.Navy
+        Me.login.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray
+        Me.login.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.login.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.login.ForeColor = System.Drawing.SystemColors.Control
+        Me.login.Location = New System.Drawing.Point(34, 352)
+        Me.login.Name = "login"
+        Me.login.Padding = New System.Windows.Forms.Padding(10)
+        Me.login.Size = New System.Drawing.Size(319, 49)
+        Me.login.TabIndex = 2
+        Me.login.Text = "LOG IN"
+        Me.login.UseVisualStyleBackColor = False
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Font = New System.Drawing.Font("Segoe UI", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label2.ForeColor = System.Drawing.Color.Navy
+        Me.Label2.Location = New System.Drawing.Point(34, 89)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(248, 30)
+        Me.Label2.TabIndex = 3
+        Me.Label2.Text = "LOGIN TO DASHBOARD"
+        '
+        'Panel2
+        '
+        Me.Panel2.BackColor = System.Drawing.Color.White
+        Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel2.Controls.Add(Me.username)
+        Me.Panel2.Controls.Add(Me.Label3)
+        Me.Panel2.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Panel2.Location = New System.Drawing.Point(34, 146)
+        Me.Panel2.Name = "Panel2"
+        Me.Panel2.Size = New System.Drawing.Size(319, 61)
+        Me.Panel2.TabIndex = 5
+        '
+        'username
+        '
+        Me.username.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.username.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.username.Location = New System.Drawing.Point(20, 27)
+        Me.username.Name = "username"
+        Me.username.Size = New System.Drawing.Size(279, 18)
+        Me.username.TabIndex = 4
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.BackColor = System.Drawing.Color.White
+        Me.Label3.Font = New System.Drawing.Font("Segoe UI", 6.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Label3.Location = New System.Drawing.Point(15, 11)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 12)
+        Me.Label3.TabIndex = 0
+        Me.Label3.Text = "USERNAME"
+        '
+        'Form1
+        '
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
+        Me.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.ClientSize = New System.Drawing.Size(822, 559)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Panel1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.MinimizeBox = False
+        Me.Name = "Form1"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.Text = "Salon Management System"
+        Me.Panel1.ResumeLayout(False)
+        Me.Panel1.PerformLayout()
+        Me.Panel3.ResumeLayout(False)
+        Me.Panel3.PerformLayout()
+        Me.Panel2.ResumeLayout(False)
+        Me.Panel2.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -279,9 +276,11 @@ Partial Class Form1
         End If
     End Sub
 
-    'Private Sub login_Click(sender As Object, e As EventArgs) Handles login.Click
-    'Dim Adminwindows As New adminwindows()
-    '   Adminwindows.Show()
-    'Me'.Hide()
-    'End Sub
+    Private Sub login_Click(sender As Object, e As EventArgs) Handles login.Click
+        Dim Adminwindows As New adminwindows()
+        Adminwindows.Show()
+        Me.Hide()
+    End Sub
+
+
 End Class
