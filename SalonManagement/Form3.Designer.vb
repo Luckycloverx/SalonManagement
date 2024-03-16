@@ -53,6 +53,9 @@ Partial Class adding_employee
         Me.Label11 = New System.Windows.Forms.Label()
         Me.lblclear = New System.Windows.Forms.Label()
         Me.lblupdate = New System.Windows.Forms.Label()
+        Me.Panel10 = New System.Windows.Forms.Panel()
+        Me.txtEID = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -62,6 +65,7 @@ Partial Class adding_employee
         Me.Panel7.SuspendLayout()
         Me.Panel8.SuspendLayout()
         Me.Panel9.SuspendLayout()
+        Me.Panel10.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label5
@@ -409,12 +413,46 @@ Partial Class adding_employee
         Me.lblupdate.TabIndex = 18
         Me.lblupdate.Text = "Update"
         '
+        'Panel10
+        '
+        Me.Panel10.BackColor = System.Drawing.Color.White
+        Me.Panel10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel10.Controls.Add(Me.txtEID)
+        Me.Panel10.Controls.Add(Me.Label12)
+        Me.Panel10.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.Panel10.Location = New System.Drawing.Point(497, 224)
+        Me.Panel10.Name = "Panel10"
+        Me.Panel10.Size = New System.Drawing.Size(187, 42)
+        Me.Panel10.TabIndex = 16
+        '
+        'txtEID
+        '
+        Me.txtEID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtEID.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtEID.Location = New System.Drawing.Point(100, 10)
+        Me.txtEID.Name = "txtEID"
+        Me.txtEID.Size = New System.Drawing.Size(76, 18)
+        Me.txtEID.TabIndex = 8
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.BackColor = System.Drawing.Color.White
+        Me.Label12.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.Label12.Location = New System.Drawing.Point(15, 11)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(73, 15)
+        Me.Label12.TabIndex = 0
+        Me.Label12.Text = "Employee ID"
+        '
         'adding_employee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(715, 278)
+        Me.Controls.Add(Me.Panel10)
         Me.Controls.Add(Me.lblupdate)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.lblclear)
@@ -451,6 +489,8 @@ Partial Class adding_employee
         Me.Panel8.PerformLayout()
         Me.Panel9.ResumeLayout(False)
         Me.Panel9.PerformLayout()
+        Me.Panel10.ResumeLayout(False)
+        Me.Panel10.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -487,4 +527,7 @@ Partial Class adding_employee
     Friend WithEvents Label11 As Label
     Friend WithEvents lblclear As Label
     Friend WithEvents lblupdate As Label
+    Friend WithEvents Panel10 As Panel
+    Friend WithEvents txtEID As TextBox
+    Friend WithEvents Label12 As Label
 End Class

@@ -28,7 +28,9 @@ Partial Class adminwindows
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Employee_management = New System.Windows.Forms.Panel()
         Me.editemployee = New System.Windows.Forms.Panel()
@@ -36,16 +38,14 @@ Partial Class adminwindows
         Me.employeeView = New System.Windows.Forms.DataGridView()
         Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.edit_employee = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Employee_management.SuspendLayout()
         Me.editemployee.SuspendLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -115,6 +115,16 @@ Partial Class adminwindows
         Me.Panel2.Size = New System.Drawing.Size(176, 43)
         Me.Panel2.TabIndex = 6
         '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
+        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -124,6 +134,16 @@ Partial Class adminwindows
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(112, 35)
         Me.Panel3.TabIndex = 6
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 0
+        Me.PictureBox2.TabStop = False
         '
         'Label4
         '
@@ -196,26 +216,6 @@ Partial Class adminwindows
         Me.edit_employee.TabIndex = 9
         Me.edit_employee.Text = "Edit Employee"
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
-        Me.PictureBox1.Location = New System.Drawing.Point(1, 4)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
-        '
         'adminwindows
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -230,15 +230,15 @@ Partial Class adminwindows
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
         Me.editemployee.ResumeLayout(False)
         Me.editemployee.PerformLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

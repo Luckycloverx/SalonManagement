@@ -5,6 +5,10 @@ Public Class adminwindows
     Dim ds As New DataSet
     Dim dt As New DataTable
     Dim da As New OleDbDataAdapter
+    Dim selectedEmployeeID As Integer = -1
+
+
+
 
     Private Sub adminwindows_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then
@@ -109,17 +113,68 @@ Public Class adminwindows
 
     Private Sub Label7_Click(sender As Object, e As EventArgs) Handles add_employee.Click
         Dim form3 As New adding_employee()
+        form3.AdminFormReference = Me
         form3.HideUpdateLabel()
         form3.ShowRegisterLabel()
+        form3.hideIDlabel()
         form3.ShowDialog()
     End Sub
+
+    Public ReadOnly Property MyDataGridView As DataGridView
+        Get
+            Return employeeView
+        End Get
+    End Property
+
+    Public Sub RefreshDataGridView()
+        Try
+            Dim da As New OleDbDataAdapter("Select * from Employee_database", conn)
+            Dim ds As New DataSet
+            da.Fill(ds, "Employee_database")
+            employeeView.DataSource = ds.Tables("Employee_database").DefaultView
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
 
     Private Sub employeeView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles employeeView.CellClick
-        Dim form3 As New adding_employee()
-        form3.HideRegisterLabel()
-        form3.ShowUpdateLabel()
-        form3.ShowDialog()
-    End Sub
 
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Get the value from the clicked cell
+            Dim employeeID As Integer = Convert.ToInt32(employeeView.Rows(e.RowIndex).Cells(0).Value)
+            Dim firstName As String = employeeView.Rows(e.RowIndex).Cells(1).Value.ToString()
+            Dim lastname As String = employeeView.Rows(e.RowIndex).Cells(3).Value.ToString()
+            Dim middlename As String = employeeView.Rows(e.RowIndex).Cells(2).Value.ToString()
+            Dim age As String = employeeView.Rows(e.RowIndex).Cells(4).Value.ToString()
+            Dim gender As String = employeeView.Rows(e.RowIndex).Cells(5).Value.ToString()
+            Dim address As String = employeeView.Rows(e.RowIndex).Cells(6).Value.ToString()
+            Dim phonenumber As String = employeeView.Rows(e.RowIndex).Cells(7).Value.ToString()
+            Dim username As String = employeeView.Rows(e.RowIndex).Cells(8).Value.ToString()
+            Dim password As String = employeeView.Rows(e.RowIndex).Cells(9).Value.ToString()
+            Dim form3 As New adding_employee()
+            form3.AdminFormReference = Me
+            form3.HideRegisterLabel()
+            form3.ShowUpdateLabel()
+            form3.ShowID()
+            selectedEmployeeID = employeeID
+
+            ' Set in Form2 using the method
+            form3.setID(employeeID)
+            form3.SetFirstName(firstName)
+            form3.SetLastName(lastname)
+            form3.SetMiddleName(middlename)
+            form3.Setage(age)
+            form3.Setgender(gender)
+            form3.Setaddress(address)
+            form3.setphonenumber(phonenumber)
+            form3.setusername(username)
+            form3.setpassword(password)
+            form3.ShowDialog()
+        End If
+
+
+    End Sub
 
 End Class

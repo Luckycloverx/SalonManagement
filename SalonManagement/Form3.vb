@@ -1,9 +1,19 @@
 ﻿Imports System.Data.OleDb
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Public Class adding_employee
     Dim ds As New DataSet
     Dim dt As New DataTable
     Dim da As New OleDbDataAdapter
     Dim comm As New OleDbCommand
+    Private selectedEmployeeID As Integer = -1
+
+    Private adminFormRef As adminwindows
+
+    Public WriteOnly Property AdminFormReference As adminwindows
+        Set(value As adminwindows)
+            adminFormRef = value
+        End Set
+    End Property
 
     Public Sub ShowRegisterLabel()
         Label1.Visible = True 'register
@@ -13,12 +23,86 @@ Public Class adding_employee
         Label1.Visible = False 'register
     End Sub
 
+    Public Sub hideIDlabel()
+        Panel10.Visible = False
+        Label12.Visible = False
+        txtEID.Visible = False
+    End Sub
+    Public Sub ShowID()
+        Panel10.Visible = True
+        Label12.Visible = True
+        txtEID.Visible = True
+        txtEID.ReadOnly = True
+        txtEID.TabStop = False
+    End Sub
+
+
     Public Sub ShowUpdateLabel()
         lblupdate.Visible = True
     End Sub
 
     Public Sub HideUpdateLabel()
         lblupdate.Visible = False
+    End Sub
+
+    Public Sub SetID(ByVal employeeID As String)
+        txtEID.Text = employeeID
+    End Sub
+
+    Public Sub SetFirstName(ByVal firstName As String)
+        f_name.Text = firstName
+    End Sub
+
+    Public Sub SetLastName(ByVal lastName As String)
+        l_name.Text = lastName
+    End Sub
+
+    Public Sub SetMiddleName(ByVal middleName As String)
+        m_name.Text = middleName
+    End Sub
+
+    Public Sub Setage(ByVal age As String)
+        txtage.Text = age
+    End Sub
+
+    Public Sub Setgender(ByVal gender As String)
+        cmbGender.SelectedItem = gender
+    End Sub
+
+    Public Sub Setaddress(ByVal address As String)
+        txtaddress.Text = address
+    End Sub
+
+    Public Sub setphonenumber(ByVal phonenumber As String)
+        p_number.Text = phonenumber
+    End Sub
+
+    Public Sub setusername(ByVal username As String)
+        uname.Text = username
+    End Sub
+
+    Public Sub setpassword(ByVal password As String)
+        txtPassword.Text = password
+    End Sub
+
+    Public Sub DatagridShow()
+        Try
+            If adminFormRef IsNot Nothing AndAlso adminFormRef.MyDataGridView IsNot Nothing Then
+                Using conn As New OleDbConnection(mycon)
+                    conn.Open()
+                    Dim query As String = "SELECT * FROM Employee_database"
+                    Using da As New OleDbDataAdapter(query, conn)
+                        Dim ds As New DataSet
+                        da.Fill(ds, "Employee_database")
+                        adminFormRef.MyDataGridView.DataSource = ds.Tables("Employee_database").DefaultView
+                    End Using
+                End Using
+            Else
+                MessageBox.Show("AdminFormRef or MyDataGridView is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub Panel10_Paint(sender As Object, e As PaintEventArgs)
@@ -79,6 +163,8 @@ Public Class adding_employee
             e.Handled = True ' Ignore the key press
         End If
     End Sub
+
+
 
 
     Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
@@ -164,6 +250,7 @@ Public Class adding_employee
                         command.Parameters.AddWithValue("@Password", password)
                         command.ExecuteNonQuery()
                         MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        DatagridShow()
                     End Using
                 End Using
             Catch ex As Exception
@@ -260,5 +347,61 @@ Public Class adding_employee
             p_number.ForeColor = Color.Red
         End If
     End Sub
+
+
+    Private Sub lblupdate_Click(sender As Object, e As EventArgs) Handles lblupdate.Click
+        Dim firstName As String = f_name.Text.Trim()
+        Dim middleName As String = m_name.Text.Trim()
+        Dim lastName As String = l_name.Text.Trim()
+        Dim age As Integer
+        Dim gender As String = cmbGender.SelectedItem.ToString()
+        Dim address As String = txtaddress.Text.Trim()
+        Dim phoneNumber As String = p_number.Text.Trim()
+        Dim username As String = uname.Text.Trim()
+        Dim password As String = txtPassword.Text
+        Dim selectedEmployeeID As String = txtEID.Text
+        ' Validate the inputs similar to the registration process
+        ' ...
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to Update?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+        If result = DialogResult.Yes Then
+
+
+            If Not Integer.TryParse(txtage.Text, age) OrElse age <= 0 OrElse age > 120 Then
+                MessageBox.Show("Please enter a valid age.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtage.Focus()
+                Return
+            End If
+
+            Try
+                Using connection As New OleDbConnection(mycon)
+                    connection.Open()
+                    Dim query As String = "Update Employee_database SET [First Name] = @FirstName, [Middle Name] = @MiddleName, [Last Name] = @LastName, [Age] = @Age, [Gender] = @Gender, [Address] = @Address, [Phone Number] = @PhoneNumber, [Username] = @Username, [Password] = @Password WHERE [Employee ID] = @EmployeeID"
+
+                    Using command As New OleDbCommand(query, connection)
+                        command.Parameters.AddWithValue("@FirstName", firstName)
+                        command.Parameters.AddWithValue("@MiddleName", middleName)
+                        command.Parameters.AddWithValue("@LastName", lastName)
+                        command.Parameters.AddWithValue("@Age", age)
+                        command.Parameters.AddWithValue("@Gender", gender)
+                        command.Parameters.AddWithValue("@Address", address)
+                        command.Parameters.AddWithValue("@PhoneNumber", phoneNumber)
+                        command.Parameters.AddWithValue("@Username", username)
+                        command.Parameters.AddWithValue("@Password", password)
+                        command.Parameters.AddWithValue("@EmployeeID", selectedEmployeeID)
+
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("Employee information updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        DatagridShow()
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error updating employee information: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+
+        End If
+
+    End Sub
+
+
 
 End Class
