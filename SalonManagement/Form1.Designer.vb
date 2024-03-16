@@ -1,4 +1,5 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
+﻿Imports System.Data.OleDb
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
@@ -27,12 +28,12 @@ Partial Class Form1
         Me.Label5 = New System.Windows.Forms.Label()
         Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.password = New System.Windows.Forms.TextBox()
+        Me.txtpassword = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.login = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.username = New System.Windows.Forms.TextBox()
+        Me.txtusername = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -89,7 +90,7 @@ Partial Class Form1
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel3.Controls.Add(Me.password)
+        Me.Panel3.Controls.Add(Me.txtpassword)
         Me.Panel3.Controls.Add(Me.Label4)
         Me.Panel3.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.Panel3.Location = New System.Drawing.Point(34, 233)
@@ -97,15 +98,15 @@ Partial Class Form1
         Me.Panel3.Size = New System.Drawing.Size(319, 61)
         Me.Panel3.TabIndex = 6
         '
-        'password
+        'txtpassword
         '
-        Me.password.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.password.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.password.Location = New System.Drawing.Point(20, 27)
-        Me.password.Name = "password"
-        Me.password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.password.Size = New System.Drawing.Size(279, 18)
-        Me.password.TabIndex = 4
+        Me.txtpassword.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtpassword.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtpassword.Location = New System.Drawing.Point(20, 27)
+        Me.txtpassword.Name = "txtpassword"
+        Me.txtpassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
+        Me.txtpassword.Size = New System.Drawing.Size(279, 18)
+        Me.txtpassword.TabIndex = 4
         '
         'Label4
         '
@@ -149,7 +150,7 @@ Partial Class Form1
         '
         Me.Panel2.BackColor = System.Drawing.Color.White
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel2.Controls.Add(Me.username)
+        Me.Panel2.Controls.Add(Me.txtusername)
         Me.Panel2.Controls.Add(Me.Label3)
         Me.Panel2.Cursor = System.Windows.Forms.Cursors.IBeam
         Me.Panel2.Location = New System.Drawing.Point(34, 146)
@@ -157,14 +158,14 @@ Partial Class Form1
         Me.Panel2.Size = New System.Drawing.Size(319, 61)
         Me.Panel2.TabIndex = 5
         '
-        'username
+        'txtusername
         '
-        Me.username.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.username.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.username.Location = New System.Drawing.Point(20, 27)
-        Me.username.Name = "username"
-        Me.username.Size = New System.Drawing.Size(279, 18)
-        Me.username.TabIndex = 4
+        Me.txtusername.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtusername.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtusername.Location = New System.Drawing.Point(20, 27)
+        Me.txtusername.Name = "txtusername"
+        Me.txtusername.Size = New System.Drawing.Size(279, 18)
+        Me.txtusername.TabIndex = 4
         '
         'Label3
         '
@@ -205,7 +206,7 @@ Partial Class Form1
     Friend WithEvents Panel1 As Panel
     Friend WithEvents login As Button
     Friend WithEvents Label2 As Label
-    Friend WithEvents username As TextBox
+    Friend WithEvents txtusername As TextBox
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetButtonShape(login)
@@ -238,11 +239,11 @@ Partial Class Form1
     Friend WithEvents Label3 As Label
 
     Private Sub Panel2_Click(sender As Object, e As EventArgs) Handles Panel2.Click
-        username.Focus()
+        txtusername.Focus()
     End Sub
 
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents password As TextBox
+    Friend WithEvents txtpassword As TextBox
     Friend WithEvents Label4 As Label
 
     Private Sub Panel3_Paint(sender As Object, e As PaintEventArgs) Handles Panel3.Paint
@@ -253,16 +254,16 @@ Partial Class Form1
     End Sub
 
     Private Sub Panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click
-        password.Focus()
+        txtpassword.Focus()
     End Sub
 
     Friend WithEvents CheckBox1 As CheckBox
 
     Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
         If CheckBox1.Checked Then
-            password.PasswordChar = ""
+            txtpassword.PasswordChar = ""
         Else
-            password.PasswordChar = "*"
+            txtpassword.PasswordChar = "*"
         End If
     End Sub
 
@@ -277,9 +278,36 @@ Partial Class Form1
     End Sub
 
     Private Sub login_Click(sender As Object, e As EventArgs) Handles login.Click
-        Dim Adminwindows As New adminwindows()
-        Adminwindows.Show()
-        Me.Hide()
+        Dim username As String = txtUsername.Text.Trim()
+        Dim password As String = txtPassword.Text.Trim()
+
+        If String.IsNullOrEmpty(username) Or String.IsNullOrEmpty(password) Then
+            MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return
+        End If
+
+        ' Query the database to check if the username and password match
+        Dim query As String = "SELECT COUNT(*) FROM admin WHERE Username = @Username AND Password = @Password"
+        Using command As New OleDbCommand(query, conn)
+            command.Parameters.AddWithValue("@Username", username)
+            command.Parameters.AddWithValue("@Password", password)
+            conn.Open()
+            Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
+            conn.Close()
+
+            If count > 0 Then
+                ' Login successful
+                MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                ' Proceed to your main form or perform any other actions
+                Dim mainForm As New adminwindows()
+                mainForm.Show()
+                Me.Hide()
+            Else
+                ' Invalid credentials
+                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End Using
+
     End Sub
 
 
