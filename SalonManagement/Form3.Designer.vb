@@ -23,7 +23,7 @@ Partial Class adding_employee
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblregister = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.f_name = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -80,16 +80,16 @@ Partial Class adding_employee
         Me.Label5.TabIndex = 9
         Me.Label5.Text = "Close"
         '
-        'Label1
+        'lblregister
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Navy
-        Me.Label1.Location = New System.Drawing.Point(576, 181)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(78, 20)
-        Me.Label1.TabIndex = 10
-        Me.Label1.Text = "REGISTER"
+        Me.lblregister.AutoSize = True
+        Me.lblregister.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblregister.ForeColor = System.Drawing.Color.Navy
+        Me.lblregister.Location = New System.Drawing.Point(576, 181)
+        Me.lblregister.Name = "lblregister"
+        Me.lblregister.Size = New System.Drawing.Size(78, 20)
+        Me.lblregister.TabIndex = 10
+        Me.lblregister.Text = "REGISTER"
         '
         'Panel2
         '
@@ -467,7 +467,7 @@ Partial Class adding_employee
         Me.Controls.Add(Me.lblremove)
         Me.Controls.Add(Me.Panel10)
         Me.Controls.Add(Me.lblupdate)
-        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.lblregister)
         Me.Controls.Add(Me.lblclear)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel8)
@@ -510,7 +510,7 @@ Partial Class adding_employee
     End Sub
 
     Friend WithEvents Label5 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblregister As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents f_name As TextBox
     Friend WithEvents Label3 As Label

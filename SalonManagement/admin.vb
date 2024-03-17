@@ -150,11 +150,22 @@ Public Class adminwindows
         form3.ShowDialog()
     End Sub
 
-    Public ReadOnly Property MyDataGridView As DataGridView
+    Public Class DataGridViewContainer
+        Public Property Employees As DataGridView
+        Public Property Inventory As DataGridView
+    End Class
+
+    Public ReadOnly Property MyDataGridView As DataGridViewContainer
         Get
-            Return employeeView
+            Dim container As New DataGridViewContainer()
+            container.Employees = employeeView
+            container.Inventory = dgvinventory
+            Return container
         End Get
     End Property
+
+
+
 
     Public Sub RefreshDataGridView()
         Try
@@ -208,5 +219,10 @@ Public Class adminwindows
 
     End Sub
 
-
+    Private Sub lbladditem_Click(sender As Object, e As EventArgs) Handles lbladditem.Click
+        Dim forminventory As New Forminventory()
+        forminventory.AdminFormReference = Me ' Assuming Me refers to the instance of adminwindows
+        forminventory.DatagridShow()
+        forminventory.ShowDialog()
+    End Sub
 End Class

@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
+Imports SalonManagement.adminwindows
 Public Class adding_employee
     Dim ds As New DataSet
     Dim dt As New DataTable
@@ -16,11 +17,11 @@ Public Class adding_employee
     End Property
 
     Public Sub ShowRegisterLabel()
-        Label1.Visible = True 'register
+        lblregister.Visible = True 'register
     End Sub
 
     Public Sub HideRegisterLabel()
-        Label1.Visible = False 'register
+        lblregister.Visible = False 'register
     End Sub
 
     Public Sub hideremove()
@@ -98,13 +99,19 @@ Public Class adding_employee
     Public Sub DatagridShow()
         Try
             If adminFormRef IsNot Nothing AndAlso adminFormRef.MyDataGridView IsNot Nothing Then
+                ' Access the DataGridViewContainer and its DataGridViews
+                Dim container As DataGridViewContainer = adminFormRef.MyDataGridView
+                Dim employeesGridView As DataGridView = container.Employees
+
                 Using conn As New OleDbConnection(mycon)
                     conn.Open()
                     Dim query As String = "SELECT * FROM Employee_database"
                     Using da As New OleDbDataAdapter(query, conn)
                         Dim ds As New DataSet
                         da.Fill(ds, "Employee_database")
-                        adminFormRef.MyDataGridView.DataSource = ds.Tables("Employee_database").DefaultView
+
+                        ' Set the DataSource for the DataGridViews
+                        employeesGridView.DataSource = ds.Tables("Employee_database").DefaultView
                     End Using
                 End Using
             Else
@@ -114,6 +121,8 @@ Public Class adding_employee
             MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
 
     Private Sub Panel10_Paint(sender As Object, e As PaintEventArgs)
         Dim borderColor As Color = Color.Blue
@@ -191,7 +200,7 @@ Public Class adding_employee
 
 
 
-    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles Label1.Click
+    Private Sub Label1_Click(sender As Object, e As EventArgs) Handles lblregister.Click
         Dim firstName As String = f_name.Text.Trim()
         Dim middleName As String = m_name.Text.Trim()
         Dim lastName As String = l_name.Text.Trim()
@@ -217,7 +226,7 @@ Public Class adding_employee
                 Return ' Exit the method without proceeding further
             End If
 
-            If Not Integer.TryParse(txtage.Text, age) OrElse age <= 0 OrElse age > 120 Then
+            If Not Integer.TryParse(txtage.Text, age) OrElse age < 0 OrElse age > 120 Then
                 MessageBox.Show("Please enter a valid age.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 txtage.Focus()
                 Return ' Exit the method without proceeding further
