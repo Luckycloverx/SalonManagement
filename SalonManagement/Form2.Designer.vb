@@ -26,7 +26,7 @@ Partial Class adminwindows
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label1 = New System.Windows.Forms.Label()
+        Me.lblInventory = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
@@ -63,7 +63,7 @@ Partial Class adminwindows
         '
         Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label3)
-        Me.Panel1.Controls.Add(Me.Label1)
+        Me.Panel1.Controls.Add(Me.lblInventory)
         Me.Panel1.Controls.Add(Me.Label2)
         Me.Panel1.Controls.Add(Me.Panel2)
         Me.Panel1.Controls.Add(Me.Panel3)
@@ -95,16 +95,16 @@ Partial Class adminwindows
         Me.Label3.TabIndex = 8
         Me.Label3.Text = "Employee management"
         '
-        'Label1
+        'lblInventory
         '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.ForeColor = System.Drawing.Color.Navy
-        Me.Label1.Location = New System.Drawing.Point(19, 96)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(133, 21)
-        Me.Label1.TabIndex = 7
-        Me.Label1.Text = "Costumer Module"
+        Me.lblInventory.AutoSize = True
+        Me.lblInventory.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblInventory.ForeColor = System.Drawing.Color.Navy
+        Me.lblInventory.Location = New System.Drawing.Point(19, 96)
+        Me.lblInventory.Name = "lblInventory"
+        Me.lblInventory.Size = New System.Drawing.Size(133, 21)
+        Me.lblInventory.TabIndex = 7
+        Me.lblInventory.Text = "Costumer Module"
         '
         'Panel2
         '
@@ -247,7 +247,7 @@ Partial Class adminwindows
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Label3 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblInventory As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label4 As Label
     Friend WithEvents Label5 As Label

@@ -3,6 +3,7 @@
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
+
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
@@ -209,6 +210,7 @@ Partial Class Form1
     Friend WithEvents txtusername As TextBox
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         SetButtonShape(login)
     End Sub
     Private Sub SetButtonShape(button As Button)

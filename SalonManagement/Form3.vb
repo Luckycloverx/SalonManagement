@@ -402,6 +402,21 @@ Public Class adding_employee
 
     End Sub
 
+    Private Sub lblclear_Click(sender As Object, e As EventArgs) Handles lblclear.Click
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
-
+        If result = DialogResult.Yes Then
+            ' Clear the username and password fields
+            f_name.Clear()
+            l_name.Clear()
+            m_name.Clear()
+            txtage.Clear()
+            txtaddress.Clear()
+            p_number.Clear()
+            uname.Clear()
+            txtPassword.Clear()
+            ' Set focus back to the username field
+            f_name.Focus()
+        End If
+    End Sub
 End Class

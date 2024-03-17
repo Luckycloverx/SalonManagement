@@ -43,6 +43,9 @@ Public Class adminwindows
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             Form1.Show()
+            Form1.txtusername.Clear()
+            Form1.txtpassword.Clear()
+            Form1.txtusername.Focus()
             Me.Close()
         End If
     End Sub
