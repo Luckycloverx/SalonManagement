@@ -400,11 +400,49 @@ Public Class adding_employee
         If result = DialogResult.Yes Then
 
 
-            If Not Integer.TryParse(txtage.Text, age) OrElse age <= 0 OrElse age > 120 Then
+            If String.IsNullOrEmpty(firstName) Then
+                MessageBox.Show("Please enter first name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                f_name.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+            If String.IsNullOrEmpty(lastName) Then
+                MessageBox.Show("Please enter last name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                l_name.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+            If Not Integer.TryParse(txtage.Text, age) OrElse age < 0 OrElse age > 120 Then
                 MessageBox.Show("Please enter a valid age.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 txtage.Focus()
-                Return
+                Return ' Exit the method without proceeding further
             End If
+
+            If String.IsNullOrEmpty(address) Then
+                MessageBox.Show("Please enter address.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtaddress.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+            If String.IsNullOrEmpty(phoneNumber) Then
+                MessageBox.Show("Please enter a valid phone number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                p_number.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+            If String.IsNullOrEmpty(username) Then
+                MessageBox.Show("Please enter username.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                uname.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+            If String.IsNullOrEmpty(password) Then
+                MessageBox.Show("Please enter password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                txtPassword.Focus()
+                Return ' Exit the method without proceeding further
+            End If
+
+
 
             Try
                 Using connection As New OleDbConnection(mycon)

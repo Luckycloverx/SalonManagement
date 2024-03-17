@@ -1,5 +1,6 @@
 ﻿Imports System.Data.OleDb
 Imports System.Net
+Imports System.Reflection.Emit
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports SalonManagement.adminwindows
@@ -7,6 +8,43 @@ Imports SalonManagement.adminwindows
 Public Class Forminventory
 
     Private adminFormRef As adminwindows
+
+    Public Sub HideEdit()
+        lbledit.Visible = False
+        lblremove.Visible = False
+        lblid.Visible = False
+        txtPID.Visible = False
+        panel_pid.Visible = False
+    End Sub
+    Public Sub ShowEdit()
+        lbledit.Visible = True
+        lblremove.Visible = True
+        lbladd.Visible = False
+        lblid.Visible = True
+        txtPID.Visible = True
+        panel_pid.Visible = True
+        txtPID.ReadOnly = True
+        txtPID.TabStop = False
+    End Sub
+
+    Public Sub SetID(ByVal prodID As String)
+        txtPID.Text = prodID
+    End Sub
+
+    Public Sub Setproduct(ByVal product As String)
+        txtproduct.Text = product
+    End Sub
+
+    Public Sub Setquantity(ByVal quantity As String)
+        txtquantity.Text = quantity
+    End Sub
+
+    Public Sub Setcost(ByVal cost As String)
+        txtcost.Text = cost
+    End Sub
+
+
+
 
     Public WriteOnly Property AdminFormReference As adminwindows
         Set(value As adminwindows)
@@ -58,8 +96,8 @@ Public Class Forminventory
 
     Private Sub lbladd_Click(sender As Object, e As EventArgs) Handles lbladd.Click
         Dim product As String = txtproduct.Text.Trim()
-        Dim quantity As Integer
-        Dim cost As Integer
+        Dim quantity As String = txtquantity.Text.Trim()
+        Dim cost As String = txtcost.Text.Trim()
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to register?", "Confirm Registration", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
             If String.IsNullOrEmpty(product) Then
@@ -129,6 +167,57 @@ Public Class Forminventory
             Dim adminForm As adminwindows = DirectCast(Me.ParentForm, adminwindows)
             AdminFormReference = adminForm
             DatagridShow()
+        End If
+    End Sub
+
+    Private Sub lbledit_Click(sender As Object, e As EventArgs) Handles lbledit.Click
+        Dim product As String = txtproduct.Text.Trim()
+        Dim quantity As String = txtquantity.Text.Trim()
+        Dim cost As String = txtcost.Text.Trim()
+        Dim selectedID As String = txtPID.Text
+        Dim result As DialogResult = MessageBox.Show("Are you sure you want to edit?", "Confirm Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If result = DialogResult.Yes Then
+            ' Validation code goes here...
+
+
+
+            Try
+                Using connection As New OleDbConnection(mycon)
+                    connection.Open()
+                    Dim query As String = "Update tblInventory SET [Product] = @product, [Quantity] = @quantity, [Cost] = @cost WHERE [ID] = @ID"
+
+                    Using command As New OleDbCommand(query, connection)
+                        command.Parameters.AddWithValue("@product", product)
+                        command.Parameters.AddWithValue("@quantity", quantity)
+                        command.Parameters.AddWithValue("@Cost", cost)
+                        command.Parameters.AddWithValue("@ID", selectedID)
+
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("Updated successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+                        ' Call DatagridShow() after updating the inventory data
+                        DatagridShow()
+
+                        Me.Close()
+                    End Using
+                End Using
+            Catch ex As Exception
+                MessageBox.Show("Error updating info: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+
+    End Sub
+
+    Private Sub txtquantity_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtquantity.KeyPress
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) AndAlso e.KeyChar <> "-" Then
+            e.Handled = True ' Ignore the key press
+        End If
+    End Sub
+
+    Private Sub txtcost_KeyPress(sender As Object, e As KeyPressEventArgs) Handles txtcost.KeyPress
+        If Not Char.IsDigit(e.KeyChar) AndAlso Not Char.IsControl(e.KeyChar) AndAlso e.KeyChar <> "-" Then
+            e.Handled = True ' Ignore the key press
         End If
     End Sub
 End Class

@@ -6,6 +6,7 @@ Public Class adminwindows
     Dim dt As New DataTable
     Dim da As New OleDbDataAdapter
     Dim selectedEmployeeID As Integer = -1
+    Dim selectedproductID As Integer = -1
 
 
 
@@ -221,8 +222,34 @@ Public Class adminwindows
 
     Private Sub lbladditem_Click(sender As Object, e As EventArgs) Handles lbladditem.Click
         Dim forminventory As New Forminventory()
-        forminventory.AdminFormReference = Me ' Assuming Me refers to the instance of adminwindows
+        forminventory.HideEdit()
+        forminventory.AdminFormReference = Me
         forminventory.DatagridShow()
         forminventory.ShowDialog()
+    End Sub
+
+    Private Sub dgvinventory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvinventory.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            Dim productID As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(0).Value)
+            Dim product As String = dgvinventory.Rows(e.RowIndex).Cells(1).Value.ToString()
+            Dim quantity As String = dgvinventory.Rows(e.RowIndex).Cells(2).Value.ToString()
+            Dim cost As String = dgvinventory.Rows(e.RowIndex).Cells(3).Value.ToString()
+            Dim forminventory As New Forminventory()
+            forminventory.ShowEdit()
+            forminventory.AdminFormReference = Me
+            selectedproductID = productID
+
+            forminventory.SetID(productID)
+            forminventory.Setproduct(product)
+            forminventory.Setquantity(quantity)
+            forminventory.Setcost(cost)
+            forminventory.ShowDialog()
+
+
+
+
+
+
+        End If
     End Sub
 End Class

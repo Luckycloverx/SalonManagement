@@ -32,11 +32,16 @@ Partial Class Forminventory
         Me.txtcost = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.lbladd = New System.Windows.Forms.Label()
-        Me.lblclear = New System.Windows.Forms.Label()
         Me.lblclose = New System.Windows.Forms.Label()
+        Me.lbledit = New System.Windows.Forms.Label()
+        Me.lblremove = New System.Windows.Forms.Label()
+        Me.panel_pid = New System.Windows.Forms.Panel()
+        Me.txtPID = New System.Windows.Forms.TextBox()
+        Me.lblid = New System.Windows.Forms.Label()
         Me.Panel_product.SuspendLayout()
         Me.Panel_quantity.SuspendLayout()
         Me.Panel_cost.SuspendLayout()
+        Me.panel_pid.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel_product
@@ -152,17 +157,6 @@ Partial Class Forminventory
         Me.lbladd.TabIndex = 18
         Me.lbladd.Text = "New Entry"
         '
-        'lblclear
-        '
-        Me.lblclear.AutoSize = True
-        Me.lblclear.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblclear.ForeColor = System.Drawing.Color.Navy
-        Me.lblclear.Location = New System.Drawing.Point(173, 294)
-        Me.lblclear.Name = "lblclear"
-        Me.lblclear.Size = New System.Drawing.Size(44, 20)
-        Me.lblclear.TabIndex = 19
-        Me.lblclear.Text = "Clear"
-        '
         'lblclose
         '
         Me.lblclose.AutoSize = True
@@ -174,14 +168,71 @@ Partial Class Forminventory
         Me.lblclose.TabIndex = 20
         Me.lblclose.Text = "close"
         '
+        'lbledit
+        '
+        Me.lbledit.AutoSize = True
+        Me.lbledit.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbledit.ForeColor = System.Drawing.Color.Navy
+        Me.lbledit.Location = New System.Drawing.Point(249, 294)
+        Me.lbledit.Name = "lbledit"
+        Me.lbledit.Size = New System.Drawing.Size(36, 20)
+        Me.lbledit.TabIndex = 19
+        Me.lbledit.Text = "Edit"
+        '
+        'lblremove
+        '
+        Me.lblremove.AutoSize = True
+        Me.lblremove.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblremove.ForeColor = System.Drawing.Color.Navy
+        Me.lblremove.Location = New System.Drawing.Point(228, 320)
+        Me.lblremove.Name = "lblremove"
+        Me.lblremove.Size = New System.Drawing.Size(66, 20)
+        Me.lblremove.TabIndex = 21
+        Me.lblremove.Text = "Remove"
+        '
+        'panel_pid
+        '
+        Me.panel_pid.BackColor = System.Drawing.Color.White
+        Me.panel_pid.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.panel_pid.Controls.Add(Me.txtPID)
+        Me.panel_pid.Controls.Add(Me.lblid)
+        Me.panel_pid.Cursor = System.Windows.Forms.Cursors.IBeam
+        Me.panel_pid.Location = New System.Drawing.Point(7, 3)
+        Me.panel_pid.Name = "panel_pid"
+        Me.panel_pid.Size = New System.Drawing.Size(67, 42)
+        Me.panel_pid.TabIndex = 22
+        '
+        'txtPID
+        '
+        Me.txtPID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtPID.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtPID.Location = New System.Drawing.Point(4, 18)
+        Me.txtPID.Name = "txtPID"
+        Me.txtPID.Size = New System.Drawing.Size(58, 18)
+        Me.txtPID.TabIndex = 8
+        '
+        'lblid
+        '
+        Me.lblid.AutoSize = True
+        Me.lblid.BackColor = System.Drawing.Color.White
+        Me.lblid.Font = New System.Drawing.Font("Segoe UI", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblid.ForeColor = System.Drawing.SystemColors.GrayText
+        Me.lblid.Location = New System.Drawing.Point(4, 5)
+        Me.lblid.Name = "lblid"
+        Me.lblid.Size = New System.Drawing.Size(61, 13)
+        Me.lblid.TabIndex = 0
+        Me.lblid.Text = "Product ID"
+        '
         'Forminventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(339, 359)
+        Me.Controls.Add(Me.panel_pid)
+        Me.Controls.Add(Me.lblremove)
         Me.Controls.Add(Me.lblclose)
-        Me.Controls.Add(Me.lblclear)
+        Me.Controls.Add(Me.lbledit)
         Me.Controls.Add(Me.lbladd)
         Me.Controls.Add(Me.Panel_cost)
         Me.Controls.Add(Me.Panel_quantity)
@@ -196,6 +247,8 @@ Partial Class Forminventory
         Me.Panel_quantity.PerformLayout()
         Me.Panel_cost.ResumeLayout(False)
         Me.Panel_cost.PerformLayout()
+        Me.panel_pid.ResumeLayout(False)
+        Me.panel_pid.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -211,6 +264,10 @@ Partial Class Forminventory
     Friend WithEvents txtcost As TextBox
     Friend WithEvents Label2 As Label
     Friend WithEvents lbladd As Label
-    Friend WithEvents lblclear As Label
     Friend WithEvents lblclose As Label
+    Friend WithEvents lbledit As Label
+    Friend WithEvents lblremove As Label
+    Friend WithEvents panel_pid As Panel
+    Friend WithEvents txtPID As TextBox
+    Friend WithEvents lblid As Label
 End Class

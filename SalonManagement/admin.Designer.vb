@@ -267,9 +267,9 @@ Partial Class adminwindows
         'dgvinventory
         '
         Me.dgvinventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvinventory.Location = New System.Drawing.Point(14, 28)
+        Me.dgvinventory.Location = New System.Drawing.Point(72, 28)
         Me.dgvinventory.Name = "dgvinventory"
-        Me.dgvinventory.Size = New System.Drawing.Size(544, 247)
+        Me.dgvinventory.Size = New System.Drawing.Size(449, 247)
         Me.dgvinventory.TabIndex = 0
         '
         'adminwindows
