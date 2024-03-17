@@ -42,10 +42,10 @@ Public Class adminwindows
     Private Sub Panel3_Click(sender As Object, e As EventArgs) Handles Panel3.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
-            Form1.Show()
             Form1.txtusername.Clear()
             Form1.txtpassword.Clear()
             Form1.txtusername.Focus()
+            Form1.Show()
             Me.Close()
         End If
     End Sub
@@ -53,6 +53,9 @@ Public Class adminwindows
     Private Sub Label4_Click(sender As Object, e As EventArgs) Handles Label4.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
+            Form1.txtusername.Clear()
+            Form1.txtpassword.Clear()
+            Form1.txtusername.Focus()
             Form1.Show()
             Me.Close()
         End If
@@ -61,6 +64,9 @@ Public Class adminwindows
     Private Sub PictureBox2_Click_1(sender As Object, e As EventArgs) Handles PictureBox2.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
         If result = DialogResult.Yes Then
+            Form1.txtusername.Clear()
+            Form1.txtpassword.Clear()
+            Form1.txtusername.Focus()
             Form1.Show()
             Me.Close()
         End If
@@ -68,28 +74,48 @@ Public Class adminwindows
 
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
-        Employee_management.Visible = True
+        lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
 
+        Employee_management.Visible = True
+        panel_Inventory.Visible = False
 
     End Sub
 
+    Private Sub lblInventory_Click(sender As Object, e As EventArgs) Handles lblInventory.Click
+        lblInventory.Font = New Font(lblInventory.Font, FontStyle.Bold Or FontStyle.Underline)
+        Label3.Font = New Font(Label3.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
+        Employee_management.Visible = False
+        panel_Inventory.Visible = True
+        DatagridShow_in()
+    End Sub
+
     Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        panel_Inventory.Visible = False
         Employee_management.Visible = False
         editemployee.Visible = False
     End Sub
 
     Private Sub DatagridShow()
-
         da = New OleDbDataAdapter("Select * from Employee_database", conn)
         ds = New DataSet
         da.Fill(ds, "Employee_database")
         employeeView.DataSource = ds.Tables("Employee_database").DefaultView
+    End Sub
 
-
-
+    Private Sub DatagridShow_in()
+        da = New OleDbDataAdapter("Select * from tblInventory", conn)
+        ds = New DataSet
+        da.Fill(ds, "tblInventory")
+        dgvinventory.DataSource = ds.Tables("tblInventory").DefaultView
     End Sub
 
     Private Sub Employee_management_Paint(sender As Object, e As PaintEventArgs) Handles Employee_management.Paint
+        Dim panel = DirectCast(sender, Panel)
+        Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
+        Dim rect As New Rectangle(0, 0, panel.Width - 1, panel.Height - 1)
+        e.Graphics.DrawRectangle(pen, rect)
+    End Sub
+    Private Sub panel_Inventory_Paint(sender As Object, e As PaintEventArgs) Handles panel_Inventory.Paint
         Dim panel = DirectCast(sender, Panel)
         Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
         Dim rect As New Rectangle(0, 0, panel.Width - 1, panel.Height - 1)
@@ -181,5 +207,6 @@ Public Class adminwindows
 
 
     End Sub
+
 
 End Class

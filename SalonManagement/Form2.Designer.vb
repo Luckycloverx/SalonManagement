@@ -39,6 +39,10 @@ Partial Class adminwindows
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.employee_dashboard = New System.Windows.Forms.Label()
         Me.lbldashboard = New System.Windows.Forms.Label()
+        Me.panel_Inventory = New System.Windows.Forms.Panel()
+        Me.Panel4 = New System.Windows.Forms.Panel()
+        Me.lbladditem = New System.Windows.Forms.Label()
+        Me.dgvinventory = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -47,6 +51,9 @@ Partial Class adminwindows
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel_Inventory.SuspendLayout()
+        Me.Panel4.SuspendLayout()
+        CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -229,13 +236,50 @@ Partial Class adminwindows
         Me.lbldashboard.TabIndex = 10
         Me.lbldashboard.Text = "Dashboard"
         '
+        'panel_Inventory
+        '
+        Me.panel_Inventory.Controls.Add(Me.Panel4)
+        Me.panel_Inventory.Location = New System.Drawing.Point(244, 0)
+        Me.panel_Inventory.Name = "panel_Inventory"
+        Me.panel_Inventory.Size = New System.Drawing.Size(573, 569)
+        Me.panel_Inventory.TabIndex = 12
+        '
+        'Panel4
+        '
+        Me.Panel4.Controls.Add(Me.lbladditem)
+        Me.Panel4.Controls.Add(Me.dgvinventory)
+        Me.Panel4.Location = New System.Drawing.Point(3, 110)
+        Me.Panel4.Name = "Panel4"
+        Me.Panel4.Size = New System.Drawing.Size(567, 449)
+        Me.Panel4.TabIndex = 11
+        '
+        'lbladditem
+        '
+        Me.lbladditem.AutoSize = True
+        Me.lbladditem.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbladditem.ForeColor = System.Drawing.Color.Navy
+        Me.lbladditem.Location = New System.Drawing.Point(380, 296)
+        Me.lbladditem.Name = "lbladditem"
+        Me.lbladditem.Size = New System.Drawing.Size(125, 21)
+        Me.lbladditem.TabIndex = 11
+        Me.lbladditem.Text = "add new product"
+        '
+        'dgvinventory
+        '
+        Me.dgvinventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvinventory.Location = New System.Drawing.Point(14, 28)
+        Me.dgvinventory.Name = "dgvinventory"
+        Me.dgvinventory.Size = New System.Drawing.Size(544, 247)
+        Me.dgvinventory.TabIndex = 0
+        '
         'adminwindows
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
-        Me.Controls.Add(Me.Employee_management)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.panel_Inventory)
+        Me.Controls.Add(Me.Employee_management)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adminwindows"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -252,6 +296,10 @@ Partial Class adminwindows
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel_Inventory.ResumeLayout(False)
+        Me.Panel4.ResumeLayout(False)
+        Me.Panel4.PerformLayout()
+        CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -273,4 +321,8 @@ Partial Class adminwindows
     Friend WithEvents add_employee As Label
     Friend WithEvents employee_dashboard As Label
     Friend WithEvents lbldashboard As Label
+    Friend WithEvents panel_Inventory As Panel
+    Friend WithEvents Panel4 As Panel
+    Friend WithEvents lbladditem As Label
+    Friend WithEvents dgvinventory As DataGridView
 End Class
