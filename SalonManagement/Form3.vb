@@ -23,11 +23,21 @@ Public Class adding_employee
         Label1.Visible = False 'register
     End Sub
 
+    Public Sub hideremove()
+        lblremove.Visible = False
+    End Sub
+
+    Public Sub showremove()
+        lblremove.Visible = True
+    End Sub
+
+
     Public Sub hideIDlabel()
         Panel10.Visible = False
         Label12.Visible = False
         txtEID.Visible = False
     End Sub
+
     Public Sub ShowID()
         Panel10.Visible = True
         Label12.Visible = True
@@ -164,6 +174,20 @@ Public Class adding_employee
         End If
     End Sub
 
+    Private Sub ClearForm()
+        ' Clear all form fields
+        f_name.Clear()
+        l_name.Clear()
+        m_name.Clear()
+        txtage.Clear()
+        txtaddress.Clear()
+        p_number.Clear()
+        uname.Clear()
+        txtPassword.Clear()
+        ' Set focus back to the first field
+        f_name.Focus()
+    End Sub
+
 
 
 
@@ -251,6 +275,7 @@ Public Class adding_employee
                         command.ExecuteNonQuery()
                         MessageBox.Show("Registration successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         DatagridShow()
+                        Me.Close()
                     End Using
                 End Using
             Catch ex As Exception
@@ -392,6 +417,7 @@ Public Class adding_employee
                         command.ExecuteNonQuery()
                         MessageBox.Show("Employee information updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         DatagridShow()
+                        Me.Close()
                     End Using
                 End Using
             Catch ex As Exception
@@ -406,17 +432,36 @@ Public Class adding_employee
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to clear?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If result = DialogResult.Yes Then
-            ' Clear the username and password fields
-            f_name.Clear()
-            l_name.Clear()
-            m_name.Clear()
-            txtage.Clear()
-            txtaddress.Clear()
-            p_number.Clear()
-            uname.Clear()
-            txtPassword.Clear()
-            ' Set focus back to the username field
-            f_name.Focus()
+            ClearForm()
+        End If
+    End Sub
+
+    Private Sub lblremove_Click(sender As Object, e As EventArgs) Handles lblremove.Click
+        Dim selectedEmployeeID As String = txtEID.Text
+        If selectedEmployeeID <> -1 Then
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to remove this employee?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                Try
+                    conn.Open()
+                    Dim query As String = "DELETE FROM Employee_database WHERE [Employee ID] = @EmployeeID"
+                    Using command As New OleDbCommand(query, conn)
+                        command.Parameters.AddWithValue("@EmployeeID", selectedEmployeeID)
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("Employee removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ' Optionally, you can inform the parent form about the deletion
+
+                        DatagridShow()
+
+                        Me.Close() ' Close the form after successful removal
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error removing employee: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Finally
+                    conn.Close()
+                End Try
+            End If
+        Else
+            MessageBox.Show("Please select an employee to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End If
     End Sub
 End Class

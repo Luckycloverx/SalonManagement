@@ -56,6 +56,7 @@ Partial Class adding_employee
         Me.Panel10 = New System.Windows.Forms.Panel()
         Me.txtEID = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.lblremove = New System.Windows.Forms.Label()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -446,12 +447,24 @@ Partial Class adding_employee
         Me.Label12.TabIndex = 0
         Me.Label12.Text = "Employee ID"
         '
+        'lblremove
+        '
+        Me.lblremove.AutoSize = True
+        Me.lblremove.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblremove.ForeColor = System.Drawing.Color.Navy
+        Me.lblremove.Location = New System.Drawing.Point(425, 235)
+        Me.lblremove.Name = "lblremove"
+        Me.lblremove.Size = New System.Drawing.Size(66, 20)
+        Me.lblremove.TabIndex = 19
+        Me.lblremove.Text = "Remove"
+        '
         'adding_employee
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
         Me.ClientSize = New System.Drawing.Size(715, 278)
+        Me.Controls.Add(Me.lblremove)
         Me.Controls.Add(Me.Panel10)
         Me.Controls.Add(Me.lblupdate)
         Me.Controls.Add(Me.Label1)
@@ -530,4 +543,5 @@ Partial Class adding_employee
     Friend WithEvents Panel10 As Panel
     Friend WithEvents txtEID As TextBox
     Friend WithEvents Label12 As Label
+    Friend WithEvents lblremove As Label
 End Class

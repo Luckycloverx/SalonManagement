@@ -120,6 +120,7 @@ Public Class adminwindows
         form3.HideUpdateLabel()
         form3.ShowRegisterLabel()
         form3.hideIDlabel()
+        form3.hideremove()
         form3.ShowDialog()
     End Sub
 
@@ -161,6 +162,7 @@ Public Class adminwindows
             form3.HideRegisterLabel()
             form3.ShowUpdateLabel()
             form3.ShowID()
+            form3.showremove()
             selectedEmployeeID = employeeID
 
             ' Set in Form2 using the method
