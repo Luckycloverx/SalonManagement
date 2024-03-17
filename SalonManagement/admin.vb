@@ -76,9 +76,9 @@ Public Class adminwindows
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
         lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
-
         Employee_management.Visible = True
         panel_Inventory.Visible = False
+        DatagridShow()
 
     End Sub
 
@@ -93,7 +93,6 @@ Public Class adminwindows
     Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         panel_Inventory.Visible = False
         Employee_management.Visible = False
-        editemployee.Visible = False
     End Sub
 
     Private Sub DatagridShow()
@@ -123,13 +122,8 @@ Public Class adminwindows
         e.Graphics.DrawRectangle(pen, rect)
     End Sub
 
-    Private Sub edit_employee_Click(sender As Object, e As EventArgs) Handles edit_employee.Click
-        edit_employee.Font = New Font(edit_employee.Font, FontStyle.Bold Or FontStyle.Underline)
-        editemployee.Visible = True
-        DatagridShow()
-    End Sub
 
-    Private Sub editemployee_Paint(sender As Object, e As PaintEventArgs) Handles editemployee.Paint
+    Private Sub editemployee_Paint(sender As Object, e As PaintEventArgs)
         Dim borderColor As Color = Color.Blue
 
         ' Define the border width

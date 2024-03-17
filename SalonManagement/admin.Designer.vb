@@ -34,11 +34,8 @@ Partial Class adminwindows
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Employee_management = New System.Windows.Forms.Panel()
-        Me.editemployee = New System.Windows.Forms.Panel()
         Me.add_employee = New System.Windows.Forms.Label()
         Me.employeeView = New System.Windows.Forms.DataGridView()
-        Me.employee_dashboard = New System.Windows.Forms.Label()
-        Me.edit_employee = New System.Windows.Forms.Label()
         Me.panel_Inventory = New System.Windows.Forms.Panel()
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.lbladditem = New System.Windows.Forms.Label()
@@ -49,7 +46,6 @@ Partial Class adminwindows
         Me.Panel3.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Employee_management.SuspendLayout()
-        Me.editemployee.SuspendLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_Inventory.SuspendLayout()
         Me.Panel4.SuspendLayout()
@@ -178,29 +174,19 @@ Partial Class adminwindows
         '
         'Employee_management
         '
-        Me.Employee_management.Controls.Add(Me.editemployee)
-        Me.Employee_management.Controls.Add(Me.employee_dashboard)
-        Me.Employee_management.Controls.Add(Me.edit_employee)
+        Me.Employee_management.Controls.Add(Me.add_employee)
+        Me.Employee_management.Controls.Add(Me.employeeView)
         Me.Employee_management.Location = New System.Drawing.Point(244, 0)
         Me.Employee_management.Name = "Employee_management"
         Me.Employee_management.Size = New System.Drawing.Size(573, 569)
         Me.Employee_management.TabIndex = 6
-        '
-        'editemployee
-        '
-        Me.editemployee.Controls.Add(Me.add_employee)
-        Me.editemployee.Controls.Add(Me.employeeView)
-        Me.editemployee.Location = New System.Drawing.Point(3, 110)
-        Me.editemployee.Name = "editemployee"
-        Me.editemployee.Size = New System.Drawing.Size(567, 449)
-        Me.editemployee.TabIndex = 11
         '
         'add_employee
         '
         Me.add_employee.AutoSize = True
         Me.add_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.add_employee.ForeColor = System.Drawing.Color.Navy
-        Me.add_employee.Location = New System.Drawing.Point(379, 296)
+        Me.add_employee.Location = New System.Drawing.Point(382, 385)
         Me.add_employee.Name = "add_employee"
         Me.add_employee.Size = New System.Drawing.Size(179, 21)
         Me.add_employee.TabIndex = 11
@@ -209,32 +195,10 @@ Partial Class adminwindows
         'employeeView
         '
         Me.employeeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.employeeView.Location = New System.Drawing.Point(14, 28)
+        Me.employeeView.Location = New System.Drawing.Point(17, 122)
         Me.employeeView.Name = "employeeView"
         Me.employeeView.Size = New System.Drawing.Size(544, 247)
         Me.employeeView.TabIndex = 0
-        '
-        'employee_dashboard
-        '
-        Me.employee_dashboard.AutoSize = True
-        Me.employee_dashboard.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.employee_dashboard.ForeColor = System.Drawing.Color.Navy
-        Me.employee_dashboard.Location = New System.Drawing.Point(13, 51)
-        Me.employee_dashboard.Name = "employee_dashboard"
-        Me.employee_dashboard.Size = New System.Drawing.Size(153, 21)
-        Me.employee_dashboard.TabIndex = 10
-        Me.employee_dashboard.Text = "Employee dashboard"
-        '
-        'edit_employee
-        '
-        Me.edit_employee.AutoSize = True
-        Me.edit_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.edit_employee.ForeColor = System.Drawing.Color.Navy
-        Me.edit_employee.Location = New System.Drawing.Point(418, 51)
-        Me.edit_employee.Name = "edit_employee"
-        Me.edit_employee.Size = New System.Drawing.Size(106, 21)
-        Me.edit_employee.TabIndex = 9
-        Me.edit_employee.Text = "Edit Employee"
         '
         'panel_Inventory
         '
@@ -278,8 +242,8 @@ Partial Class adminwindows
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.panel_Inventory)
         Me.Controls.Add(Me.Employee_management)
+        Me.Controls.Add(Me.panel_Inventory)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adminwindows"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -293,8 +257,6 @@ Partial Class adminwindows
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
-        Me.editemployee.ResumeLayout(False)
-        Me.editemployee.PerformLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_Inventory.ResumeLayout(False)
         Me.Panel4.ResumeLayout(False)
@@ -315,11 +277,8 @@ Partial Class adminwindows
     Friend WithEvents Employee_management As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox
-    Friend WithEvents edit_employee As Label
-    Friend WithEvents editemployee As Panel
     Friend WithEvents employeeView As DataGridView
     Friend WithEvents add_employee As Label
-    Friend WithEvents employee_dashboard As Label
     Friend WithEvents lbldashboard As Label
     Friend WithEvents panel_Inventory As Panel
     Friend WithEvents Panel4 As Panel
