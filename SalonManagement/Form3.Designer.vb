@@ -240,6 +240,7 @@ Partial Class adding_employee
         'cmbGender
         '
         Me.cmbGender.DisplayMember = "Male"
+        Me.cmbGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbGender.FormattingEnabled = True
         Me.cmbGender.Items.AddRange(New Object() {"Male", "Female", "LGBT", "prefer not to say"})
         Me.cmbGender.Location = New System.Drawing.Point(15, 29)

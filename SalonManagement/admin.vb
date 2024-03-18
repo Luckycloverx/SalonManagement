@@ -7,6 +7,7 @@ Public Class adminwindows
     Dim da As New OleDbDataAdapter
     Dim selectedEmployeeID As Integer = -1
     Dim selectedproductID As Integer = -1
+    Private selectedstylistID As Integer = -1
 
 
 
@@ -74,10 +75,18 @@ Public Class adminwindows
     End Sub
 
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        lblfrontdesk.Font = New Font(lblfrontdesk.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblstylist.Font = New Font(lblstylist.Font.Name, lblstylist.Font.Size, FontStyle.Regular)
+        add_employee.Visible = True
+        lbladdstylist.Visible = False
+        dgvstylist.Visible = False
+        employeeView.Visible = True
         Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
         lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
         Employee_management.Visible = True
         panel_Inventory.Visible = False
+        Employee_management.BringToFront()
+        panel_Inventory.SendToBack()
         DatagridShow()
 
     End Sub
@@ -85,12 +94,17 @@ Public Class adminwindows
     Private Sub lblInventory_Click(sender As Object, e As EventArgs) Handles lblInventory.Click
         lblInventory.Font = New Font(lblInventory.Font, FontStyle.Bold Or FontStyle.Underline)
         Label3.Font = New Font(Label3.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
-        Employee_management.Visible = False
         panel_Inventory.Visible = True
+        Employee_management.Visible = False
+        panel_Inventory.BringToFront()
+        Employee_management.SendToBack()
+
+
         DatagridShow_in()
     End Sub
 
     Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
         panel_Inventory.Visible = False
         Employee_management.Visible = False
     End Sub
@@ -100,6 +114,13 @@ Public Class adminwindows
         ds = New DataSet
         da.Fill(ds, "Employee_database")
         employeeView.DataSource = ds.Tables("Employee_database").DefaultView
+    End Sub
+
+    Private Sub DatagridShow_style()
+        da = New OleDbDataAdapter("Select * from tblstylist", conn)
+        ds = New DataSet
+        da.Fill(ds, "tblstylist")
+        dgvstylist.DataSource = ds.Tables("tblstylist").DefaultView
     End Sub
 
     Private Sub DatagridShow_in()
@@ -148,6 +169,7 @@ Public Class adminwindows
     Public Class DataGridViewContainer
         Public Property Employees As DataGridView
         Public Property Inventory As DataGridView
+        Public Property Stylist As DataGridView
     End Class
 
     Public ReadOnly Property MyDataGridView As DataGridViewContainer
@@ -155,6 +177,7 @@ Public Class adminwindows
             Dim container As New DataGridViewContainer()
             container.Employees = employeeView
             container.Inventory = dgvinventory
+            container.Stylist = dgvstylist
             Return container
         End Get
     End Property
@@ -198,7 +221,7 @@ Public Class adminwindows
             selectedEmployeeID = employeeID
 
             ' Set in Form2 using the method
-            form3.setID(employeeID)
+            form3.SetID(employeeID)
             form3.SetFirstName(firstName)
             form3.SetLastName(lastname)
             form3.SetMiddleName(middlename)
@@ -244,6 +267,63 @@ Public Class adminwindows
 
 
 
+        End If
+    End Sub
+
+    Private Sub lblfrontdesk_Click(sender As Object, e As EventArgs) Handles lblfrontdesk.Click
+        lblfrontdesk.Font = New Font(lblfrontdesk.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblstylist.Font = New Font(lblstylist.Font.Name, lblstylist.Font.Size, FontStyle.Regular)
+        add_employee.Visible = True
+        lbladdstylist.Visible = False
+        dgvstylist.Visible = False
+        employeeView.Visible = True
+    End Sub
+
+    Private Sub lblstylish_Click(sender As Object, e As EventArgs) Handles lblstylist.Click
+        lblstylist.Font = New Font(lblstylist.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblfrontdesk.Font = New Font(lblfrontdesk.Font.Name, lblfrontdesk.Font.Size, FontStyle.Regular)
+        add_employee.Visible = False
+        lbladdstylist.Visible = True
+        dgvstylist.Visible = True
+        employeeView.Visible = False
+        DatagridShow_style()
+
+    End Sub
+
+    Private Sub lbladdstylist_Click(sender As Object, e As EventArgs) Handles lbladdstylist.Click
+        Dim formstyle As New Formstylist()
+        formstyle.AdminFormReference = Me
+        formstyle.ShowRegisterLabel()
+        formstyle.ShowDialog()
+    End Sub
+
+    Private Sub dgvstylist_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvstylist.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            ' Get the value from the clicked cell
+            Dim stylistID As Integer = Convert.ToInt32(dgvstylist.Rows(e.RowIndex).Cells(0).Value)
+            Dim firstName As String = dgvstylist.Rows(e.RowIndex).Cells(1).Value.ToString()
+            Dim lastname As String = dgvstylist.Rows(e.RowIndex).Cells(3).Value.ToString()
+            Dim middlename As String = dgvstylist.Rows(e.RowIndex).Cells(2).Value.ToString()
+            Dim age As String = dgvstylist.Rows(e.RowIndex).Cells(4).Value.ToString()
+            Dim gender As String = dgvstylist.Rows(e.RowIndex).Cells(5).Value.ToString()
+            Dim address As String = dgvstylist.Rows(e.RowIndex).Cells(6).Value.ToString()
+            Dim phonenumber As String = dgvstylist.Rows(e.RowIndex).Cells(7).Value.ToString()
+            Dim stylistname As String = dgvstylist.Rows(e.RowIndex).Cells(8).Value.ToString()
+            Dim formstylist As New Formstylist()
+            formstylist.AdminFormReference = Me
+            formstylist.ShowupdateLabel()
+            selectedstylistID = stylistID
+
+            formstylist.SetstyleID(stylistID)
+            formstylist.SetFirstName(firstName)
+            formstylist.SetLastName(lastname)
+            formstylist.SetMiddleName(middlename)
+            formstylist.Setage(age)
+            formstylist.Setgender(gender)
+            formstylist.Setaddress(address)
+            formstylist.setphonenumber(phonenumber)
+            formstylist.setstylistname(stylistname)
+            formstylist.ShowDialog()
         End If
     End Sub
 End Class

@@ -212,6 +212,7 @@ Partial Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         SetButtonShape(login)
+        txtusername.Focus()
     End Sub
     Private Sub SetButtonShape(button As Button)
         Dim path As New Drawing2D.GraphicsPath()

@@ -29,9 +29,7 @@ Partial Class adminwindows
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblInventory = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Employee_management = New System.Windows.Forms.Panel()
         Me.add_employee = New System.Windows.Forms.Label()
@@ -40,16 +38,23 @@ Partial Class adminwindows
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.lbladditem = New System.Windows.Forms.Label()
         Me.dgvinventory = New System.Windows.Forms.DataGridView()
+        Me.lblfrontdesk = New System.Windows.Forms.Label()
+        Me.lblstylist = New System.Windows.Forms.Label()
+        Me.dgvstylist = New System.Windows.Forms.DataGridView()
+        Me.lbladdstylist = New System.Windows.Forms.Label()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel3.SuspendLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Employee_management.SuspendLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_Inventory.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvstylist, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -131,16 +136,6 @@ Partial Class adminwindows
         Me.Panel2.Size = New System.Drawing.Size(176, 43)
         Me.Panel2.TabIndex = 6
         '
-        'PictureBox1
-        '
-        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
-        Me.PictureBox1.Location = New System.Drawing.Point(14, 6)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 0
-        Me.PictureBox1.TabStop = False
-        '
         'Panel3
         '
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
@@ -150,16 +145,6 @@ Partial Class adminwindows
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(112, 35)
         Me.Panel3.TabIndex = 6
-        '
-        'PictureBox2
-        '
-        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
-        Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
-        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox2.TabIndex = 0
-        Me.PictureBox2.TabStop = False
         '
         'Label4
         '
@@ -174,11 +159,15 @@ Partial Class adminwindows
         '
         'Employee_management
         '
-        Me.Employee_management.Controls.Add(Me.add_employee)
+        Me.Employee_management.Controls.Add(Me.lbladdstylist)
         Me.Employee_management.Controls.Add(Me.employeeView)
-        Me.Employee_management.Location = New System.Drawing.Point(0, 0)
+        Me.Employee_management.Controls.Add(Me.dgvstylist)
+        Me.Employee_management.Controls.Add(Me.lblstylist)
+        Me.Employee_management.Controls.Add(Me.lblfrontdesk)
+        Me.Employee_management.Controls.Add(Me.add_employee)
+        Me.Employee_management.Location = New System.Drawing.Point(244, 2)
         Me.Employee_management.Name = "Employee_management"
-        Me.Employee_management.Size = New System.Drawing.Size(573, 569)
+        Me.Employee_management.Size = New System.Drawing.Size(583, 568)
         Me.Employee_management.TabIndex = 6
         '
         'add_employee
@@ -186,7 +175,7 @@ Partial Class adminwindows
         Me.add_employee.AutoSize = True
         Me.add_employee.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.add_employee.ForeColor = System.Drawing.Color.Navy
-        Me.add_employee.Location = New System.Drawing.Point(382, 385)
+        Me.add_employee.Location = New System.Drawing.Point(382, 387)
         Me.add_employee.Name = "add_employee"
         Me.add_employee.Size = New System.Drawing.Size(179, 21)
         Me.add_employee.TabIndex = 11
@@ -195,7 +184,7 @@ Partial Class adminwindows
         'employeeView
         '
         Me.employeeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.employeeView.Location = New System.Drawing.Point(17, 122)
+        Me.employeeView.Location = New System.Drawing.Point(17, 126)
         Me.employeeView.Name = "employeeView"
         Me.employeeView.Size = New System.Drawing.Size(544, 247)
         Me.employeeView.TabIndex = 0
@@ -203,7 +192,6 @@ Partial Class adminwindows
         'panel_Inventory
         '
         Me.panel_Inventory.Controls.Add(Me.Panel4)
-        Me.panel_Inventory.Controls.Add(Me.Employee_management)
         Me.panel_Inventory.Location = New System.Drawing.Point(244, 0)
         Me.panel_Inventory.Name = "panel_Inventory"
         Me.panel_Inventory.Size = New System.Drawing.Size(573, 569)
@@ -232,10 +220,73 @@ Partial Class adminwindows
         'dgvinventory
         '
         Me.dgvinventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvinventory.Location = New System.Drawing.Point(72, 28)
+        Me.dgvinventory.Location = New System.Drawing.Point(28, 28)
         Me.dgvinventory.Name = "dgvinventory"
-        Me.dgvinventory.Size = New System.Drawing.Size(449, 247)
+        Me.dgvinventory.Size = New System.Drawing.Size(500, 247)
         Me.dgvinventory.TabIndex = 0
+        '
+        'lblfrontdesk
+        '
+        Me.lblfrontdesk.AutoSize = True
+        Me.lblfrontdesk.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lblfrontdesk.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblfrontdesk.ForeColor = System.Drawing.Color.Navy
+        Me.lblfrontdesk.Location = New System.Drawing.Point(27, 65)
+        Me.lblfrontdesk.Name = "lblfrontdesk"
+        Me.lblfrontdesk.Size = New System.Drawing.Size(79, 21)
+        Me.lblfrontdesk.TabIndex = 12
+        Me.lblfrontdesk.Text = "front desk"
+        '
+        'lblstylist
+        '
+        Me.lblstylist.AutoSize = True
+        Me.lblstylist.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.lblstylist.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblstylist.ForeColor = System.Drawing.Color.Navy
+        Me.lblstylist.Location = New System.Drawing.Point(139, 65)
+        Me.lblstylist.Name = "lblstylist"
+        Me.lblstylist.Size = New System.Drawing.Size(49, 21)
+        Me.lblstylist.TabIndex = 13
+        Me.lblstylist.Text = "Stylist"
+        '
+        'dgvstylist
+        '
+        Me.dgvstylist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvstylist.Location = New System.Drawing.Point(16, 126)
+        Me.dgvstylist.Name = "dgvstylist"
+        Me.dgvstylist.Size = New System.Drawing.Size(544, 247)
+        Me.dgvstylist.TabIndex = 14
+        '
+        'lbladdstylist
+        '
+        Me.lbladdstylist.AutoSize = True
+        Me.lbladdstylist.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbladdstylist.ForeColor = System.Drawing.Color.Navy
+        Me.lbladdstylist.Location = New System.Drawing.Point(382, 387)
+        Me.lbladdstylist.Name = "lbladdstylist"
+        Me.lbladdstylist.Size = New System.Drawing.Size(149, 21)
+        Me.lbladdstylist.TabIndex = 15
+        Me.lbladdstylist.Text = "add stylist employee"
+        '
+        'PictureBox1
+        '
+        Me.PictureBox1.Image = Global.SalonManagement.My.Resources.Resources.gunting
+        Me.PictureBox1.Location = New System.Drawing.Point(14, 6)
+        Me.PictureBox1.Name = "PictureBox1"
+        Me.PictureBox1.Size = New System.Drawing.Size(30, 30)
+        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox1.TabIndex = 0
+        Me.PictureBox1.TabStop = False
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.PictureBox2.Location = New System.Drawing.Point(4, 2)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(27, 30)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 0
+        Me.PictureBox2.TabStop = False
         '
         'adminwindows
         '
@@ -243,6 +294,7 @@ Partial Class adminwindows
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.Employee_management)
         Me.Controls.Add(Me.panel_Inventory)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adminwindows"
@@ -251,10 +303,8 @@ Partial Class adminwindows
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
-        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Employee_management.ResumeLayout(False)
         Me.Employee_management.PerformLayout()
         CType(Me.employeeView, System.ComponentModel.ISupportInitialize).EndInit()
@@ -262,6 +312,9 @@ Partial Class adminwindows
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvstylist, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -284,4 +337,8 @@ Partial Class adminwindows
     Friend WithEvents Panel4 As Panel
     Friend WithEvents lbladditem As Label
     Friend WithEvents dgvinventory As DataGridView
+    Friend WithEvents lblfrontdesk As Label
+    Friend WithEvents lblstylist As Label
+    Friend WithEvents dgvstylist As DataGridView
+    Friend WithEvents lbladdstylist As Label
 End Class
