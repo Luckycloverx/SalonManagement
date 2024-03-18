@@ -176,7 +176,7 @@ Partial Class adminwindows
         '
         Me.Employee_management.Controls.Add(Me.add_employee)
         Me.Employee_management.Controls.Add(Me.employeeView)
-        Me.Employee_management.Location = New System.Drawing.Point(244, 0)
+        Me.Employee_management.Location = New System.Drawing.Point(0, 0)
         Me.Employee_management.Name = "Employee_management"
         Me.Employee_management.Size = New System.Drawing.Size(573, 569)
         Me.Employee_management.TabIndex = 6
@@ -203,6 +203,7 @@ Partial Class adminwindows
         'panel_Inventory
         '
         Me.panel_Inventory.Controls.Add(Me.Panel4)
+        Me.panel_Inventory.Controls.Add(Me.Employee_management)
         Me.panel_Inventory.Location = New System.Drawing.Point(244, 0)
         Me.panel_Inventory.Name = "panel_Inventory"
         Me.panel_Inventory.Size = New System.Drawing.Size(573, 569)
@@ -242,7 +243,6 @@ Partial Class adminwindows
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.Employee_management)
         Me.Controls.Add(Me.panel_Inventory)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adminwindows"

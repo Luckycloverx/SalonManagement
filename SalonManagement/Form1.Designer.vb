@@ -280,35 +280,62 @@ Partial Class Form1
     End Sub
 
     Private Sub login_Click(sender As Object, e As EventArgs) Handles login.Click
-        Dim username As String = txtUsername.Text.Trim()
-        Dim password As String = txtPassword.Text.Trim()
+        Dim username As String = txtusername.Text.Trim()
+        Dim password As String = txtpassword.Text.Trim()
 
         If String.IsNullOrEmpty(username) Or String.IsNullOrEmpty(password) Then
             MessageBox.Show("Please enter both username and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return
         End If
 
-        ' Query the database to check if the username and password match
-        Dim query As String = "SELECT COUNT(*) FROM admin WHERE Username = @Username AND Password = @Password"
-        Using command As New OleDbCommand(query, conn)
-            command.Parameters.AddWithValue("@Username", username)
-            command.Parameters.AddWithValue("@Password", password)
-            conn.Open()
-            Dim count As Integer = Convert.ToInt32(command.ExecuteScalar())
-            conn.Close()
+        Try
+            Dim isAdmin As Boolean = False
 
-            If count > 0 Then
-                ' Login successful
-                MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                ' Proceed to your main form or perform any other actions
-                Dim mainForm As New adminwindows()
-                mainForm.Show()
+            ' Query the admin database to check if the user is an admin
+            Dim adminQuery As String = "SELECT COUNT(*) FROM admin WHERE Username = @Username AND Password = @Password"
+            Using adminConn As New OleDbConnection(mycon),
+              adminCommand As New OleDbCommand(adminQuery, adminConn)
+
+                adminCommand.Parameters.AddWithValue("@Username", username)
+                adminCommand.Parameters.AddWithValue("@Password", password)
+
+                adminConn.Open()
+                Dim adminCount As Integer = Convert.ToInt32(adminCommand.ExecuteScalar())
+                If adminCount > 0 Then
+                    isAdmin = True
+                End If
+            End Using
+
+            If isAdmin Then
+                ' Proceed to admin form
+                Dim adminForm As New adminwindows()
+                adminForm.Show()
                 Me.Hide()
             Else
-                ' Invalid credentials
-                MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                ' Query the staff database to check if the user is a staff member
+                Dim staffQuery As String = "SELECT COUNT(*) FROM Employee_database WHERE Username = @Username AND Password = @Password"
+                Using staffConn As New OleDbConnection(mycon),
+                  staffCommand As New OleDbCommand(staffQuery, staffConn)
+
+                    staffCommand.Parameters.AddWithValue("@Username", username)
+                    staffCommand.Parameters.AddWithValue("@Password", password)
+
+                    staffConn.Open()
+                    Dim staffCount As Integer = Convert.ToInt32(staffCommand.ExecuteScalar())
+                    If staffCount > 0 Then
+                        ' Proceed to staff form
+                        Dim staffForm As New formstaff()
+                        staffForm.Show()
+                        Me.Hide()
+                    Else
+                        ' Invalid credentials
+                        MessageBox.Show("Invalid username or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                End Using
             End If
-        End Using
+        Catch ex As Exception
+            MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
 

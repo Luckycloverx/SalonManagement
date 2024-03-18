@@ -220,4 +220,33 @@ Public Class Forminventory
             e.Handled = True ' Ignore the key press
         End If
     End Sub
+
+    Private Sub lblremove_Click(sender As Object, e As EventArgs) Handles lblremove.Click
+        Dim selectedproductID As String = txtPID.Text
+        If selectedproductID <> -1 Then
+            Dim result As DialogResult = MessageBox.Show("Are you sure you want to remove this Product?", "Confirm Removal", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+            If result = DialogResult.Yes Then
+                Try
+                    conn.Open()
+                    Dim query As String = "DELETE FROM tblInventory WHERE [ID] = @productID"
+                    Using command As New OleDbCommand(query, conn)
+                        command.Parameters.AddWithValue("@productID", selectedproductID)
+                        command.ExecuteNonQuery()
+                        MessageBox.Show("product removed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ' Optionally, you can inform the parent form about the deletion
+
+                        DatagridShow()
+
+                        Me.Close() ' Close the form after successful removal
+                    End Using
+                Catch ex As Exception
+                    MessageBox.Show("Error removing product: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Finally
+                    conn.Close()
+                End Try
+            End If
+        Else
+            MessageBox.Show("Please select an product to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
 End Class
