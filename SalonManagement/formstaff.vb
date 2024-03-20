@@ -193,9 +193,9 @@ Public Class formstaff
         If Not String.IsNullOrEmpty(scheduleTime) Then
             ' Parse the time string to a DateTime object (assumes 12-hour format with AM/PM)
             Dim parsedTime As DateTime
-            If DateTime.TryParseExact(scheduleTime, "h:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, parsedTime) Then
+            If DateTime.TryParseExact(scheduleTime, "hh:mm tt", CultureInfo.InvariantCulture, DateTimeStyles.None, parsedTime) Then
                 ' Convert the parsed time back to a formatted string for sorting
-                scheduleTime = parsedTime.ToString("hh:mm tt", CultureInfo.InvariantCulture)
+                scheduleTime = parsedTime.ToString("HH:mm tt", CultureInfo.InvariantCulture)
             Else
                 MessageBox.Show("Invalid time format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return
