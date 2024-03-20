@@ -239,6 +239,7 @@ Public Class adminwindows
 
     Private Sub lbladditem_Click(sender As Object, e As EventArgs) Handles lbladditem.Click
         Dim forminventory As New Forminventory()
+        forminventory.cmbcategory.SelectedIndex = 0
         forminventory.HideEdit()
         forminventory.AdminFormReference = Me
         forminventory.DatagridShow()
@@ -248,27 +249,25 @@ Public Class adminwindows
     Private Sub dgvinventory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvinventory.CellClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             Dim productID As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(0).Value)
-            Dim product As String = dgvinventory.Rows(e.RowIndex).Cells(1).Value.ToString()
-            Dim quantity As String = dgvinventory.Rows(e.RowIndex).Cells(2).Value.ToString()
-            Dim cost As String = dgvinventory.Rows(e.RowIndex).Cells(3).Value.ToString()
+            Dim category As String = dgvinventory.Rows(e.RowIndex).Cells(1).Value.ToString()
+            Dim product As String = dgvinventory.Rows(e.RowIndex).Cells(2).Value.ToString()
+            Dim quantity As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(3).Value)
+            Dim cost As Double = Convert.ToDouble(dgvinventory.Rows(e.RowIndex).Cells(4).Value)
+
             Dim forminventory As New Forminventory()
             forminventory.ShowEdit()
             forminventory.AdminFormReference = Me
             selectedproductID = productID
 
+            forminventory.Setcategory(category)
             forminventory.SetID(productID)
             forminventory.Setproduct(product)
-            forminventory.Setquantity(quantity)
-            forminventory.Setcost(cost)
+            forminventory.Setquantity(quantity.ToString()) ' Convert to string if needed
+            forminventory.Setcost(cost.ToString()) ' Convert to string if needed
             forminventory.ShowDialog()
-
-
-
-
-
-
         End If
     End Sub
+
 
     Private Sub lblfrontdesk_Click(sender As Object, e As EventArgs) Handles lblfrontdesk.Click
         lblfrontdesk.Font = New Font(lblfrontdesk.Font, FontStyle.Bold Or FontStyle.Underline)

@@ -38,6 +38,8 @@ Partial Class Forminventory
         Me.panel_pid = New System.Windows.Forms.Panel()
         Me.txtPID = New System.Windows.Forms.TextBox()
         Me.lblid = New System.Windows.Forms.Label()
+        Me.cmbcategory = New System.Windows.Forms.ComboBox()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.Panel_product.SuspendLayout()
         Me.Panel_quantity.SuspendLayout()
         Me.Panel_cost.SuspendLayout()
@@ -51,7 +53,7 @@ Partial Class Forminventory
         Me.Panel_product.Controls.Add(Me.txtproduct)
         Me.Panel_product.Controls.Add(Me.Label3)
         Me.Panel_product.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Panel_product.Location = New System.Drawing.Point(57, 46)
+        Me.Panel_product.Location = New System.Drawing.Point(57, 107)
         Me.Panel_product.Name = "Panel_product"
         Me.Panel_product.Size = New System.Drawing.Size(225, 61)
         Me.Panel_product.TabIndex = 12
@@ -85,7 +87,7 @@ Partial Class Forminventory
         Me.Panel_quantity.Controls.Add(Me.txtquantity)
         Me.Panel_quantity.Controls.Add(Me.Label1)
         Me.Panel_quantity.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Panel_quantity.Location = New System.Drawing.Point(57, 127)
+        Me.Panel_quantity.Location = New System.Drawing.Point(57, 189)
         Me.Panel_quantity.Name = "Panel_quantity"
         Me.Panel_quantity.Size = New System.Drawing.Size(225, 61)
         Me.Panel_quantity.TabIndex = 12
@@ -119,7 +121,7 @@ Partial Class Forminventory
         Me.Panel_cost.Controls.Add(Me.txtcost)
         Me.Panel_cost.Controls.Add(Me.Label2)
         Me.Panel_cost.Cursor = System.Windows.Forms.Cursors.IBeam
-        Me.Panel_cost.Location = New System.Drawing.Point(57, 207)
+        Me.Panel_cost.Location = New System.Drawing.Point(57, 273)
         Me.Panel_cost.Name = "Panel_cost"
         Me.Panel_cost.Size = New System.Drawing.Size(225, 61)
         Me.Panel_cost.TabIndex = 13
@@ -151,7 +153,7 @@ Partial Class Forminventory
         Me.lbladd.AutoSize = True
         Me.lbladd.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbladd.ForeColor = System.Drawing.Color.Navy
-        Me.lbladd.Location = New System.Drawing.Point(238, 294)
+        Me.lbladd.Location = New System.Drawing.Point(238, 392)
         Me.lbladd.Name = "lbladd"
         Me.lbladd.Size = New System.Drawing.Size(83, 20)
         Me.lbladd.TabIndex = 18
@@ -162,7 +164,7 @@ Partial Class Forminventory
         Me.lblclose.AutoSize = True
         Me.lblclose.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblclose.ForeColor = System.Drawing.Color.Navy
-        Me.lblclose.Location = New System.Drawing.Point(14, 294)
+        Me.lblclose.Location = New System.Drawing.Point(14, 392)
         Me.lblclose.Name = "lblclose"
         Me.lblclose.Size = New System.Drawing.Size(44, 20)
         Me.lblclose.TabIndex = 20
@@ -173,7 +175,7 @@ Partial Class Forminventory
         Me.lbledit.AutoSize = True
         Me.lbledit.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lbledit.ForeColor = System.Drawing.Color.Navy
-        Me.lbledit.Location = New System.Drawing.Point(249, 294)
+        Me.lbledit.Location = New System.Drawing.Point(249, 392)
         Me.lbledit.Name = "lbledit"
         Me.lbledit.Size = New System.Drawing.Size(36, 20)
         Me.lbledit.TabIndex = 19
@@ -184,7 +186,7 @@ Partial Class Forminventory
         Me.lblremove.AutoSize = True
         Me.lblremove.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblremove.ForeColor = System.Drawing.Color.Navy
-        Me.lblremove.Location = New System.Drawing.Point(228, 320)
+        Me.lblremove.Location = New System.Drawing.Point(228, 418)
         Me.lblremove.Name = "lblremove"
         Me.lblremove.Size = New System.Drawing.Size(66, 20)
         Me.lblremove.TabIndex = 21
@@ -223,12 +225,38 @@ Partial Class Forminventory
         Me.lblid.TabIndex = 0
         Me.lblid.Text = "Product ID"
         '
+        'cmbcategory
+        '
+        Me.cmbcategory.DisplayMember = "Hair Care"
+        Me.cmbcategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbcategory.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cmbcategory.FormattingEnabled = True
+        Me.cmbcategory.Items.AddRange(New Object() {"Hair Care", "Hair Color"})
+        Me.cmbcategory.Location = New System.Drawing.Point(139, 57)
+        Me.cmbcategory.Name = "cmbcategory"
+        Me.cmbcategory.Size = New System.Drawing.Size(143, 32)
+        Me.cmbcategory.TabIndex = 23
+        Me.cmbcategory.ValueMember = "Hair Care"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label4.ForeColor = System.Drawing.Color.Navy
+        Me.Label4.Location = New System.Drawing.Point(60, 63)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(73, 20)
+        Me.Label4.TabIndex = 24
+        Me.Label4.Text = "Category"
+        '
         'Forminventory
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ActiveCaption
-        Me.ClientSize = New System.Drawing.Size(339, 359)
+        Me.ClientSize = New System.Drawing.Size(339, 457)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.cmbcategory)
         Me.Controls.Add(Me.panel_pid)
         Me.Controls.Add(Me.lblremove)
         Me.Controls.Add(Me.lblclose)
@@ -270,4 +298,6 @@ Partial Class Forminventory
     Friend WithEvents panel_pid As Panel
     Friend WithEvents txtPID As TextBox
     Friend WithEvents lblid As Label
+    Friend WithEvents cmbcategory As ComboBox
+    Friend WithEvents Label4 As Label
 End Class
