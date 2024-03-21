@@ -201,38 +201,53 @@ Public Class adminwindows
     Private Sub employeeView_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles employeeView.CellClick
 
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            ' Get the value from the clicked cell
-            Dim employeeID As Integer = Convert.ToInt32(employeeView.Rows(e.RowIndex).Cells(0).Value)
-            Dim firstName As String = employeeView.Rows(e.RowIndex).Cells(1).Value.ToString()
-            Dim lastname As String = employeeView.Rows(e.RowIndex).Cells(3).Value.ToString()
-            Dim middlename As String = employeeView.Rows(e.RowIndex).Cells(2).Value.ToString()
-            Dim age As String = employeeView.Rows(e.RowIndex).Cells(4).Value.ToString()
-            Dim gender As String = employeeView.Rows(e.RowIndex).Cells(5).Value.ToString()
-            Dim address As String = employeeView.Rows(e.RowIndex).Cells(6).Value.ToString()
-            Dim phonenumber As String = employeeView.Rows(e.RowIndex).Cells(7).Value.ToString()
-            Dim username As String = employeeView.Rows(e.RowIndex).Cells(8).Value.ToString()
-            Dim password As String = employeeView.Rows(e.RowIndex).Cells(9).Value.ToString()
-            Dim form3 As New adding_employee()
-            form3.AdminFormReference = Me
-            form3.HideRegisterLabel()
-            form3.ShowUpdateLabel()
-            form3.ShowID()
-            form3.showremove()
-            selectedEmployeeID = employeeID
+            If Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(0).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(1).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(2).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(3).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(4).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(5).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(6).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(7).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(8).Value) AndAlso
+               Not IsDBNull(employeeView.Rows(e.RowIndex).Cells(9).Value) Then
 
-            ' Set in Form2 using the method
-            form3.SetID(employeeID)
-            form3.SetFirstName(firstName)
-            form3.SetLastName(lastname)
-            form3.SetMiddleName(middlename)
-            form3.Setage(age)
-            form3.Setgender(gender)
-            form3.Setaddress(address)
-            form3.setphonenumber(phonenumber)
-            form3.setusername(username)
-            form3.setpassword(password)
-            form3.ShowDialog()
+                ' Get the value from the clicked cell
+                Dim employeeID As Integer = Convert.ToInt32(employeeView.Rows(e.RowIndex).Cells(0).Value)
+                Dim firstName As String = employeeView.Rows(e.RowIndex).Cells(1).Value.ToString()
+                Dim lastname As String = employeeView.Rows(e.RowIndex).Cells(3).Value.ToString()
+                Dim middlename As String = employeeView.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Dim age As String = employeeView.Rows(e.RowIndex).Cells(4).Value.ToString()
+                Dim gender As String = employeeView.Rows(e.RowIndex).Cells(5).Value.ToString()
+                Dim address As String = employeeView.Rows(e.RowIndex).Cells(6).Value.ToString()
+                Dim phonenumber As String = employeeView.Rows(e.RowIndex).Cells(7).Value.ToString()
+                Dim username As String = employeeView.Rows(e.RowIndex).Cells(8).Value.ToString()
+                Dim password As String = employeeView.Rows(e.RowIndex).Cells(9).Value.ToString()
+                Dim form3 As New adding_employee()
+                form3.AdminFormReference = Me
+                form3.HideRegisterLabel()
+                form3.ShowUpdateLabel()
+                form3.ShowID()
+                form3.showremove()
+                selectedEmployeeID = employeeID
+
+                ' Set in Form2 using the method
+                form3.SetID(employeeID)
+                form3.SetFirstName(firstName)
+                form3.SetLastName(lastname)
+                form3.SetMiddleName(middlename)
+                form3.Setage(age)
+                form3.Setgender(gender)
+                form3.Setaddress(address)
+                form3.setphonenumber(phonenumber)
+                form3.setusername(username)
+                form3.setpassword(password)
+                form3.ShowDialog()
+            Else
+                ' Handle DBNull values if needed
+            End If
         End If
+
 
 
     End Sub
@@ -248,23 +263,33 @@ Public Class adminwindows
 
     Private Sub dgvinventory_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvinventory.CellClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            Dim productID As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(0).Value)
-            Dim category As String = dgvinventory.Rows(e.RowIndex).Cells(1).Value.ToString()
-            Dim product As String = dgvinventory.Rows(e.RowIndex).Cells(2).Value.ToString()
-            Dim quantity As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(3).Value)
-            Dim cost As Double = Convert.ToDouble(dgvinventory.Rows(e.RowIndex).Cells(4).Value)
+            If Not IsDBNull(dgvinventory.Rows(e.RowIndex).Cells(0).Value) AndAlso
+       Not IsDBNull(dgvinventory.Rows(e.RowIndex).Cells(1).Value) AndAlso
+       Not IsDBNull(dgvinventory.Rows(e.RowIndex).Cells(2).Value) AndAlso
+       Not IsDBNull(dgvinventory.Rows(e.RowIndex).Cells(3).Value) AndAlso
+       Not IsDBNull(dgvinventory.Rows(e.RowIndex).Cells(4).Value) Then
 
-            Dim forminventory As New Forminventory()
-            forminventory.ShowEdit()
-            forminventory.AdminFormReference = Me
-            selectedproductID = productID
+                Dim productID As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(0).Value)
+                Dim category As String = dgvinventory.Rows(e.RowIndex).Cells(1).Value.ToString()
+                Dim product As String = dgvinventory.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Dim quantity As Integer = Convert.ToInt32(dgvinventory.Rows(e.RowIndex).Cells(3).Value)
+                Dim cost As Double = Convert.ToDouble(dgvinventory.Rows(e.RowIndex).Cells(4).Value)
 
-            forminventory.Setcategory(category)
-            forminventory.SetID(productID)
-            forminventory.Setproduct(product)
-            forminventory.Setquantity(quantity.ToString()) ' Convert to string if needed
-            forminventory.Setcost(cost.ToString()) ' Convert to string if needed
-            forminventory.ShowDialog()
+                Dim forminventory As New Forminventory()
+                forminventory.ShowEdit()
+                forminventory.AdminFormReference = Me
+                selectedproductID = productID
+
+                forminventory.Setcategory(category)
+                forminventory.SetID(productID)
+                forminventory.Setproduct(product)
+                forminventory.Setquantity(quantity.ToString()) ' Convert to string if needed
+                forminventory.Setcost(cost.ToString()) ' Convert to string if needed
+                forminventory.ShowDialog()
+            Else
+                ' Handle DBNull values if needed
+
+            End If
         End If
     End Sub
 
@@ -298,31 +323,45 @@ Public Class adminwindows
 
     Private Sub dgvstylist_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvstylist.CellClick
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
-            ' Get the value from the clicked cell
-            Dim stylistID As Integer = Convert.ToInt32(dgvstylist.Rows(e.RowIndex).Cells(0).Value)
-            Dim firstName As String = dgvstylist.Rows(e.RowIndex).Cells(1).Value.ToString()
-            Dim lastname As String = dgvstylist.Rows(e.RowIndex).Cells(3).Value.ToString()
-            Dim middlename As String = dgvstylist.Rows(e.RowIndex).Cells(2).Value.ToString()
-            Dim age As String = dgvstylist.Rows(e.RowIndex).Cells(4).Value.ToString()
-            Dim gender As String = dgvstylist.Rows(e.RowIndex).Cells(5).Value.ToString()
-            Dim address As String = dgvstylist.Rows(e.RowIndex).Cells(6).Value.ToString()
-            Dim phonenumber As String = dgvstylist.Rows(e.RowIndex).Cells(7).Value.ToString()
-            Dim stylistname As String = dgvstylist.Rows(e.RowIndex).Cells(8).Value.ToString()
-            Dim formstylist As New Formstylist()
-            formstylist.AdminFormReference = Me
-            formstylist.ShowupdateLabel()
-            selectedstylistID = stylistID
+            If Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(0).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(1).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(2).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(3).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(4).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(5).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(6).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(7).Value) AndAlso
+               Not IsDBNull(dgvstylist.Rows(e.RowIndex).Cells(8).Value) Then
 
-            formstylist.SetstyleID(stylistID)
-            formstylist.SetFirstName(firstName)
-            formstylist.SetLastName(lastname)
-            formstylist.SetMiddleName(middlename)
-            formstylist.Setage(age)
-            formstylist.Setgender(gender)
-            formstylist.Setaddress(address)
-            formstylist.setphonenumber(phonenumber)
-            formstylist.setstylistname(stylistname)
-            formstylist.ShowDialog()
+                ' Get the value from the clicked cell
+                Dim stylistID As Integer = Convert.ToInt32(dgvstylist.Rows(e.RowIndex).Cells(0).Value)
+                Dim firstName As String = dgvstylist.Rows(e.RowIndex).Cells(1).Value.ToString()
+                Dim lastname As String = dgvstylist.Rows(e.RowIndex).Cells(3).Value.ToString()
+                Dim middlename As String = dgvstylist.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Dim age As String = dgvstylist.Rows(e.RowIndex).Cells(4).Value.ToString()
+                Dim gender As String = dgvstylist.Rows(e.RowIndex).Cells(5).Value.ToString()
+                Dim address As String = dgvstylist.Rows(e.RowIndex).Cells(6).Value.ToString()
+                Dim phonenumber As String = dgvstylist.Rows(e.RowIndex).Cells(7).Value.ToString()
+                Dim stylistname As String = dgvstylist.Rows(e.RowIndex).Cells(8).Value.ToString()
+                Dim formstylist As New Formstylist()
+                formstylist.AdminFormReference = Me
+                formstylist.ShowupdateLabel()
+                selectedstylistID = stylistID
+
+                formstylist.SetstyleID(stylistID)
+                formstylist.SetFirstName(firstName)
+                formstylist.SetLastName(lastname)
+                formstylist.SetMiddleName(middlename)
+                formstylist.Setage(age)
+                formstylist.Setgender(gender)
+                formstylist.Setaddress(address)
+                formstylist.setphonenumber(phonenumber)
+                formstylist.setstylistname(stylistname)
+                formstylist.ShowDialog()
+            Else
+                ' Handle DBNull values if needed
+            End If
         End If
+
     End Sub
 End Class

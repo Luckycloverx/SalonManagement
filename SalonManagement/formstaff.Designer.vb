@@ -27,7 +27,6 @@ Partial Class formstaff
         Me.lblappoint = New System.Windows.Forms.Label()
         Me.lblbilling = New System.Windows.Forms.Label()
         Me.Panelout = New System.Windows.Forms.Panel()
-        Me.pbout = New System.Windows.Forms.PictureBox()
         Me.lblout = New System.Windows.Forms.Label()
         Me.lblsettings = New System.Windows.Forms.Label()
         Me.panel_dashboard = New System.Windows.Forms.Panel()
@@ -37,6 +36,9 @@ Partial Class formstaff
         Me.txtEID = New System.Windows.Forms.TextBox()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.panel_appoint = New System.Windows.Forms.Panel()
+        Me.lblExit = New System.Windows.Forms.Label()
+        Me.cmbstatus = New System.Windows.Forms.ComboBox()
+        Me.lblstatus = New System.Windows.Forms.Label()
         Me.cmbtime = New System.Windows.Forms.ComboBox()
         Me.lbltime = New System.Windows.Forms.Label()
         Me.lblsched = New System.Windows.Forms.Label()
@@ -51,14 +53,12 @@ Partial Class formstaff
         Me.cmbservices = New System.Windows.Forms.ComboBox()
         Me.DTPappoint = New System.Windows.Forms.DateTimePicker()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.cmbstatus = New System.Windows.Forms.ComboBox()
-        Me.lblstatus = New System.Windows.Forms.Label()
-        Me.lblExit = New System.Windows.Forms.Label()
+        Me.pbout = New System.Windows.Forms.PictureBox()
         Me.Panelout.SuspendLayout()
-        CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_appoint.SuspendLayout()
+        CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -112,16 +112,6 @@ Partial Class formstaff
         Me.Panelout.Name = "Panelout"
         Me.Panelout.Size = New System.Drawing.Size(112, 35)
         Me.Panelout.TabIndex = 13
-        '
-        'pbout
-        '
-        Me.pbout.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.pbout.Location = New System.Drawing.Point(4, 2)
-        Me.pbout.Name = "pbout"
-        Me.pbout.Size = New System.Drawing.Size(27, 30)
-        Me.pbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbout.TabIndex = 0
-        Me.pbout.TabStop = False
         '
         'lblout
         '
@@ -230,6 +220,43 @@ Partial Class formstaff
         Me.panel_appoint.Name = "panel_appoint"
         Me.panel_appoint.Size = New System.Drawing.Size(573, 569)
         Me.panel_appoint.TabIndex = 17
+        '
+        'lblExit
+        '
+        Me.lblExit.AutoSize = True
+        Me.lblExit.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblExit.ForeColor = System.Drawing.Color.Navy
+        Me.lblExit.Location = New System.Drawing.Point(12, 414)
+        Me.lblExit.Name = "lblExit"
+        Me.lblExit.Size = New System.Drawing.Size(34, 21)
+        Me.lblExit.TabIndex = 33
+        Me.lblExit.Text = "Exit"
+        Me.lblExit.Visible = False
+        '
+        'cmbstatus
+        '
+        Me.cmbstatus.DisplayMember = "Confirm"
+        Me.cmbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cmbstatus.FormattingEnabled = True
+        Me.cmbstatus.Items.AddRange(New Object() {"Confirm", "Cancel"})
+        Me.cmbstatus.Location = New System.Drawing.Point(157, 383)
+        Me.cmbstatus.Name = "cmbstatus"
+        Me.cmbstatus.Size = New System.Drawing.Size(121, 21)
+        Me.cmbstatus.TabIndex = 32
+        Me.cmbstatus.ValueMember = "Confirm"
+        Me.cmbstatus.Visible = False
+        '
+        'lblstatus
+        '
+        Me.lblstatus.AutoSize = True
+        Me.lblstatus.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblstatus.ForeColor = System.Drawing.Color.Navy
+        Me.lblstatus.Location = New System.Drawing.Point(76, 383)
+        Me.lblstatus.Name = "lblstatus"
+        Me.lblstatus.Size = New System.Drawing.Size(51, 21)
+        Me.lblstatus.TabIndex = 31
+        Me.lblstatus.Text = "Status"
+        Me.lblstatus.Visible = False
         '
         'cmbtime
         '
@@ -369,42 +396,15 @@ Partial Class formstaff
         Me.Label3.TabIndex = 12
         Me.Label3.Text = "costumer appointment"
         '
-        'cmbstatus
+        'pbout
         '
-        Me.cmbstatus.DisplayMember = "Confirm"
-        Me.cmbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbstatus.FormattingEnabled = True
-        Me.cmbstatus.Items.AddRange(New Object() {"Confirm", "Cancel"})
-        Me.cmbstatus.Location = New System.Drawing.Point(157, 383)
-        Me.cmbstatus.Name = "cmbstatus"
-        Me.cmbstatus.Size = New System.Drawing.Size(121, 21)
-        Me.cmbstatus.TabIndex = 32
-        Me.cmbstatus.ValueMember = "Confirm"
-        Me.cmbstatus.Visible = False
-        '
-        'lblstatus
-        '
-        Me.lblstatus.AutoSize = True
-        Me.lblstatus.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblstatus.ForeColor = System.Drawing.Color.Navy
-        Me.lblstatus.Location = New System.Drawing.Point(76, 383)
-        Me.lblstatus.Name = "lblstatus"
-        Me.lblstatus.Size = New System.Drawing.Size(51, 21)
-        Me.lblstatus.TabIndex = 31
-        Me.lblstatus.Text = "Status"
-        Me.lblstatus.Visible = False
-        '
-        'lblExit
-        '
-        Me.lblExit.AutoSize = True
-        Me.lblExit.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblExit.ForeColor = System.Drawing.Color.Navy
-        Me.lblExit.Location = New System.Drawing.Point(12, 414)
-        Me.lblExit.Name = "lblExit"
-        Me.lblExit.Size = New System.Drawing.Size(34, 21)
-        Me.lblExit.TabIndex = 33
-        Me.lblExit.Text = "Exit"
-        Me.lblExit.Visible = False
+        Me.pbout.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.pbout.Location = New System.Drawing.Point(4, 2)
+        Me.pbout.Name = "pbout"
+        Me.pbout.Size = New System.Drawing.Size(27, 30)
+        Me.pbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbout.TabIndex = 0
+        Me.pbout.TabStop = False
         '
         'formstaff
         '
@@ -419,20 +419,20 @@ Partial Class formstaff
         Me.Controls.Add(Me.lblappoint)
         Me.Controls.Add(Me.lbldashboard)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.panel_appoint)
         Me.Controls.Add(Me.panel_dashboard)
+        Me.Controls.Add(Me.panel_appoint)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "formstaff"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "formstaff"
         Me.Panelout.ResumeLayout(False)
         Me.Panelout.PerformLayout()
-        CType(Me.pbout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_dashboard.ResumeLayout(False)
         Me.panel_dashboard.PerformLayout()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_appoint.ResumeLayout(False)
         Me.panel_appoint.PerformLayout()
+        CType(Me.pbout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

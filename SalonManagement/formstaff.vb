@@ -7,6 +7,7 @@ Imports System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock
 Imports SalonManagement.adminwindows
 
 Public Class formstaff
+    Dim selectedscheduleID As Integer = -1
 
     Private Sub Panelout_Click(sender As Object, e As EventArgs) Handles Panelout.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -326,4 +327,61 @@ Public Class formstaff
             e.Handled = True ' Ignore the key press
         End If
     End Sub
+
+    Private Sub dgvdashboard_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvdashboard.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            If Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(0).Value) Then
+                Dim SID As Integer = Convert.ToInt32(dgvdashboard.Rows(e.RowIndex).Cells(0).Value)
+
+                Dim services As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(1).Value), dgvdashboard.Rows(e.RowIndex).Cells(1).Value.ToString(), "")
+                Dim stylist As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(2).Value), dgvdashboard.Rows(e.RowIndex).Cells(2).Value.ToString(), "")
+                Dim Cname As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(3).Value), dgvdashboard.Rows(e.RowIndex).Cells(3).Value.ToString(), "")
+                Dim Cnum As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(4).Value), dgvdashboard.Rows(e.RowIndex).Cells(4).Value.ToString(), "")
+                Dim SDate As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(5).Value), dgvdashboard.Rows(e.RowIndex).Cells(5).Value.ToString(), "")
+                Dim STime As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(6).Value), dgvdashboard.Rows(e.RowIndex).Cells(6).Value.ToString(), "")
+                Dim SStatus As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(7).Value), dgvdashboard.Rows(e.RowIndex).Cells(7).Value.ToString(), "")
+
+                Dim formappoint As New formAppointEdit()
+                formappoint.AdminFormReference = Me
+                selectedscheduleID = SID
+
+                formappoint.SetSID(SID)
+                formappoint.SetServices(services)
+                formappoint.SetStylist(stylist)
+                formappoint.SetCname(Cname)
+                formappoint.SetCnum(Cnum)
+                formappoint.SetSDate(DTPappoint.Value.ToString("yyyy-MM-dd"))
+                formappoint.SetSTime(STime)
+                formappoint.SetSStatus(SStatus)
+                formappoint.ShowDialog()
+            Else
+                ' Value is DBNull, do nothing
+            End If
+        End If
+
+    End Sub
+
+    Public Sub RefreshDashboard()
+        Try
+            ' Clear existing data in the DataGridView
+            dgvdashboard.DataSource = Nothing
+            dgvdashboard.Rows.Clear()
+
+            ' Populate the DataGridView with updated data
+            Dim query As String = "SELECT * FROM tblappointment" ' Replace YourTableName with the actual table name
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Using cmd As New OleDbCommand(query, conn)
+                    Using adapter As New OleDbDataAdapter(cmd)
+                        Dim table As New DataTable()
+                        adapter.Fill(table)
+                        dgvdashboard.DataSource = table
+                    End Using
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error refreshing dashboard: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class

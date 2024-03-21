@@ -275,7 +275,7 @@ Public Class Forminventory
                 End Try
             End If
         Else
-            MessageBox.Show("Please select an product to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
         End If
     End Sub
 End Class
