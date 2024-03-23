@@ -349,6 +349,7 @@ Partial Class Formstylist
         'txtSID
         '
         Me.txtSID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtSID.Enabled = False
         Me.txtSID.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtSID.Location = New System.Drawing.Point(100, 10)
         Me.txtSID.Name = "txtSID"

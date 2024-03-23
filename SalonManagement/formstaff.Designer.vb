@@ -27,8 +27,8 @@ Partial Class formstaff
         Me.lblappoint = New System.Windows.Forms.Label()
         Me.lblbilling = New System.Windows.Forms.Label()
         Me.Panelout = New System.Windows.Forms.Panel()
+        Me.pbout = New System.Windows.Forms.PictureBox()
         Me.lblout = New System.Windows.Forms.Label()
-        Me.lblsettings = New System.Windows.Forms.Label()
         Me.panel_dashboard = New System.Windows.Forms.Panel()
         Me.lblstocks = New System.Windows.Forms.Label()
         Me.lblcostumer = New System.Windows.Forms.Label()
@@ -53,12 +53,17 @@ Partial Class formstaff
         Me.cmbservices = New System.Windows.Forms.ComboBox()
         Me.DTPappoint = New System.Windows.Forms.DateTimePicker()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.pbout = New System.Windows.Forms.PictureBox()
+        Me.Panel_billing = New System.Windows.Forms.Panel()
+        Me.lbl_billing = New System.Windows.Forms.Label()
+        Me.dgvbilling = New System.Windows.Forms.DataGridView()
+        Me.lblbuy = New System.Windows.Forms.Label()
         Me.Panelout.SuspendLayout()
+        CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_appoint.SuspendLayout()
-        CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.Panel_billing.SuspendLayout()
+        CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -99,9 +104,9 @@ Partial Class formstaff
         Me.lblbilling.ForeColor = System.Drawing.Color.Navy
         Me.lblbilling.Location = New System.Drawing.Point(26, 221)
         Me.lblbilling.Name = "lblbilling"
-        Me.lblbilling.Size = New System.Drawing.Size(53, 21)
+        Me.lblbilling.Size = New System.Drawing.Size(123, 21)
         Me.lblbilling.TabIndex = 12
-        Me.lblbilling.Text = "Billing"
+        Me.lblbilling.Text = "Customer Billing"
         '
         'Panelout
         '
@@ -113,6 +118,16 @@ Partial Class formstaff
         Me.Panelout.Size = New System.Drawing.Size(112, 35)
         Me.Panelout.TabIndex = 13
         '
+        'pbout
+        '
+        Me.pbout.Image = Global.SalonManagement.My.Resources.Resources.sign_out
+        Me.pbout.Location = New System.Drawing.Point(4, 2)
+        Me.pbout.Name = "pbout"
+        Me.pbout.Size = New System.Drawing.Size(27, 30)
+        Me.pbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.pbout.TabIndex = 0
+        Me.pbout.TabStop = False
+        '
         'lblout
         '
         Me.lblout.AutoSize = True
@@ -123,17 +138,6 @@ Partial Class formstaff
         Me.lblout.Size = New System.Drawing.Size(74, 21)
         Me.lblout.TabIndex = 9
         Me.lblout.Text = "Sign out"
-        '
-        'lblsettings
-        '
-        Me.lblsettings.AutoSize = True
-        Me.lblsettings.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblsettings.ForeColor = System.Drawing.Color.Navy
-        Me.lblsettings.Location = New System.Drawing.Point(26, 300)
-        Me.lblsettings.Name = "lblsettings"
-        Me.lblsettings.Size = New System.Drawing.Size(65, 21)
-        Me.lblsettings.TabIndex = 14
-        Me.lblsettings.Text = "Settings"
         '
         'panel_dashboard
         '
@@ -170,8 +174,9 @@ Partial Class formstaff
         'dgvdashboard
         '
         Me.dgvdashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvdashboard.Location = New System.Drawing.Point(17, 122)
+        Me.dgvdashboard.Location = New System.Drawing.Point(17, 117)
         Me.dgvdashboard.Name = "dgvdashboard"
+        Me.dgvdashboard.ReadOnly = True
         Me.dgvdashboard.Size = New System.Drawing.Size(544, 247)
         Me.dgvdashboard.TabIndex = 0
         '
@@ -179,9 +184,11 @@ Partial Class formstaff
         '
         Me.txtEID.BackColor = System.Drawing.SystemColors.Control
         Me.txtEID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtEID.Enabled = False
         Me.txtEID.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtEID.Location = New System.Drawing.Point(167, 0)
         Me.txtEID.Name = "txtEID"
+        Me.txtEID.ReadOnly = True
         Me.txtEID.Size = New System.Drawing.Size(29, 18)
         Me.txtEID.TabIndex = 8
         '
@@ -328,7 +335,7 @@ Partial Class formstaff
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(139, 21)
         Me.Label2.TabIndex = 20
-        Me.Label2.Text = "Name of Costumer"
+        Me.Label2.Text = "Name of Customer"
         '
         'txtnameofcostumer
         '
@@ -394,45 +401,79 @@ Partial Class formstaff
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(165, 21)
         Me.Label3.TabIndex = 12
-        Me.Label3.Text = "costumer appointment"
+        Me.Label3.Text = "customer appointment"
         '
-        'pbout
+        'Panel_billing
         '
-        Me.pbout.Image = Global.SalonManagement.My.Resources.Resources.sign_out
-        Me.pbout.Location = New System.Drawing.Point(4, 2)
-        Me.pbout.Name = "pbout"
-        Me.pbout.Size = New System.Drawing.Size(27, 30)
-        Me.pbout.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.pbout.TabIndex = 0
-        Me.pbout.TabStop = False
+        Me.Panel_billing.Controls.Add(Me.lbl_billing)
+        Me.Panel_billing.Controls.Add(Me.dgvbilling)
+        Me.Panel_billing.Location = New System.Drawing.Point(243, 0)
+        Me.Panel_billing.Name = "Panel_billing"
+        Me.Panel_billing.Size = New System.Drawing.Size(573, 569)
+        Me.Panel_billing.TabIndex = 18
+        '
+        'lbl_billing
+        '
+        Me.lbl_billing.AutoSize = True
+        Me.lbl_billing.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbl_billing.ForeColor = System.Drawing.Color.Navy
+        Me.lbl_billing.Location = New System.Drawing.Point(10, 71)
+        Me.lbl_billing.Name = "lbl_billing"
+        Me.lbl_billing.Size = New System.Drawing.Size(81, 21)
+        Me.lbl_billing.TabIndex = 12
+        Me.lbl_billing.Text = "Billing for:"
+        '
+        'dgvbilling
+        '
+        Me.dgvbilling.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvbilling.Location = New System.Drawing.Point(14, 122)
+        Me.dgvbilling.Name = "dgvbilling"
+        Me.dgvbilling.ReadOnly = True
+        Me.dgvbilling.Size = New System.Drawing.Size(544, 247)
+        Me.dgvbilling.TabIndex = 0
+        '
+        'lblbuy
+        '
+        Me.lblbuy.AutoSize = True
+        Me.lblbuy.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblbuy.ForeColor = System.Drawing.Color.Navy
+        Me.lblbuy.Location = New System.Drawing.Point(26, 289)
+        Me.lblbuy.Name = "lblbuy"
+        Me.lblbuy.Size = New System.Drawing.Size(92, 21)
+        Me.lblbuy.TabIndex = 19
+        Me.lblbuy.Text = "Buy Product"
         '
         'formstaff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
+        Me.Controls.Add(Me.lblbuy)
         Me.Controls.Add(Me.txtEID)
         Me.Controls.Add(Me.Label12)
-        Me.Controls.Add(Me.lblsettings)
         Me.Controls.Add(Me.Panelout)
         Me.Controls.Add(Me.lblbilling)
         Me.Controls.Add(Me.lblappoint)
         Me.Controls.Add(Me.lbldashboard)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_appoint)
+        Me.Controls.Add(Me.Panel_billing)
+        Me.Controls.Add(Me.panel_dashboard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "formstaff"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "formstaff"
         Me.Panelout.ResumeLayout(False)
         Me.Panelout.PerformLayout()
+        CType(Me.pbout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_dashboard.ResumeLayout(False)
         Me.panel_dashboard.PerformLayout()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_appoint.ResumeLayout(False)
         Me.panel_appoint.PerformLayout()
-        CType(Me.pbout, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.Panel_billing.ResumeLayout(False)
+        Me.Panel_billing.PerformLayout()
+        CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -445,7 +486,6 @@ Partial Class formstaff
     Friend WithEvents Panelout As Panel
     Friend WithEvents pbout As PictureBox
     Friend WithEvents lblout As Label
-    Friend WithEvents lblsettings As Label
     Friend WithEvents panel_dashboard As Panel
     Friend WithEvents lblstocks As Label
     Friend WithEvents lblcostumer As Label
@@ -470,4 +510,8 @@ Partial Class formstaff
     Friend WithEvents cmbstatus As ComboBox
     Friend WithEvents lblstatus As Label
     Friend WithEvents lblExit As Label
+    Friend WithEvents Panel_billing As Panel
+    Friend WithEvents lbl_billing As Label
+    Friend WithEvents dgvbilling As DataGridView
+    Friend WithEvents lblbuy As Label
 End Class

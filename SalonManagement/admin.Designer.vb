@@ -25,7 +25,6 @@ Partial Class adminwindows
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.lbldashboard = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.lblInventory = New System.Windows.Forms.Label()
         Me.Panel2 = New System.Windows.Forms.Panel()
@@ -71,7 +70,6 @@ Partial Class adminwindows
         'Panel1
         '
         Me.Panel1.Controls.Add(Me.lbldashboard)
-        Me.Panel1.Controls.Add(Me.Label5)
         Me.Panel1.Controls.Add(Me.Label3)
         Me.Panel1.Controls.Add(Me.lblInventory)
         Me.Panel1.Controls.Add(Me.Label2)
@@ -93,17 +91,6 @@ Partial Class adminwindows
         Me.lbldashboard.Size = New System.Drawing.Size(85, 21)
         Me.lbldashboard.TabIndex = 10
         Me.lbldashboard.Text = "Dashboard"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.Navy
-        Me.Label5.Location = New System.Drawing.Point(17, 260)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(65, 21)
-        Me.Label5.TabIndex = 9
-        Me.Label5.Text = "Settings"
         '
         'Label3
         '
@@ -204,8 +191,9 @@ Partial Class adminwindows
         'employeeView
         '
         Me.employeeView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.employeeView.Location = New System.Drawing.Point(17, 126)
+        Me.employeeView.Location = New System.Drawing.Point(17, 125)
         Me.employeeView.Name = "employeeView"
+        Me.employeeView.ReadOnly = True
         Me.employeeView.Size = New System.Drawing.Size(544, 247)
         Me.employeeView.TabIndex = 0
         '
@@ -214,6 +202,7 @@ Partial Class adminwindows
         Me.dgvstylist.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvstylist.Location = New System.Drawing.Point(16, 126)
         Me.dgvstylist.Name = "dgvstylist"
+        Me.dgvstylist.ReadOnly = True
         Me.dgvstylist.Size = New System.Drawing.Size(544, 247)
         Me.dgvstylist.TabIndex = 14
         '
@@ -285,6 +274,7 @@ Partial Class adminwindows
         Me.dgvinventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.dgvinventory.Location = New System.Drawing.Point(28, 28)
         Me.dgvinventory.Name = "dgvinventory"
+        Me.dgvinventory.ReadOnly = True
         Me.dgvinventory.Size = New System.Drawing.Size(500, 247)
         Me.dgvinventory.TabIndex = 0
         '
@@ -326,7 +316,6 @@ Partial Class adminwindows
     Friend WithEvents lblInventory As Label
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label4 As Label
-    Friend WithEvents Label5 As Label
     Friend WithEvents Employee_management As Panel
     Friend WithEvents PictureBox1 As PictureBox
     Friend WithEvents PictureBox2 As PictureBox

@@ -119,6 +119,18 @@
     <Compile Include="formAppointEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="formbillout.Designer.vb">
+      <DependentUpon>formbillout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formbillout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="formcostumerbilling.Designer.vb">
+      <DependentUpon>formcostumerbilling.vb</DependentUpon>
+    </Compile>
+    <Compile Include="formcostumerbilling.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forminventory.Designer.vb">
       <DependentUpon>Forminventory.vb</DependentUpon>
     </Compile>
@@ -142,6 +154,7 @@
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -172,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="formAppointEdit.resx">
       <DependentUpon>formAppointEdit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formbillout.resx">
+      <DependentUpon>formbillout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="formcostumerbilling.resx">
+      <DependentUpon>formcostumerbilling.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forminventory.resx">
       <DependentUpon>Forminventory.vb</DependentUpon>

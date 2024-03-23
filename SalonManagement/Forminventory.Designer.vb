@@ -207,6 +207,7 @@ Partial Class Forminventory
         'txtPID
         '
         Me.txtPID.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.txtPID.Enabled = False
         Me.txtPID.Font = New System.Drawing.Font("Segoe UI", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.txtPID.Location = New System.Drawing.Point(4, 18)
         Me.txtPID.Name = "txtPID"

@@ -72,7 +72,11 @@ Public Class formstaff
 
     Private Sub lbldashboard_Click(sender As Object, e As EventArgs) Handles lbldashboard.Click
         lbldashboard.Font = New Font(lbldashboard.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
         lblappoint.Font = New Font(lblappoint.Font.Name, lblappoint.Font.Size, FontStyle.Regular)
+        lblbilling.Font = New Font(lblbilling.Font.Name, lblbilling.Font.Size, FontStyle.Regular)
+        lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        Panel_billing.Visible = False
         panel_appoint.Visible = False
         panel_dashboard.Visible = True
         LoadSchedules()
@@ -81,6 +85,8 @@ Public Class formstaff
     Private Sub lblappoint_Click(sender As Object, e As EventArgs) Handles lblappoint.Click
         lblappoint.Font = New Font(lblappoint.Font, FontStyle.Bold Or FontStyle.Underline)
         lbldashboard.Font = New Font(lbldashboard.Font.Name, lbldashboard.Font.Size, FontStyle.Regular)
+        lblbilling.Font = New Font(lblbilling.Font.Name, lblbilling.Font.Size, FontStyle.Regular)
+        Panel_billing.Visible = False
         panel_dashboard.Visible = False
         panel_appoint.Visible = True
         cmbstatus.SelectedIndex = 0
@@ -119,10 +125,11 @@ Public Class formstaff
     End Sub
 
     Private Sub formstaff_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        panel_dashboard.Visible = False
+        Panel_billing.Visible = False
         DTPappoint.MinDate = DateTime.Today
         DTPappoint.MaxDate = DateTime.Now.AddYears(1)
         lbldashboard.Font = New Font(lbldashboard.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
         lblappoint.Font = New Font(lblappoint.Font.Name, lblappoint.Font.Size, FontStyle.Regular)
         panel_appoint.Visible = False
         panel_dashboard.Visible = True
@@ -308,6 +315,25 @@ Public Class formstaff
         End Try
     End Sub
 
+    Private Sub Loadbilling()
+        Try
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Dim query As String = "SELECT * FROM tblappointment ORDER BY [Schedule], [Time] ASC"
+
+                Using adapter As New OleDbDataAdapter(query, conn)
+                    Dim scheduleTable As New DataTable()
+                    adapter.Fill(scheduleTable)
+
+                    ' Bind the schedule data to the DataGridView
+                    dgvbilling.DataSource = scheduleTable
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading schedules: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 
     Private Sub txtphonenumber_TextChanged(sender As Object, e As EventArgs) Handles txtphonenumber.TextChanged
         Dim phoneNumber As String = txtphonenumber.Text.Trim()
@@ -332,7 +358,6 @@ Public Class formstaff
         If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
             If Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(0).Value) Then
                 Dim SID As Integer = Convert.ToInt32(dgvdashboard.Rows(e.RowIndex).Cells(0).Value)
-
                 Dim services As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(1).Value), dgvdashboard.Rows(e.RowIndex).Cells(1).Value.ToString(), "")
                 Dim stylist As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(2).Value), dgvdashboard.Rows(e.RowIndex).Cells(2).Value.ToString(), "")
                 Dim Cname As String = If(Not IsDBNull(dgvdashboard.Rows(e.RowIndex).Cells(3).Value), dgvdashboard.Rows(e.RowIndex).Cells(3).Value.ToString(), "")
@@ -384,4 +409,64 @@ Public Class formstaff
         End Try
     End Sub
 
+    Private Sub lblbilling_Click(sender As Object, e As EventArgs) Handles lblbilling.Click
+        lblbilling.Font = New Font(lblbilling.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblappoint.Font = New Font(lblappoint.Font.Name, lblappoint.Font.Size, FontStyle.Regular)
+        lbldashboard.Font = New Font(lbldashboard.Font.Name, lbldashboard.Font.Size, FontStyle.Regular)
+        panel_appoint.Visible = False
+        panel_dashboard.Visible = False
+        Panel_billing.Visible = True
+        Loadbilling()
+    End Sub
+
+    Private Sub Panel_billing_Paint(sender As Object, e As PaintEventArgs) Handles Panel_billing.Paint
+        Dim panel = DirectCast(sender, Panel)
+        Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
+        Dim rect As New Rectangle(0, 0, panel.Width - 1, panel.Height - 1)
+        e.Graphics.DrawRectangle(pen, rect)
+    End Sub
+
+    Private Sub dgvbilling_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvbilling.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            If Not IsDBNull(dgvbilling.Rows(e.RowIndex).Cells(0).Value) Then
+                Dim SID As Integer = Convert.ToInt32(dgvbilling.Rows(e.RowIndex).Cells(0).Value)
+                Dim services As String = If(Not IsDBNull(dgvbilling.Rows(e.RowIndex).Cells(1).Value), dgvbilling.Rows(e.RowIndex).Cells(1).Value.ToString(), "")
+                Dim stylist As String = If(Not IsDBNull(dgvbilling.Rows(e.RowIndex).Cells(2).Value), dgvbilling.Rows(e.RowIndex).Cells(2).Value.ToString(), "")
+                Dim CName As String = If(Not IsDBNull(dgvbilling.Rows(e.RowIndex).Cells(3).Value), dgvbilling.Rows(e.RowIndex).Cells(3).Value.ToString(), "")
+
+                ' Establish connection to the database containing service costs
+                Using connCosts As New OleDbConnection(mycon)
+                    connCosts.Open()
+
+                    ' Query to fetch the cost of the service based on its name
+                    Dim queryCost As String = "SELECT Cost FROM tblservice WHERE Services = @ServiceName"
+                    Using cmdCost As New OleDbCommand(queryCost, connCosts)
+                        cmdCost.Parameters.AddWithValue("@ServiceName", services)
+                        Dim costObj As Object = cmdCost.ExecuteScalar()
+
+                        If costObj IsNot Nothing AndAlso Not IsDBNull(costObj) Then
+                            Dim cost As Decimal = Convert.ToDecimal(costObj)
+
+                            ' Pass the service cost along with other information to the billing form
+                            Dim formbill As New formcostumerbilling(dgvbilling)
+                            formbill.AdminFormReference = Me
+                            selectedscheduleID = SID
+
+                            formbill.SetSID(SID)
+                            formbill.Setservices(services)
+                            formbill.Setstylist(stylist)
+                            formbill.SetCName(CName)
+                            formbill.SetCost(cost) ' Pass the cost to the form
+
+                            formbill.ShowDialog()
+                        Else
+                            MessageBox.Show("Service cost not found.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
+                    End Using
+                End Using
+            Else
+                ' Value is DBNull, do nothing
+            End If
+        End If
+    End Sub
 End Class
