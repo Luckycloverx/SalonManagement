@@ -469,4 +469,8 @@ Public Class formstaff
             End If
         End If
     End Sub
+
+    Private Sub lblbuy_Click(sender As Object, e As EventArgs) Handles lblbuy.Click
+        formbillout.ShowDialog()
+    End Sub
 End Class

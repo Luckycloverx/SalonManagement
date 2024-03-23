@@ -126,6 +126,13 @@ Public Class formbillout
         Dim confirmResult As DialogResult = MessageBox.Show("Are you sure you want to close?", "Confirm Close", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
 
         If confirmResult = DialogResult.Yes Then
+            For Each row As DataGridViewRow In DataGridView1.Rows
+                ' Check if the cell value is not Nothing and not DBNull
+                If row.Cells("Services/Item").Value IsNot Nothing AndAlso Not IsDBNull(row.Cells("Services/Item").Value) Then
+                    Dim productName As String = row.Cells("Services/Item").Value.ToString()
+                    UpdateInventoryQuantity(productName, 1)
+                End If
+            Next
             If Not String.IsNullOrEmpty(appointmentIDToDelete) Then
                 Try
                     Using connection As New OleDbConnection(mycon)
@@ -139,28 +146,24 @@ Public Class formbillout
                             Dim rowsAffected As Integer = deleteCommand.ExecuteNonQuery()
 
                             If rowsAffected > 0 Then
-                                MessageBox.Show("Appointment deleted from tblHistory.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                                ' Call the method to increment quantity in tblInventory for each product in DataGridView1
-                                For Each row As DataGridViewRow In DataGridView1.Rows
-                                    ' Check if the cell value is not Nothing and not DBNull
-                                    If row.Cells("Services/Item").Value IsNot Nothing AndAlso Not IsDBNull(row.Cells("Services/Item").Value) Then
-                                        Dim productName As String = row.Cells("Services/Item").Value.ToString()
-                                        UpdateInventoryQuantity(productName, 1)
-                                    End If
-                                Next
+
+
                             Else
-                                MessageBox.Show("Appointment not found in tblHistory.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
                             End If
                         End Using
                     End Using
+
+                    ' Call the method to increment quantity in tblInventory for each product in DataGridView1
+
                 Catch ex As Exception
                     ' Display an error message if there's any issue with the database operation
                     MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End Try
             Else
                 ' Inform the user that AppointmentID is required
-                MessageBox.Show("Please provide AppointmentID.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
             End If
             ' Call the method to delete all records from tblbilling
             DeleteAllRecordsFromBillingTable()
