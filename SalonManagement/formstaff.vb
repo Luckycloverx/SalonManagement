@@ -76,6 +76,7 @@ Public Class formstaff
         lblappoint.Font = New Font(lblappoint.Font.Name, lblappoint.Font.Size, FontStyle.Regular)
         lblbilling.Font = New Font(lblbilling.Font.Name, lblbilling.Font.Size, FontStyle.Regular)
         lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
         Panel_billing.Visible = False
         panel_appoint.Visible = False
         panel_dashboard.Visible = True
@@ -98,20 +99,45 @@ Public Class formstaff
     Private Sub lblcostumer_Click(sender As Object, e As EventArgs) Handles lblcostumer.Click
         lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
         lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
         LoadSchedules()
+    End Sub
+
+    Private Sub lblhistory_Click(sender As Object, e As EventArgs) Handles lblhistory.Click
+        lblhistory.Font = New Font(lblhistory.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font.Name, lblcostumer.Font.Size, FontStyle.Regular)
+        lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        HistoryIntoDataGridView()
     End Sub
 
     Private Sub lblstocks_Click(sender As Object, e As EventArgs) Handles lblstocks.Click
         lblstocks.Font = New Font(lblstocks.Font, FontStyle.Bold Or FontStyle.Underline)
         lblcostumer.Font = New Font(lblcostumer.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
         InventoryIntoDataGridView()
+    End Sub
+
+    Private Sub HistoryIntoDataGridView()
+        Try
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Dim query As String = "SELECT [Services], [Stylist], [Costumer Name], [Contact Number], Schedule, Time, Status FROM tblHistory"
+                Using da As New OleDbDataAdapter(query, conn)
+                    Dim ds As New DataSet
+                    da.Fill(ds, "tblHistory")
+                    dgvdashboard.DataSource = ds.Tables("tblHistory").DefaultView
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub InventoryIntoDataGridView()
         Try
             Using conn As New OleDbConnection(mycon)
                 conn.Open()
-                Dim query As String = "SELECT * FROM tblInventory"
+                Dim query As String = "SELECT [Category], [Product], [Quantity], [Cost] FROM tblInventory"
                 Using da As New OleDbDataAdapter(query, conn)
                     Dim ds As New DataSet
                     da.Fill(ds, "tblInventory")
@@ -121,8 +147,8 @@ Public Class formstaff
         Catch ex As Exception
             MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
+
 
     Private Sub formstaff_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Panel_billing.Visible = False
@@ -300,7 +326,7 @@ Public Class formstaff
         Try
             Using conn As New OleDbConnection(mycon)
                 conn.Open()
-                Dim query As String = "SELECT * FROM tblappointment ORDER BY [Schedule], [Time] ASC"
+                Dim query As String = "SELECT [Services], [Stylist], [Costumer Name], [Contact Number], Schedule, Time, Status FROM tblappointment ORDER BY [Schedule], [Time] ASC"
 
                 Using adapter As New OleDbDataAdapter(query, conn)
                     Dim scheduleTable As New DataTable()
@@ -473,4 +499,6 @@ Public Class formstaff
     Private Sub lblbuy_Click(sender As Object, e As EventArgs) Handles lblbuy.Click
         formbillout.ShowDialog()
     End Sub
+
+
 End Class

@@ -77,10 +77,12 @@ Public Class adminwindows
     Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
         lblfrontdesk.Font = New Font(lblfrontdesk.Font, FontStyle.Bold Or FontStyle.Underline)
         lblstylist.Font = New Font(lblstylist.Font.Name, lblstylist.Font.Size, FontStyle.Regular)
+        lbldashboard.Font = New Font(lbldashboard.Font.Name, lbldashboard.Font.Size, FontStyle.Regular)
         add_employee.Visible = True
         lbladdstylist.Visible = False
         dgvstylist.Visible = False
         employeeView.Visible = True
+        panel_dashboard.Visible = False
         Label3.Font = New Font(Label3.Font, FontStyle.Bold Or FontStyle.Underline)
         lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
         Employee_management.Visible = True
@@ -93,9 +95,11 @@ Public Class adminwindows
 
     Private Sub lblInventory_Click(sender As Object, e As EventArgs) Handles lblInventory.Click
         lblInventory.Font = New Font(lblInventory.Font, FontStyle.Bold Or FontStyle.Underline)
-        Label3.Font = New Font(Label3.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
+        Label3.Font = New Font(Label3.Font.Name, Label3.Font.Size, FontStyle.Regular)
+        lbldashboard.Font = New Font(lbldashboard.Font.Name, lbldashboard.Font.Size, FontStyle.Regular)
         panel_Inventory.Visible = True
         Employee_management.Visible = False
+        panel_dashboard.Visible = False
         panel_Inventory.BringToFront()
         Employee_management.SendToBack()
 
@@ -104,9 +108,15 @@ Public Class adminwindows
     End Sub
 
     Private Sub adminwindows_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        lbldashboard.Font = New Font(lbldashboard.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
+        Label3.Font = New Font(Label3.Font.Name, Label3.Font.Size, FontStyle.Regular)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        panel_dashboard.Visible = True
         panel_Inventory.Visible = False
         Employee_management.Visible = False
+        LoadSchedules()
     End Sub
 
     Private Sub DatagridShow()
@@ -363,5 +373,72 @@ Public Class adminwindows
             End If
         End If
 
+    End Sub
+
+    Private Sub lbldashboard_Click(sender As Object, e As EventArgs) Handles lbldashboard.Click
+        lbldashboard.Font = New Font(lbldashboard.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblInventory.Font = New Font(lblInventory.Font.Name, lblInventory.Font.Size, FontStyle.Regular)
+        Label3.Font = New Font(Label3.Font.Name, Label3.Font.Size, FontStyle.Regular)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        panel_Inventory.Visible = False
+        Employee_management.Visible = False
+        panel_dashboard.Visible = True
+        LoadSchedules()
+    End Sub
+
+    Private Sub HistoryIntoDataGridView()
+        Try
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Dim query As String = "SELECT [Services], [Stylist], [Costumer Name], [Contact Number], Schedule, Time, Status FROM tblHistory"
+                Using da As New OleDbDataAdapter(query, conn)
+                    Dim ds As New DataSet
+                    da.Fill(ds, "tblHistory")
+                    dgvdashboard.DataSource = ds.Tables("tblHistory").DefaultView
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+
+    Private Sub LoadSchedules()
+        Try
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Dim query As String = "SELECT [Services], [Stylist], [Costumer Name], [Contact Number], Schedule, Time, Status FROM tblappointment ORDER BY [Schedule], [Time] ASC"
+
+                Using adapter As New OleDbDataAdapter(query, conn)
+                    Dim scheduleTable As New DataTable()
+                    adapter.Fill(scheduleTable)
+
+                    ' Bind the schedule data to the DataGridView
+                    dgvdashboard.DataSource = scheduleTable
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading schedules: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub lblcostumer_Click(sender As Object, e As EventArgs) Handles lblcostumer.Click
+        lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        LoadSchedules()
+    End Sub
+
+    Private Sub lblhistory_Click(sender As Object, e As EventArgs) Handles lblhistory.Click
+        lblhistory.Font = New Font(lblhistory.Font, FontStyle.Bold Or FontStyle.Underline)
+        lblcostumer.Font = New Font(lblcostumer.Font.Name, lblcostumer.Font.Size, FontStyle.Regular)
+        HistoryIntoDataGridView()
+    End Sub
+
+    Private Sub panel_dashboard_Paint(sender As Object, e As PaintEventArgs) Handles panel_dashboard.Paint
+        Dim panel = DirectCast(sender, Panel)
+        Dim pen As New Pen(Color.Blue, 2) ' Change color and width as needed
+        Dim rect As New Rectangle(0, 0, panel.Width - 1, panel.Height - 1)
+        e.Graphics.DrawRectangle(pen, rect)
     End Sub
 End Class

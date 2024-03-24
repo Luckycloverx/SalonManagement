@@ -86,8 +86,7 @@ Public Class formcostumerbilling
                         If appointmentIDResult IsNot Nothing AndAlso Not IsDBNull(appointmentIDResult) Then
                             Dim appointmentIDFromHistory As String = appointmentIDResult.ToString()
 
-                            ' Inform the user that data has been successfully inserted
-                            MessageBox.Show("Data inserted into tblbilling, and appointment data moved to tblHistory with Status updated to 'Done'.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
 
                             ' Reload the billing data in formbillout DataGridView
                             Dim billingForm As New formbillout()

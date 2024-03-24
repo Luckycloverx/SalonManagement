@@ -57,6 +57,7 @@ Partial Class formstaff
         Me.lbl_billing = New System.Windows.Forms.Label()
         Me.dgvbilling = New System.Windows.Forms.DataGridView()
         Me.lblbuy = New System.Windows.Forms.Label()
+        Me.lblhistory = New System.Windows.Forms.Label()
         Me.Panelout.SuspendLayout()
         CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
@@ -141,6 +142,7 @@ Partial Class formstaff
         '
         'panel_dashboard
         '
+        Me.panel_dashboard.Controls.Add(Me.lblhistory)
         Me.panel_dashboard.Controls.Add(Me.lblstocks)
         Me.panel_dashboard.Controls.Add(Me.lblcostumer)
         Me.panel_dashboard.Controls.Add(Me.dgvdashboard)
@@ -443,6 +445,17 @@ Partial Class formstaff
         Me.lblbuy.TabIndex = 19
         Me.lblbuy.Text = "Buy Product"
         '
+        'lblhistory
+        '
+        Me.lblhistory.AutoSize = True
+        Me.lblhistory.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblhistory.ForeColor = System.Drawing.Color.Navy
+        Me.lblhistory.Location = New System.Drawing.Point(262, 52)
+        Me.lblhistory.Name = "lblhistory"
+        Me.lblhistory.Size = New System.Drawing.Size(59, 21)
+        Me.lblhistory.TabIndex = 14
+        Me.lblhistory.Text = "History"
+        '
         'formstaff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -456,9 +469,9 @@ Partial Class formstaff
         Me.Controls.Add(Me.lblappoint)
         Me.Controls.Add(Me.lbldashboard)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_appoint)
         Me.Controls.Add(Me.Panel_billing)
-        Me.Controls.Add(Me.panel_dashboard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "formstaff"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -514,4 +527,5 @@ Partial Class formstaff
     Friend WithEvents lbl_billing As Label
     Friend WithEvents dgvbilling As DataGridView
     Friend WithEvents lblbuy As Label
+    Friend WithEvents lblhistory As Label
 End Class

@@ -43,6 +43,10 @@ Partial Class adminwindows
         Me.Panel4 = New System.Windows.Forms.Panel()
         Me.lbladditem = New System.Windows.Forms.Label()
         Me.dgvinventory = New System.Windows.Forms.DataGridView()
+        Me.panel_dashboard = New System.Windows.Forms.Panel()
+        Me.lblhistory = New System.Windows.Forms.Label()
+        Me.lblcostumer = New System.Windows.Forms.Label()
+        Me.dgvdashboard = New System.Windows.Forms.DataGridView()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +58,8 @@ Partial Class adminwindows
         Me.panel_Inventory.SuspendLayout()
         Me.Panel4.SuspendLayout()
         CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.panel_dashboard.SuspendLayout()
+        CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label2
@@ -278,12 +284,54 @@ Partial Class adminwindows
         Me.dgvinventory.Size = New System.Drawing.Size(500, 247)
         Me.dgvinventory.TabIndex = 0
         '
+        'panel_dashboard
+        '
+        Me.panel_dashboard.Controls.Add(Me.lblhistory)
+        Me.panel_dashboard.Controls.Add(Me.lblcostumer)
+        Me.panel_dashboard.Controls.Add(Me.dgvdashboard)
+        Me.panel_dashboard.Location = New System.Drawing.Point(243, 0)
+        Me.panel_dashboard.Name = "panel_dashboard"
+        Me.panel_dashboard.Size = New System.Drawing.Size(573, 569)
+        Me.panel_dashboard.TabIndex = 16
+        '
+        'lblhistory
+        '
+        Me.lblhistory.AutoSize = True
+        Me.lblhistory.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblhistory.ForeColor = System.Drawing.Color.Navy
+        Me.lblhistory.Location = New System.Drawing.Point(473, 52)
+        Me.lblhistory.Name = "lblhistory"
+        Me.lblhistory.Size = New System.Drawing.Size(59, 21)
+        Me.lblhistory.TabIndex = 14
+        Me.lblhistory.Text = "History"
+        '
+        'lblcostumer
+        '
+        Me.lblcostumer.AutoSize = True
+        Me.lblcostumer.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblcostumer.ForeColor = System.Drawing.Color.Navy
+        Me.lblcostumer.Location = New System.Drawing.Point(34, 52)
+        Me.lblcostumer.Name = "lblcostumer"
+        Me.lblcostumer.Size = New System.Drawing.Size(165, 21)
+        Me.lblcostumer.TabIndex = 12
+        Me.lblcostumer.Text = "costumer appointment"
+        '
+        'dgvdashboard
+        '
+        Me.dgvdashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvdashboard.Location = New System.Drawing.Point(17, 117)
+        Me.dgvdashboard.Name = "dgvdashboard"
+        Me.dgvdashboard.ReadOnly = True
+        Me.dgvdashboard.Size = New System.Drawing.Size(544, 247)
+        Me.dgvdashboard.TabIndex = 0
+        '
         'adminwindows
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
         Me.Controls.Add(Me.Panel1)
+        Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_Inventory)
         Me.Controls.Add(Me.Employee_management)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
@@ -305,6 +353,9 @@ Partial Class adminwindows
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         CType(Me.dgvinventory, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.panel_dashboard.ResumeLayout(False)
+        Me.panel_dashboard.PerformLayout()
+        CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -330,4 +381,8 @@ Partial Class adminwindows
     Friend WithEvents lblstylist As Label
     Friend WithEvents dgvstylist As DataGridView
     Friend WithEvents lbladdstylist As Label
+    Friend WithEvents panel_dashboard As Panel
+    Friend WithEvents lblhistory As Label
+    Friend WithEvents lblcostumer As Label
+    Friend WithEvents dgvdashboard As DataGridView
 End Class
