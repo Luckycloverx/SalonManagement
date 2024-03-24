@@ -30,6 +30,7 @@ Partial Class formstaff
         Me.pbout = New System.Windows.Forms.PictureBox()
         Me.lblout = New System.Windows.Forms.Label()
         Me.panel_dashboard = New System.Windows.Forms.Panel()
+        Me.lblhistory = New System.Windows.Forms.Label()
         Me.lblstocks = New System.Windows.Forms.Label()
         Me.lblcostumer = New System.Windows.Forms.Label()
         Me.dgvdashboard = New System.Windows.Forms.DataGridView()
@@ -57,7 +58,8 @@ Partial Class formstaff
         Me.lbl_billing = New System.Windows.Forms.Label()
         Me.dgvbilling = New System.Windows.Forms.DataGridView()
         Me.lblbuy = New System.Windows.Forms.Label()
-        Me.lblhistory = New System.Windows.Forms.Label()
+        Me.dgvHistory = New System.Windows.Forms.DataGridView()
+        Me.dgvProduct = New System.Windows.Forms.DataGridView()
         Me.Panelout.SuspendLayout()
         CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
@@ -65,6 +67,8 @@ Partial Class formstaff
         Me.panel_appoint.SuspendLayout()
         Me.Panel_billing.SuspendLayout()
         CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -142,6 +146,8 @@ Partial Class formstaff
         '
         'panel_dashboard
         '
+        Me.panel_dashboard.Controls.Add(Me.dgvProduct)
+        Me.panel_dashboard.Controls.Add(Me.dgvHistory)
         Me.panel_dashboard.Controls.Add(Me.lblhistory)
         Me.panel_dashboard.Controls.Add(Me.lblstocks)
         Me.panel_dashboard.Controls.Add(Me.lblcostumer)
@@ -150,6 +156,17 @@ Partial Class formstaff
         Me.panel_dashboard.Name = "panel_dashboard"
         Me.panel_dashboard.Size = New System.Drawing.Size(573, 569)
         Me.panel_dashboard.TabIndex = 15
+        '
+        'lblhistory
+        '
+        Me.lblhistory.AutoSize = True
+        Me.lblhistory.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblhistory.ForeColor = System.Drawing.Color.Navy
+        Me.lblhistory.Location = New System.Drawing.Point(262, 52)
+        Me.lblhistory.Name = "lblhistory"
+        Me.lblhistory.Size = New System.Drawing.Size(59, 21)
+        Me.lblhistory.TabIndex = 14
+        Me.lblhistory.Text = "History"
         '
         'lblstocks
         '
@@ -176,7 +193,7 @@ Partial Class formstaff
         'dgvdashboard
         '
         Me.dgvdashboard.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvdashboard.Location = New System.Drawing.Point(17, 117)
+        Me.dgvdashboard.Location = New System.Drawing.Point(17, 112)
         Me.dgvdashboard.Name = "dgvdashboard"
         Me.dgvdashboard.ReadOnly = True
         Me.dgvdashboard.Size = New System.Drawing.Size(544, 247)
@@ -445,16 +462,23 @@ Partial Class formstaff
         Me.lblbuy.TabIndex = 19
         Me.lblbuy.Text = "Buy Product"
         '
-        'lblhistory
+        'dgvHistory
         '
-        Me.lblhistory.AutoSize = True
-        Me.lblhistory.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblhistory.ForeColor = System.Drawing.Color.Navy
-        Me.lblhistory.Location = New System.Drawing.Point(262, 52)
-        Me.lblhistory.Name = "lblhistory"
-        Me.lblhistory.Size = New System.Drawing.Size(59, 21)
-        Me.lblhistory.TabIndex = 14
-        Me.lblhistory.Text = "History"
+        Me.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvHistory.Location = New System.Drawing.Point(17, 113)
+        Me.dgvHistory.Name = "dgvHistory"
+        Me.dgvHistory.ReadOnly = True
+        Me.dgvHistory.Size = New System.Drawing.Size(544, 247)
+        Me.dgvHistory.TabIndex = 15
+        '
+        'dgvProduct
+        '
+        Me.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvProduct.Location = New System.Drawing.Point(16, 112)
+        Me.dgvProduct.Name = "dgvProduct"
+        Me.dgvProduct.ReadOnly = True
+        Me.dgvProduct.Size = New System.Drawing.Size(544, 247)
+        Me.dgvProduct.TabIndex = 16
         '
         'formstaff
         '
@@ -487,6 +511,8 @@ Partial Class formstaff
         Me.Panel_billing.ResumeLayout(False)
         Me.Panel_billing.PerformLayout()
         CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -528,4 +554,6 @@ Partial Class formstaff
     Friend WithEvents dgvbilling As DataGridView
     Friend WithEvents lblbuy As Label
     Friend WithEvents lblhistory As Label
+    Friend WithEvents dgvProduct As DataGridView
+    Friend WithEvents dgvHistory As DataGridView
 End Class

@@ -80,6 +80,9 @@ Public Class formstaff
         Panel_billing.Visible = False
         panel_appoint.Visible = False
         panel_dashboard.Visible = True
+        dgvdashboard.Visible = True
+        dgvProduct.Visible = False
+        dgvHistory.Visible = False
         LoadSchedules()
     End Sub
 
@@ -100,6 +103,9 @@ Public Class formstaff
         lblcostumer.Font = New Font(lblcostumer.Font, FontStyle.Bold Or FontStyle.Underline)
         lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
         lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        dgvdashboard.Visible = True
+        dgvProduct.Visible = False
+        dgvHistory.Visible = False
         LoadSchedules()
     End Sub
 
@@ -107,6 +113,9 @@ Public Class formstaff
         lblhistory.Font = New Font(lblhistory.Font, FontStyle.Bold Or FontStyle.Underline)
         lblcostumer.Font = New Font(lblcostumer.Font.Name, lblcostumer.Font.Size, FontStyle.Regular)
         lblstocks.Font = New Font(lblstocks.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
+        dgvdashboard.Visible = False
+        dgvProduct.Visible = False
+        dgvHistory.Visible = True
         HistoryIntoDataGridView()
     End Sub
 
@@ -114,6 +123,9 @@ Public Class formstaff
         lblstocks.Font = New Font(lblstocks.Font, FontStyle.Bold Or FontStyle.Underline)
         lblcostumer.Font = New Font(lblcostumer.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
         lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        dgvdashboard.Visible = False
+        dgvProduct.Visible = True
+        dgvHistory.Visible = False
         InventoryIntoDataGridView()
     End Sub
 
@@ -125,7 +137,7 @@ Public Class formstaff
                 Using da As New OleDbDataAdapter(query, conn)
                     Dim ds As New DataSet
                     da.Fill(ds, "tblHistory")
-                    dgvdashboard.DataSource = ds.Tables("tblHistory").DefaultView
+                    dgvHistory.DataSource = ds.Tables("tblHistory").DefaultView
                 End Using
             End Using
         Catch ex As Exception
@@ -141,7 +153,7 @@ Public Class formstaff
                 Using da As New OleDbDataAdapter(query, conn)
                     Dim ds As New DataSet
                     da.Fill(ds, "tblInventory")
-                    dgvdashboard.DataSource = ds.Tables("tblInventory").DefaultView
+                    dgvProduct.DataSource = ds.Tables("tblInventory").DefaultView
                 End Using
             End Using
         Catch ex As Exception
@@ -159,6 +171,9 @@ Public Class formstaff
         lblappoint.Font = New Font(lblappoint.Font.Name, lblappoint.Font.Size, FontStyle.Regular)
         panel_appoint.Visible = False
         panel_dashboard.Visible = True
+        dgvdashboard.Visible = True
+        dgvProduct.Visible = False
+        dgvHistory.Visible = False
         LoadSchedules()
 
 
@@ -326,7 +341,7 @@ Public Class formstaff
         Try
             Using conn As New OleDbConnection(mycon)
                 conn.Open()
-                Dim query As String = "SELECT [Services], [Stylist], [Costumer Name], [Contact Number], Schedule, Time, Status FROM tblappointment ORDER BY [Schedule], [Time] ASC"
+                Dim query As String = "SELECT * FROM tblappointment ORDER BY [Schedule], [Time] ASC"
 
                 Using adapter As New OleDbDataAdapter(query, conn)
                     Dim scheduleTable As New DataTable()
