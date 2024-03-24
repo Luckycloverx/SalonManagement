@@ -112,8 +112,8 @@ Public Class formbillout
 
         ' Check if the discount option is selected (e.g., cmbpwd.SelectedItem = "Yes")
         If cmbpwd.SelectedItem IsNot Nothing AndAlso cmbpwd.SelectedItem.ToString() = "YES" Then
-            ' Apply a 5% discount
-            totalCost *= 0.95 ' 5% discount (100% - 5%)
+            ' Apply a 20% discount
+            totalCost *= 0.8 ' 5% discount (100% - 20%)
         End If
 
         ' Update txttotalcost with the calculated total cost
@@ -436,15 +436,33 @@ Public Class formbillout
                         MessageBox.Show("Error: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End Try
                 Else
-
+                    ' Handle case where txtSID.Text is empty
                 End If
+
                 ' Proceed with printing
                 changelongpaper()
                 PPD.Document = PD
+                PPD.StartPosition = FormStartPosition.CenterScreen
                 PPD.ShowDialog()
+
+                ' After PPD is closed
+                DeleteAllRecordsFromBillingTable()
+
+                ' Refresh billing data directly from formstaff
+                Dim formstaff As formstaff = Application.OpenForms("formstaff")
+                If formstaff IsNot Nothing Then
+                    formstaff.refreshLoadbilling()
+                End If
+
+                ' Close the current form
+                Me.Close()
+
             End If
         End If
     End Sub
+
+
+
 
 
 End Class

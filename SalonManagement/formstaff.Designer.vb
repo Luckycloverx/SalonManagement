@@ -30,6 +30,8 @@ Partial Class formstaff
         Me.pbout = New System.Windows.Forms.PictureBox()
         Me.lblout = New System.Windows.Forms.Label()
         Me.panel_dashboard = New System.Windows.Forms.Panel()
+        Me.dgvProduct = New System.Windows.Forms.DataGridView()
+        Me.dgvHistory = New System.Windows.Forms.DataGridView()
         Me.lblhistory = New System.Windows.Forms.Label()
         Me.lblstocks = New System.Windows.Forms.Label()
         Me.lblcostumer = New System.Windows.Forms.Label()
@@ -58,17 +60,15 @@ Partial Class formstaff
         Me.lbl_billing = New System.Windows.Forms.Label()
         Me.dgvbilling = New System.Windows.Forms.DataGridView()
         Me.lblbuy = New System.Windows.Forms.Label()
-        Me.dgvHistory = New System.Windows.Forms.DataGridView()
-        Me.dgvProduct = New System.Windows.Forms.DataGridView()
         Me.Panelout.SuspendLayout()
         CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
+        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_appoint.SuspendLayout()
         Me.Panel_billing.SuspendLayout()
         CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Label1
@@ -156,6 +156,24 @@ Partial Class formstaff
         Me.panel_dashboard.Name = "panel_dashboard"
         Me.panel_dashboard.Size = New System.Drawing.Size(573, 569)
         Me.panel_dashboard.TabIndex = 15
+        '
+        'dgvProduct
+        '
+        Me.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvProduct.Location = New System.Drawing.Point(16, 112)
+        Me.dgvProduct.Name = "dgvProduct"
+        Me.dgvProduct.ReadOnly = True
+        Me.dgvProduct.Size = New System.Drawing.Size(544, 247)
+        Me.dgvProduct.TabIndex = 16
+        '
+        'dgvHistory
+        '
+        Me.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvHistory.Location = New System.Drawing.Point(17, 113)
+        Me.dgvHistory.Name = "dgvHistory"
+        Me.dgvHistory.ReadOnly = True
+        Me.dgvHistory.Size = New System.Drawing.Size(544, 247)
+        Me.dgvHistory.TabIndex = 15
         '
         'lblhistory
         '
@@ -462,24 +480,6 @@ Partial Class formstaff
         Me.lblbuy.TabIndex = 19
         Me.lblbuy.Text = "Buy Product"
         '
-        'dgvHistory
-        '
-        Me.dgvHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvHistory.Location = New System.Drawing.Point(17, 113)
-        Me.dgvHistory.Name = "dgvHistory"
-        Me.dgvHistory.ReadOnly = True
-        Me.dgvHistory.Size = New System.Drawing.Size(544, 247)
-        Me.dgvHistory.TabIndex = 15
-        '
-        'dgvProduct
-        '
-        Me.dgvProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvProduct.Location = New System.Drawing.Point(16, 112)
-        Me.dgvProduct.Name = "dgvProduct"
-        Me.dgvProduct.ReadOnly = True
-        Me.dgvProduct.Size = New System.Drawing.Size(544, 247)
-        Me.dgvProduct.TabIndex = 16
-        '
         'formstaff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -493,9 +493,9 @@ Partial Class formstaff
         Me.Controls.Add(Me.lblappoint)
         Me.Controls.Add(Me.lbldashboard)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Panel_billing)
         Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_appoint)
-        Me.Controls.Add(Me.Panel_billing)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "formstaff"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -505,14 +505,14 @@ Partial Class formstaff
         CType(Me.pbout, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_dashboard.ResumeLayout(False)
         Me.panel_dashboard.PerformLayout()
+        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dgvdashboard, System.ComponentModel.ISupportInitialize).EndInit()
         Me.panel_appoint.ResumeLayout(False)
         Me.panel_appoint.PerformLayout()
         Me.Panel_billing.ResumeLayout(False)
         Me.Panel_billing.PerformLayout()
         CType(Me.dgvbilling, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvHistory, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvProduct, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

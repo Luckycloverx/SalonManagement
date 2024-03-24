@@ -139,18 +139,18 @@ Partial Class formbillout
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label9.ForeColor = System.Drawing.Color.Navy
-        Me.Label9.Location = New System.Drawing.Point(12, 311)
+        Me.Label9.Location = New System.Drawing.Point(20, 311)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(127, 21)
+        Me.Label9.Size = New System.Drawing.Size(102, 21)
         Me.Label9.TabIndex = 53
-        Me.Label9.Text = "PWD/Senior 5% :"
+        Me.Label9.Text = "PWD/Senior :"
         '
         'cmbpwd
         '
         Me.cmbpwd.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbpwd.FormattingEnabled = True
         Me.cmbpwd.Items.AddRange(New Object() {"NO", "YES"})
-        Me.cmbpwd.Location = New System.Drawing.Point(148, 311)
+        Me.cmbpwd.Location = New System.Drawing.Point(136, 311)
         Me.cmbpwd.Name = "cmbpwd"
         Me.cmbpwd.Size = New System.Drawing.Size(77, 21)
         Me.cmbpwd.TabIndex = 52

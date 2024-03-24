@@ -94,7 +94,6 @@ Public Class formstaff
         panel_dashboard.Visible = False
         panel_appoint.Visible = True
         cmbstatus.SelectedIndex = 0
-        cmbtime.SelectedIndex = 0
         cmbservices.SelectedIndex = 0
         cmbstylist.SelectedIndex = 0
     End Sub
@@ -175,6 +174,8 @@ Public Class formstaff
         dgvProduct.Visible = False
         dgvHistory.Visible = False
         LoadSchedules()
+        Loadbilling()
+        LoadScheduleTimes()
 
 
         Try
@@ -300,7 +301,7 @@ Public Class formstaff
                 End Using
             End Using
 
-            MessageBox.Show("Schedule confirmed and saved to the database!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MessageBox.Show("Schedule confirmed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             dgvdashboard.DataSource = Nothing
             LoadSchedules()
             Clearappoint()
@@ -358,6 +359,30 @@ Public Class formstaff
 
     Private Sub Loadbilling()
         Try
+
+            Using conn As New OleDbConnection(mycon)
+                conn.Open()
+                Dim query As String = "SELECT * FROM tblappointment ORDER BY [Schedule], [Time] ASC"
+
+                Using adapter As New OleDbDataAdapter(query, conn)
+                    Dim scheduleTable As New DataTable()
+                    adapter.Fill(scheduleTable)
+
+                    ' Bind the schedule data to the DataGridView
+                    dgvbilling.DataSource = scheduleTable
+                End Using
+            End Using
+        Catch ex As Exception
+            MessageBox.Show("Error loading schedules: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Public Sub refreshLoadbilling()
+        Try
+
+            dgvbilling.DataSource = Nothing
+            dgvbilling.Rows.Clear()
+
             Using conn As New OleDbConnection(mycon)
                 conn.Open()
                 Dim query As String = "SELECT * FROM tblappointment ORDER BY [Schedule], [Time] ASC"
@@ -515,5 +540,49 @@ Public Class formstaff
         formbillout.ShowDialog()
     End Sub
 
+    Private Sub LoadScheduleTimes()
+        ' Clear existing items in the ComboBox
+        cmbtime.Items.Clear()
+
+        ' Get the current date and time
+        Dim currentTime As DateTime = DateTime.Now
+
+        ' Check if the current time is 9:01 PM or later
+        If currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1 Then
+            ' If so, set the selected date in DTPappoint to tomorrow
+            DTPappoint.Value = DateTime.Today.AddDays(1)
+        End If
+
+        ' Proceed with populating the ComboBox based on the selected date in DTPappoint
+        Dim selectedDate As DateTime = DTPappoint.Value
+
+        ' Set the minimum schedule time based on the selected date and current time
+        Dim minScheduleTime As DateTime = If(selectedDate.Date = currentTime.Date AndAlso currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1,
+                                      New DateTime(currentTime.Year, currentTime.Month, currentTime.Day + 1, 8, 0, 0),
+                                      New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 8, 0, 0))
+
+        ' Set the maximum schedule time (up to 9:00 PM)
+        Dim maxScheduleTime As DateTime = New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 21, 0, 0)
+
+        ' Populate the ComboBox with schedule times starting from the minimum time up to the maximum time
+        While minScheduleTime <= maxScheduleTime
+            If Not (currentTime.Hour = minScheduleTime.Hour AndAlso currentTime.Minute >= 1 AndAlso currentTime.Minute <= 59) Then
+                ' Add the time to the ComboBox only if it's not the current hour
+                cmbtime.Items.Add(minScheduleTime.ToString("hh:mm tt"))
+            End If
+            minScheduleTime = minScheduleTime.AddHours(1) ' Increment by 1 hour
+        End While
+
+        ' Check if the ComboBox has items before setting SelectedIndex
+        If cmbtime.Items.Count > 0 Then
+            cmbtime.SelectedIndex = 0 ' Set the default selected schedule time
+        End If
+    End Sub
+
+
+
+    Private Sub DTPappoint_ValueChanged(sender As Object, e As EventArgs) Handles DTPappoint.ValueChanged
+        LoadScheduleTimes()
+    End Sub
 
 End Class

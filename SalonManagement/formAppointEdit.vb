@@ -130,6 +130,10 @@ Public Class formAppointEdit
                     cmd.ExecuteNonQuery()
                 End Using
 
+                ' Check if the appointment status is "Cancel"
+                If cmbstatus.SelectedItem.ToString() = "Cancel" Then
+                    MoveToCancelledDatabase(conn) ' Move data to tblHistory and delete from tblappointment
+                End If
 
                 MessageBox.Show("Schedule updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End Using
@@ -140,6 +144,7 @@ Public Class formAppointEdit
 
     Private Sub MoveToCancelledDatabase(conn As OleDbConnection)
         Try
+            ' Insert the appointment data into tblHistory
             Dim insertQuery As String = "INSERT INTO tblHistory ([Services], [Stylist], [Costumer Name], [Contact Number], [Schedule], [Time], [Status]) VALUES (@Services, @Stylist, @CostumerName, @CostumerNumber, @ScheduledDate, @ScheduledTime, @Status)"
 
             Using cmd As New OleDbCommand(insertQuery, conn)
@@ -149,10 +154,19 @@ Public Class formAppointEdit
                 cmd.Parameters.AddWithValue("@CostumerNumber", txtphonenumber.Text)
                 cmd.Parameters.AddWithValue("@ScheduledDate", DTPappoint.Value.ToString("yyyy-MM-dd"))
                 cmd.Parameters.AddWithValue("@ScheduledTime", cmbtime.SelectedItem.ToString())
-                cmd.Parameters.AddWithValue("@Status", cmbstatus.SelectedItem.ToString())
+                cmd.Parameters.AddWithValue("@Status", "Cancelled") ' Set status as "Cancelled" in tblHistory
 
                 cmd.ExecuteNonQuery()
             End Using
+
+            ' Delete the appointment from tblappointment
+            Dim deleteQuery As String = "DELETE FROM tblappointment WHERE ID = @SID"
+
+            Using cmdDelete As New OleDbCommand(deleteQuery, conn)
+                cmdDelete.Parameters.AddWithValue("@SID", txtSID.Text)
+                cmdDelete.ExecuteNonQuery()
+            End Using
+
         Catch ex As Exception
             MessageBox.Show("Error moving to cancelled database: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -183,28 +197,32 @@ Public Class formAppointEdit
         ' Clear existing items in the ComboBox
         cmbtime.Items.Clear()
 
-        ' Get the selected date from the DateTimePicker
-        Dim selectedDate As DateTime = DTPappoint.Value
-
         ' Get the current date and time
         Dim currentTime As DateTime = DateTime.Now
 
-        ' Set the minimum schedule time based on the current time and selected date
-        Dim minScheduleTime As DateTime
-        If selectedDate.Date = currentTime.Date Then
-            ' If the selected date is today, start from the current hour
-            minScheduleTime = New DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, 0, 0)
-        Else
-            ' If the selected date is not today, start from 8:00 AM
-            minScheduleTime = New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 8, 0, 0)
+        ' Check if the current time is 9:01 PM or later
+        If currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1 Then
+            ' If so, set the selected date in DTPappoint to tomorrow
+            DTPappoint.Value = DateTime.Today.AddDays(1)
         End If
+
+        ' Proceed with populating the ComboBox based on the selected date in DTPappoint
+        Dim selectedDate As DateTime = DTPappoint.Value
+
+        ' Set the minimum schedule time based on the selected date and current time
+        Dim minScheduleTime As DateTime = If(selectedDate.Date = currentTime.Date AndAlso currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1,
+                                      New DateTime(currentTime.Year, currentTime.Month, currentTime.Day + 1, 8, 0, 0),
+                                      New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 8, 0, 0))
 
         ' Set the maximum schedule time (up to 9:00 PM)
         Dim maxScheduleTime As DateTime = New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 21, 0, 0)
 
         ' Populate the ComboBox with schedule times starting from the minimum time up to the maximum time
         While minScheduleTime <= maxScheduleTime
-            cmbtime.Items.Add(minScheduleTime.ToString("hh:mm tt"))
+            If Not (currentTime.Hour = minScheduleTime.Hour AndAlso currentTime.Minute >= 1 AndAlso currentTime.Minute <= 59) Then
+                ' Add the time to the ComboBox only if it's not the current hour
+                cmbtime.Items.Add(minScheduleTime.ToString("hh:mm tt"))
+            End If
             minScheduleTime = minScheduleTime.AddHours(1) ' Increment by 1 hour
         End While
 
@@ -213,6 +231,7 @@ Public Class formAppointEdit
             cmbtime.SelectedIndex = 0 ' Set the default selected schedule time
         End If
     End Sub
+
 
     Private Sub DTPappoint_ValueChanged(sender As Object, e As EventArgs) Handles DTPappoint.ValueChanged
         LoadScheduleTimes()
