@@ -200,29 +200,31 @@ Public Class formAppointEdit
         ' Get the current date and time
         Dim currentTime As DateTime = DateTime.Now
 
-        ' Check if the current time is 9:01 PM or later
-        If currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1 Then
-            ' If so, set the selected date in DTPappoint to tomorrow
-            DTPappoint.Value = DateTime.Today.AddDays(1)
-        End If
-
         ' Proceed with populating the ComboBox based on the selected date in DTPappoint
-        Dim selectedDate As DateTime = DTPappoint.Value
+        Dim selectedDate As DateTime = DTPappoint.Value.Date
 
         ' Set the minimum schedule time based on the selected date and current time
-        Dim minScheduleTime As DateTime = If(selectedDate.Date = currentTime.Date AndAlso currentTime.Hour >= 21 AndAlso currentTime.Minute >= 1,
-                                      New DateTime(currentTime.Year, currentTime.Month, currentTime.Day + 1, 8, 0, 0),
-                                      New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 8, 0, 0))
+        Dim minScheduleTime As DateTime
+
+        If selectedDate >= currentTime.Date.AddDays(1) Then
+            ' If the selected date is tomorrow or any day onward, start from 8:00 AM onwards
+            minScheduleTime = New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 8, 0, 0)
+        Else
+            ' Otherwise, start from the current hour onwards for today's date
+            minScheduleTime = New DateTime(currentTime.Year, currentTime.Month, currentTime.Day, currentTime.Hour, 0, 0)
+            ' Increment by 1 hour if the current minute is past the hour
+            If currentTime.Minute > 0 Then
+                minScheduleTime = minScheduleTime.AddHours(1)
+            End If
+        End If
 
         ' Set the maximum schedule time (up to 9:00 PM)
         Dim maxScheduleTime As DateTime = New DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, 21, 0, 0)
 
         ' Populate the ComboBox with schedule times starting from the minimum time up to the maximum time
         While minScheduleTime <= maxScheduleTime
-            If Not (currentTime.Hour = minScheduleTime.Hour AndAlso currentTime.Minute >= 1 AndAlso currentTime.Minute <= 59) Then
-                ' Add the time to the ComboBox only if it's not the current hour
-                cmbtime.Items.Add(minScheduleTime.ToString("hh:mm tt"))
-            End If
+            ' Add the time to the ComboBox
+            cmbtime.Items.Add(minScheduleTime.ToString("hh:mm tt"))
             minScheduleTime = minScheduleTime.AddHours(1) ' Increment by 1 hour
         End While
 
@@ -231,6 +233,8 @@ Public Class formAppointEdit
             cmbtime.SelectedIndex = 0 ' Set the default selected schedule time
         End If
     End Sub
+
+
 
 
     Private Sub DTPappoint_ValueChanged(sender As Object, e As EventArgs) Handles DTPappoint.ValueChanged
