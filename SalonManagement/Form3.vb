@@ -9,10 +9,17 @@ Public Class adding_employee
     Private selectedEmployeeID As Integer = -1
 
     Private adminFormRef As adminwindows
+    Private adminFormRefe As formstaff
 
     Public WriteOnly Property AdminFormReference As adminwindows
         Set(value As adminwindows)
             adminFormRef = value
+        End Set
+    End Property
+
+    Public WriteOnly Property AdminFormReferencee As formstaff
+        Set(value As formstaff)
+            adminFormRefe = value
         End Set
     End Property
 

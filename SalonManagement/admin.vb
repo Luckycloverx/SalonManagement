@@ -384,6 +384,7 @@ Public Class adminwindows
         panel_Inventory.Visible = False
         Employee_management.Visible = False
         panel_dashboard.Visible = True
+
         LoadSchedules()
     End Sub
 

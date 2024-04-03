@@ -4,10 +4,14 @@ Imports System.Reflection.Emit
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 Imports System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel
 Imports SalonManagement.adminwindows
+Imports SalonManagement.formstaff
 
 Public Class Forminventory
 
     Private adminFormRef As adminwindows
+    Private adminFormRefee As formstaff
+
+
 
     Public Sub HideEdit()
         lbledit.Visible = False
@@ -48,7 +52,11 @@ Public Class Forminventory
     End Sub
 
 
-
+    Public WriteOnly Property AdminFormReferencee As formstaff
+        Set(value As formstaff)
+            adminFormRefee = value
+        End Set
+    End Property
 
     Public WriteOnly Property AdminFormReference As adminwindows
         Set(value As adminwindows)
@@ -74,7 +82,32 @@ Public Class Forminventory
                     End Using
                 End Using
             Else
-                MessageBox.Show("AdminFormRef or MyDataGridView is not initialized.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            End If
+        Catch ex As Exception
+            MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Public Sub DatagridShowe()
+        Try
+            If adminFormRefee IsNot Nothing AndAlso adminFormRefee.MyDataGridViews IsNot Nothing Then
+                ' Access the DataGridViewContainer and its DataGridViews
+                Dim containers As DataGridViewContainers = adminFormRefee.MyDataGridViews
+                Dim inventoryGridView As DataGridView = containers.Inventory
+
+                Using conn As New OleDbConnection(mycon)
+                    conn.Open()
+                    Dim query As String = "SELECT * FROM tblInventory"
+                    Using da As New OleDbDataAdapter(query, conn)
+                        Dim ds As New DataSet
+                        da.Fill(ds, "tblInventory")
+                        ' Set the DataSource for the DataGridViews
+                        inventoryGridView.DataSource = ds.Tables("tblInventory").DefaultView
+                    End Using
+                End Using
+            Else
+
             End If
         Catch ex As Exception
             MessageBox.Show("Error loading data: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -142,7 +175,7 @@ Public Class Forminventory
             Try
                 Using connection As New OleDbConnection(mycon)
                     connection.Open()
-                    Dim query As String = "INSERT INTO tblInventory ([Category], ([Product], [Quantity], [Cost]) VALUES (@Category, @product, @quantity, @cost)"
+                    Dim query As String = "INSERT INTO tblInventory ([Category], [Product], [Quantity], [Cost]) VALUES (@category, @product, @quantity, @cost)"
                     Using command As New OleDbCommand(query, connection)
                         command.Parameters.AddWithValue("@category", Category)
                         command.Parameters.AddWithValue("@product", product)
@@ -153,6 +186,7 @@ Public Class Forminventory
                         MessageBox.Show("Product added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         ' Update the DataGridView to reflect the changes
                         DatagridShow()
+                        DatagridShowe()
                         Me.Close()
                     End Using
                 End Using
@@ -227,6 +261,7 @@ Public Class Forminventory
 
                         ' Call DatagridShow() after updating the inventory data
                         DatagridShow()
+                        DatagridShowe()
 
                         Me.Close()
                     End Using
@@ -265,6 +300,7 @@ Public Class Forminventory
                         ' Optionally, you can inform the parent form about the deletion
 
                         DatagridShow()
+                        DatagridShowe()
 
                         Me.Close() ' Close the form after successful removal
                     End Using

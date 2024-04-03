@@ -331,9 +331,9 @@ Partial Class adminwindows
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(817, 569)
         Me.Controls.Add(Me.Panel1)
-        Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_Inventory)
         Me.Controls.Add(Me.Employee_management)
+        Me.Controls.Add(Me.panel_dashboard)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "adminwindows"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

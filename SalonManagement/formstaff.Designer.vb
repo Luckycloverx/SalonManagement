@@ -60,6 +60,7 @@ Partial Class formstaff
         Me.lbl_billing = New System.Windows.Forms.Label()
         Me.dgvbilling = New System.Windows.Forms.DataGridView()
         Me.lblbuy = New System.Windows.Forms.Label()
+        Me.lbladdproduct = New System.Windows.Forms.Label()
         Me.Panelout.SuspendLayout()
         CType(Me.pbout, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.panel_dashboard.SuspendLayout()
@@ -146,6 +147,7 @@ Partial Class formstaff
         '
         'panel_dashboard
         '
+        Me.panel_dashboard.Controls.Add(Me.lbladdproduct)
         Me.panel_dashboard.Controls.Add(Me.dgvProduct)
         Me.panel_dashboard.Controls.Add(Me.dgvHistory)
         Me.panel_dashboard.Controls.Add(Me.lblhistory)
@@ -480,6 +482,18 @@ Partial Class formstaff
         Me.lblbuy.TabIndex = 19
         Me.lblbuy.Text = "Buy Product"
         '
+        'lbladdproduct
+        '
+        Me.lbladdproduct.AutoSize = True
+        Me.lbladdproduct.Font = New System.Drawing.Font("Segoe UI Semilight", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lbladdproduct.ForeColor = System.Drawing.Color.Navy
+        Me.lbladdproduct.Location = New System.Drawing.Point(469, 372)
+        Me.lbladdproduct.Name = "lbladdproduct"
+        Me.lbladdproduct.Size = New System.Drawing.Size(95, 21)
+        Me.lbladdproduct.TabIndex = 20
+        Me.lbladdproduct.Text = "Add Product"
+        Me.lbladdproduct.Visible = False
+        '
         'formstaff
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -493,9 +507,9 @@ Partial Class formstaff
         Me.Controls.Add(Me.lblappoint)
         Me.Controls.Add(Me.lbldashboard)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Panel_billing)
         Me.Controls.Add(Me.panel_dashboard)
         Me.Controls.Add(Me.panel_appoint)
+        Me.Controls.Add(Me.Panel_billing)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "formstaff"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
@@ -556,4 +570,5 @@ Partial Class formstaff
     Friend WithEvents lblhistory As Label
     Friend WithEvents dgvProduct As DataGridView
     Friend WithEvents dgvHistory As DataGridView
+    Friend WithEvents lbladdproduct As Label
 End Class

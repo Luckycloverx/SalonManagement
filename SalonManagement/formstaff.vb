@@ -8,6 +8,7 @@ Imports SalonManagement.adminwindows
 
 Public Class formstaff
     Dim selectedscheduleID As Integer = -1
+    Dim selectedproductID As Integer = -1
 
     Private Sub Panelout_Click(sender As Object, e As EventArgs) Handles Panelout.Click
         Dim result As DialogResult = MessageBox.Show("Are you sure you want to sign out?", "Exit Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -83,6 +84,7 @@ Public Class formstaff
         dgvdashboard.Visible = True
         dgvProduct.Visible = False
         dgvHistory.Visible = False
+        lbladdproduct.Visible = False
         LoadSchedules()
     End Sub
 
@@ -104,6 +106,7 @@ Public Class formstaff
         lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
         dgvdashboard.Visible = True
         dgvProduct.Visible = False
+        lbladdproduct.Visible = False
         dgvHistory.Visible = False
         LoadSchedules()
     End Sub
@@ -115,6 +118,7 @@ Public Class formstaff
         dgvdashboard.Visible = False
         dgvProduct.Visible = False
         dgvHistory.Visible = True
+        lbladdproduct.Visible = False
         HistoryIntoDataGridView()
     End Sub
 
@@ -122,6 +126,7 @@ Public Class formstaff
         lblstocks.Font = New Font(lblstocks.Font, FontStyle.Bold Or FontStyle.Underline)
         lblcostumer.Font = New Font(lblcostumer.Font.Name, lblstocks.Font.Size, FontStyle.Regular)
         lblhistory.Font = New Font(lblhistory.Font.Name, lblhistory.Font.Size, FontStyle.Regular)
+        lbladdproduct.Visible = True
         dgvdashboard.Visible = False
         dgvProduct.Visible = True
         dgvHistory.Visible = False
@@ -148,7 +153,7 @@ Public Class formstaff
         Try
             Using conn As New OleDbConnection(mycon)
                 conn.Open()
-                Dim query As String = "SELECT [Category], [Product], [Quantity], [Cost] FROM tblInventory"
+                Dim query As String = "SELECT * FROM tblInventory"
                 Using da As New OleDbDataAdapter(query, conn)
                     Dim ds As New DataSet
                     da.Fill(ds, "tblInventory")
@@ -585,4 +590,56 @@ Public Class formstaff
         LoadScheduleTimes()
     End Sub
 
+    Public Class DataGridViewContainers
+        Public Property Inventory As DataGridView
+    End Class
+
+    Public ReadOnly Property MyDataGridViews As DataGridViewContainers
+        Get
+            Dim container As New DataGridViewContainers()
+            container.Inventory = dgvProduct
+            Return container
+        End Get
+    End Property
+
+    Private Sub lbladdproduct_Click(sender As Object, e As EventArgs) Handles lbladdproduct.Click
+        Dim forminventory As New Forminventory()
+        forminventory.cmbcategory.SelectedIndex = 0
+        forminventory.HideEdit()
+        forminventory.AdminFormReferencee = Me
+        forminventory.DatagridShowe()
+        forminventory.ShowDialog()
+    End Sub
+
+    Private Sub dgvProduct_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvProduct.CellClick
+        If e.RowIndex >= 0 AndAlso e.ColumnIndex >= 0 Then
+            If Not IsDBNull(dgvProduct.Rows(e.RowIndex).Cells(0).Value) AndAlso
+       Not IsDBNull(dgvProduct.Rows(e.RowIndex).Cells(1).Value) AndAlso
+       Not IsDBNull(dgvProduct.Rows(e.RowIndex).Cells(2).Value) AndAlso
+       Not IsDBNull(dgvProduct.Rows(e.RowIndex).Cells(3).Value) AndAlso
+       Not IsDBNull(dgvProduct.Rows(e.RowIndex).Cells(4).Value) Then
+
+                Dim productID As Integer = Convert.ToInt32(dgvProduct.Rows(e.RowIndex).Cells(0).Value)
+                Dim category As String = dgvProduct.Rows(e.RowIndex).Cells(1).Value.ToString()
+                Dim product As String = dgvProduct.Rows(e.RowIndex).Cells(2).Value.ToString()
+                Dim quantity As Integer = Convert.ToInt32(dgvProduct.Rows(e.RowIndex).Cells(3).Value)
+                Dim cost As Double = Convert.ToDouble(dgvProduct.Rows(e.RowIndex).Cells(4).Value)
+
+                Dim forminventory As New Forminventory()
+                forminventory.ShowEdit()
+                forminventory.AdminFormReferencee = Me
+                selectedproductID = productID
+
+                forminventory.Setcategory(category)
+                forminventory.SetID(productID)
+                forminventory.Setproduct(product)
+                forminventory.Setquantity(quantity.ToString()) ' Convert to string if needed
+                forminventory.Setcost(cost.ToString()) ' Convert to string if needed
+                forminventory.ShowDialog()
+            Else
+                ' Handle DBNull values if needed
+
+            End If
+        End If
+    End Sub
 End Class
